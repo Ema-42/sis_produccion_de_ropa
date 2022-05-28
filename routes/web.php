@@ -17,7 +17,9 @@ Route::get('/',function(){
     return view('auth.login');
 });
 
+Route::resource('articulos', 'App/Http/Controllers/ArticuloController');
 
+//para la autenticacion con jetstream
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
