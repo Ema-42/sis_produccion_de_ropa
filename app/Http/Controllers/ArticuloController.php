@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Articulo;
 
 class ArticuloController extends Controller
 {
@@ -13,7 +14,9 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        
+        $articulos = Articulo::all();
+        return view('articulo.index')->with('articulos',$articulos);
+
     }
 
     /**
@@ -23,7 +26,7 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        //
+        return view('articulo.create');
     }
 
     /**
@@ -34,7 +37,16 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articulos = new Articulo();
+        
+        $articulos->id_categoria_articulo= $request->get('categoria');
+        $articulos->nombre= $request->get('nombre');
+        $articulos->descripcion= $request->get('descripcion');
+        $articulos->imagen= $request->get('imagen');
+        
+        $articulos->save();
+        //redireccionar luego de crear
+        return redirect('/articulos');
     }
 
     /**
@@ -43,7 +55,7 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_articulo)
     {
         //
     }
@@ -54,9 +66,12 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_articulo)
     {
-        //
+        
+        $articulo = Articulo::find($id_articulo);
+
+        return view('articulo.edit')->with('articulo',$articulo);
     }
 
     /**
@@ -66,9 +81,19 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_articulo)
     {
-        //
+        $articulo = Articulo::find($id_articulo);
+        
+        $articulo->id_categoria_articulo= $request->get('categoria');
+        $articulo->nombre= $request->get('nombre');
+        $articulo->descripcion= $request->get('descripcion');
+        $articulo->imagen= $request->get('imagen');
+        
+        $articulo->save();
+        //redireccionar luego de crear
+        return redirect('/articulos');
+
     }
 
     /**
@@ -77,8 +102,10 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_articulo)
     {
-        //
+        $articulo = Articulo::find($id_articulo);
+        $articulo->delete();
+        return redirect('/articulos');
     }
 }

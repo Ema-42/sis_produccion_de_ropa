@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',function(){
     return view('auth.login');
 });
-
-Route::resource('articulos', 'App/Http/Controllers/ArticuloController');
+//busca por defecto el metodo index del controlador
+Route::resource('articulos', 'App\Http\Controllers\ArticuloController');
 
 //para la autenticacion con jetstream
 Route::middleware([
