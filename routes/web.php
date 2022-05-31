@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticuloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,10 @@ Route::get('/',function(){
     return view('auth.login');
 });
 //busca por defecto el metodo index del controlador
-Route::resource('articulos', 'App\Http\Controllers\ArticuloController');
+
+Route::resource('articulos', ArticuloController::class)->middleware('auth');
+
+
 
 //para la autenticacion con jetstream
 Route::middleware([

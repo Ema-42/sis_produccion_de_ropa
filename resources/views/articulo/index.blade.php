@@ -1,9 +1,15 @@
-@extends('layouts.plantillabase')
-{{-- mismo nombre de plantilla base --}}
-@section('contenido')
-<a href="articulos/create" class="btn btn-success">Crear</a>
-<table class="table table-striped table-hover">
-    <thead>
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Articulos</h1>
+@stop
+
+@section('content')
+<a href="articulos/create" class="btn btn-success mb-4">Crear</a>
+<table id="articulos" class="table table-striped table-hover">
+    <thead class="bg-secondary text-white">
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Categoria</th>
@@ -43,4 +49,22 @@
         @endforeach
     </tbody>   
 </table>
-@endsection
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+@stop
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+    $('#articulos').DataTable({
+        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+    });
+    })
+</script>
+@stop

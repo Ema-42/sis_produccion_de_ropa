@@ -7,6 +7,10 @@ use App\Models\Articulo;
 
 class ArticuloController extends Controller
 {
+    //para proteger la ruta 
+/*     public function __construct(){
+        $this->middleware('auth');
+    } */
     /**
      * Display a listing of the resource.
      *
