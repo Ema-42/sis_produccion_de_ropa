@@ -8,7 +8,7 @@
 
 @section('content')
 <a href="articulos/create" class="btn btn-success mb-4">Crear</a>
-<table id="articulos" class="table table-striped table-hover">
+<table id="articulos" class=" table table-striped table-hover">
     <thead class="bg-secondary text-white">
     <tr>
         <th scope="col">ID</th>
@@ -49,6 +49,7 @@
         @endforeach
     </tbody>   
 </table>
+
 @stop
 
 @section('css')

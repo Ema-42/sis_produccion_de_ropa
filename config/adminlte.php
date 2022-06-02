@@ -67,7 +67,7 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-info',
-    'usermenu_image' => true,//true para habilirar imagen
+    'usermenu_image' => false,//true para habilirar imagen
     'usermenu_desc' => true,//para los roles
     'usermenu_profile_url' => false,
 
@@ -255,6 +255,7 @@ return [
                 [
                     'text' => 'Listado',
                     'url'  => 'articulos',
+                    
                 ],
 
                 [
@@ -489,5 +490,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

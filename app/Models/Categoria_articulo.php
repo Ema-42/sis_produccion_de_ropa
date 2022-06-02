@@ -9,4 +9,5 @@ class Categoria_articulo extends Model
 {
     use HasFactory;
     protected $primaryKey = "id_categoria_articulo";
+    protected $fillable = ['nombre','descripcion'];
 }
