@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticuloController;
-
+use App\Http\Livewire\CatArticulos\CategoriaArticulos;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +21,10 @@ Route::get('/',function(){
 
 Route::resource('articulos', ArticuloController::class)->middleware('auth');
 
+Route::get('categoria_articulos',CategoriaArticulos::class);
 
+//Route::view('categoria_articulos','livewire.cat-articulos.categoria-articulos');
+//Route::get('categoria_articulos',[CategoriaArticulos::class,'livewire.cat-articulos.categoria-articulos']);
 
 //para la autenticacion con jetstream
 Route::middleware([

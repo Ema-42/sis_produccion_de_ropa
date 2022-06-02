@@ -229,7 +229,7 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -237,8 +237,9 @@ return [
         ],
 
         // Sidebar items:
+        //barra de busqueda en el menu izquierdo
         [
-            'type' => 'sidebar-menu-search',
+            'type' => '',
             'text' => 'search',
         ],
         [
@@ -246,12 +247,21 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        //anadido recien
         [
-            'text'        => 'Articulos',
-            'url'         => 'articulos',
-            //'icon'        => 'far fa-fw fa-file',
-            //'label'       => ,
-            //'label_color' => 'success',
+            'text'    => 'Articulos',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'articulos',
+                ],
+
+                [
+                    'text' => 'Categorias',
+                    'url'  => 'categoria_articulos',
+                ],
+            ],
         ],
         [
             'text'        => 'Insumos',
