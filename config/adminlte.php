@@ -265,11 +265,20 @@ return [
             ],
         ],
         [
-            'text'        => 'Insumos',
-            'url'         => 'insumos',
-            //'icon'        => 'far fa-fw fa-file',
-            //'label'       => ,
-            //'label_color' => 'success',
+            'text'    => 'Insumos',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'insumos',
+                    
+                ],
+
+                [
+                    'text' => 'Categorias',
+                    'url'  => 'categoria_insumos',
+                ],
+            ],
         ],
         ['header' => 'account_settings'],
         [

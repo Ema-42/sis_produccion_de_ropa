@@ -27,6 +27,13 @@ Route::get('categoria_articulos', function(){
     return view('categoria_articulos.index');
 });
 
+Route::get('categoria_insumos', function(){
+    return view('categoria_insumos.index');
+});
+Route::get('insumos', function(){
+    return view('insumo.index');
+});
+
 //Route::view('categoria_articulos','livewire.cat-articulos.categoria-articulos');
 //Route::get('categoria_articulos',[CategoriaArticulos::class,'livewire.cat-articulos.categoria-articulos']);
 
