@@ -10,4 +10,5 @@ class Articulo extends Model
     use HasFactory;
     //declarar debido a que laravel por convencion quiere que las llaves primarias se llamen id 
     protected $primaryKey = "id_articulo";
+    protected $fillable = ['id_categoria_articulo','nombre','descripcion','imagen'];
 }

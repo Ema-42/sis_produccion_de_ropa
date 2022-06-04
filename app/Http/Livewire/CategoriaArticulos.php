@@ -7,24 +7,25 @@ use App\Models\Categoria_articulo;
 class CategoriaArticulos extends Component
 {
     public $categoria_articulos;
-    public $modal = false;
+    public $formulario = false;
+
     public function render()
     {
         $this->categoria_articulos = Categoria_articulo::all();
         return view('livewire.categoria-articulos');
-        /* return view('categoria_articulos.index'); */
+    
     }
     public function crear()
     {
         $this->limpiarCampos();
-        $this->abrirModal();
+        $this->abrirFormulario();
     }
 
-    public function abrirModal() {
-        $this->modal = true;
+    public function abrirFormulario() {
+        $this->formulario = true;
     }
-    public function cerrarModal() {
-        $this->modal = false;
+    public function cerrarformulario() {
+        $this->formulario = false;
     }
     public function limpiarCampos(){
         $this->nombre = '';
@@ -38,7 +39,7 @@ class CategoriaArticulos extends Component
         $this->id_categoria_articulo = $id_categoria_articulo;
         $this->nombre = $categorias->nombre;
         $this->descripcion = $categorias->descripcion;
-        $this->abrirModal();
+        $this->abrirFormulario();
     }
 
     public function borrar($id_categoria_articulo)
@@ -58,7 +59,7 @@ class CategoriaArticulos extends Component
          session()->flash('message',
             $this->id_categoria_articulo ? '¡Actualización exitosa!' : '¡Alta Exitosa!');
          
-         $this->cerrarModal();
+         $this->cerrarFormulario();
          $this->limpiarCampos();
     }
 }

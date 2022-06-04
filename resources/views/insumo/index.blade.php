@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>Insumos</h1>
-    @livewireStyles
+    
 @stop
 
 @section('content')
@@ -13,6 +13,7 @@
 @stop
 
 @section('css')
+    @livewireStyles
     <link rel="stylesheet" href="/css/admin_custom.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 @stop

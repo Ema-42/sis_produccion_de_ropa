@@ -19,9 +19,13 @@ Route::get('/',function(){
 });
 //busca por defecto el metodo index del controlador
 
-Route::resource('articulos', ArticuloController::class)->middleware('auth');
-
+/* Route::resource('articulos', ArticuloController::class)->middleware('auth');
+ */
 /* Route::get('categoria_articulos',CategoriaArticulos::class); */
+Route::get('articulos', function(){
+    return view('articulo.index');
+});
+
 
 Route::get('categoria_articulos', function(){
     return view('categoria_articulos.index');

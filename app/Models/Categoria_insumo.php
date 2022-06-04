@@ -9,6 +9,6 @@ class Categoria_insumo extends Model
 {
     use HasFactory;
     protected $primaryKey = "id_categoria_insumo";
-    protected $fillable = ['nombre','descripcion','stock','imagen'];
+    protected $fillable = ['nombre','descripcion'];
 }
 
