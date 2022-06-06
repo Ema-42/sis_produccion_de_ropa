@@ -24,7 +24,7 @@ class CategoriaArticulos extends Component
     public function abrirFormulario() {
         $this->formulario = true;
     }
-    public function cerrarformulario() {
+    public function cerrarFormulario() {
         $this->formulario = false;
     }
     public function limpiarCampos(){

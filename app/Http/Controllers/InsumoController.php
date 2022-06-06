@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Articulo;
+use App\Models\Insumo;
 
-class ArticuloController extends Controller
+class InsumoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        $articulos = Articulo::all();
-        return view('articulo.index')->with('articulos',$articulos);
+        $insumos = Insumo::all();
+        return view('insumo.index')->with('insumos',$insumos);
 
     }
 
@@ -26,7 +26,7 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return view('articulo.create');
+        return view('insumo.create');
     }
 
     /**
@@ -37,16 +37,16 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        $articulos = new Articulo();
+        $insumos = new Insumo();
         
-        $articulos->id_categoria_articulo= $request->get('categoria');
-        $articulos->nombre= $request->get('nombre');
-        $articulos->descripcion= $request->get('descripcion');
-        $articulos->imagen= $request->get('imagen');
+        $insumos->id_categoria_insumo= $request->get('categoria');
+        $insumos->nombre= $request->get('nombre');
+        $insumos->descripcion= $request->get('descripcion');
+        $insumos->imagen= $request->get('imagen');
         
-        $articulos->save();
+        $insumos->save();
         //redireccionar luego de crear
-        return redirect('/articulos');
+        return redirect('/insumos');
     }
 
     /**
@@ -55,7 +55,7 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_articulo)
+    public function show($id_insumo)
     {
         //
     }
@@ -66,12 +66,10 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_articulo)
+    public function edit($id_insumo)
     {
-        
-        $articulo = Articulo::find($id_articulo);
-
-        return view('articulo.edit')->with('articulo',$articulo);
+        $insumo = Insumo::find($id_insumo);
+        return view('insumo.edit')->with('insumo',$insumo);
     }
 
     /**
@@ -81,19 +79,18 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_articulo)
+    public function update(Request $request, $id_insumo)
     {
-        $articulo = Articulo::find($id_articulo);
+        $insumo = Insumo::find($id_insumo);
         
-        $articulo->id_categoria_articulo= $request->get('categoria');
-        $articulo->nombre= $request->get('nombre');
-        $articulo->descripcion= $request->get('descripcion');
-        $articulo->imagen= $request->get('imagen');
+        $insumo->id_categoria_insumo= $request->get('categoria');
+        $insumo->nombre= $request->get('nombre');
+        $insumo->descripcion= $request->get('descripcion');
+        $insumo->imagen= $request->get('imagen');
         
-        $articulo->save();
+        $insumo->save();
         //redireccionar luego de crear
-        return redirect('/articulos');
-
+        return redirect('/insumos');
     }
 
     /**
@@ -102,10 +99,10 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_articulo)
+    public function destroy($id_insumo)
     {
-        $articulo = Articulo::find($id_articulo);
-        $articulo->delete();
-        return redirect('/articulos');
+        $insumo = Insumo::find($id_insumo);
+        $insumo->delete();
+        return redirect('/insumos');
     }
 }
