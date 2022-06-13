@@ -22,26 +22,27 @@
     <tbody>
         @foreach ($articulos as $articulo)
             <tr>
-                <td>
+                <td style="width: 50px">
                     {{$articulo->id_articulo}}
                 </td>
-                <td>
-                    {{$articulo->id_categoria_articulo}}
+                {{-- categoria_articulos es la clase creada en el modelo articulo --}}
+                <td style="width: 222px">
+                    {{$articulo->categoria_articulos->descripcion}}
                 </td>
-                <td>
+                <td style="width: 180px">
                     {{$articulo->nombre}}
                 </td>
-                <td>
+                <td style="width: 250px">
                     {{$articulo->descripcion}}
                 </td>
-                <td>
-                    {{$articulo->imagen}}
+                <td >
+                    <img src="/img/{{$articulo->imagen}}" width="6%">
                 </td>
-                <td>
-                    <form action="{{route('articulos.destroy',$articulo->id_articulo)}}" method="POST">    
+                <td style="width: 180px">
+                    <form action="{{route('articulos.destroy',$articulo->id_articulo)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
-                        <a href="/articulos/{{$articulo->id_articulo}}/edit" class="btn btn-info">Editar</a>
+                        <a href="{{route('articulos.edit',$articulo->id_articulo)}}{{-- /articulos/{{$articulo->id_articulo}}/edit --}}" class="btn btn-primary">Editar</a>
                         <button type="submit" class="btn btn-danger">Borrar</button>
                     </form>
                 </td>
@@ -57,6 +58,7 @@
 @stop
 
 @section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -66,5 +68,39 @@
         'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
     });
     })
+</script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+        'use strict'
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.formBorrar')
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault()
+                event.stopPropagation()
+                Swal.fire({
+                    title: '¿Desea eliminado este registro?',
+                    text: "esta a punto de eliminado este registro!",
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                        Swal.fire(
+                        'Eliminado!',
+                        'El registro fue eliminado existosamente.',
+                        'success'
+                        )
+                    }
+                    })
+            }, false)
+            })
+        })()
 </script>
 @stop

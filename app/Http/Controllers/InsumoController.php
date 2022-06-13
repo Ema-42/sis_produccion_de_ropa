@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Insumo;
+use App\Models\Categoria_insumo;
 
 class InsumoController extends Controller
 {
@@ -26,7 +27,8 @@ class InsumoController extends Controller
      */
     public function create()
     {
-        return view('insumo.create');
+        $categorias =Categoria_insumo::all();
+        return view('insumo.create',compact('categorias'));
     }
 
     /**
@@ -37,14 +39,20 @@ class InsumoController extends Controller
      */
     public function store(Request $request)
     {
-        $insumos = new Insumo();
+        $insumo = new Insumo();
+
+        if($request->hasFile('imagen')){
+            $file = $request->file('imagen');
+            $path = 'img/';
+            $filename = date('YmdHis').'_'.$file->getClientOriginalName();
+            $uploadsiccess = $request->file('imagen')->move($path,$filename);
+            $insumo->imagen= "$filename";
+        } 
+        $insumo->id_categoria_insumo= $request->get('id_categoria_insumo');
+        $insumo->nombre= $request->get('nombre');
+        $insumo->descripcion= $request->get('descripcion');
         
-        $insumos->id_categoria_insumo= $request->get('categoria');
-        $insumos->nombre= $request->get('nombre');
-        $insumos->descripcion= $request->get('descripcion');
-        $insumos->imagen= $request->get('imagen');
-        
-        $insumos->save();
+        $insumo->save();
         //redireccionar luego de crear
         return redirect('/insumos');
     }
@@ -69,7 +77,8 @@ class InsumoController extends Controller
     public function edit($id_insumo)
     {
         $insumo = Insumo::find($id_insumo);
-        return view('insumo.edit')->with('insumo',$insumo);
+        $categorias =Categoria_insumo::all();
+        return view('insumo.edit',compact('insumo','categorias'));
     }
 
     /**
@@ -82,11 +91,19 @@ class InsumoController extends Controller
     public function update(Request $request, $id_insumo)
     {
         $insumo = Insumo::find($id_insumo);
-        
-        $insumo->id_categoria_insumo= $request->get('categoria');
+        /* return($request->all()); */
+        if($request->hasFile('imagen')){
+            $file = $request->file('imagen');
+            $path = 'img/';
+            $filename = date('YmdHis').'_'.$file->getClientOriginalName();
+            $uploadSuccess = $file->move($path, $filename);
+            $insumo->imagen= "$filename";
+        }else{
+            unset($articulo['imagen']);
+        }
+        $insumo->id_categoria_insumo= $request->get('id_categoria_insumo');
         $insumo->nombre= $request->get('nombre');
         $insumo->descripcion= $request->get('descripcion');
-        $insumo->imagen= $request->get('imagen');
         
         $insumo->save();
         //redireccionar luego de crear

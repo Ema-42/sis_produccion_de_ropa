@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Articulo;
+use App\Models\Categoria_articulo;
+
+
 
 class ArticuloController extends Controller
 {
@@ -15,7 +18,7 @@ class ArticuloController extends Controller
     public function index()
     {
         $articulos = Articulo::all();
-        return view('articulo.index')->with('articulos',$articulos);
+        return view('articulo.index',compact('articulos'));
 
     }
 
@@ -26,7 +29,8 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return view('articulo.create');
+        $categorias =Categoria_articulo::all();
+        return view('articulo.create',compact('categorias'));
     }
 
     /**
@@ -37,14 +41,24 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        $articulos = new Articulo();
+/*         $request->validate([
+        'id_categoria_articulo' => 'required','nombre' => 'required','descripcion'=>'required','imagen'=>'required|image|mimes:png,jpg,jpeg|max:2048'
+        ]); */
+        $articulo = new Articulo();
+
+        if($request->hasFile('imagen')){
+            $file = $request->file('imagen');
+            $path = 'img/';
+            $filename = date('YmdHis').'_'.$file->getClientOriginalName();
+            $uploadsiccess = $request->file('imagen')->move($path,$filename);
+            $articulo->imagen= "$filename";
+        } 
+        $articulo->id_categoria_articulo= $request->get('id_categoria_articulo');
+        $articulo->nombre= $request->get('nombre');
+        $articulo->descripcion= $request->get('descripcion');
         
-        $articulos->id_categoria_articulo= $request->get('categoria');
-        $articulos->nombre= $request->get('nombre');
-        $articulos->descripcion= $request->get('descripcion');
-        $articulos->imagen= $request->get('imagen');
-        
-        $articulos->save();
+        $articulo->save();
+
         //redireccionar luego de crear
         return redirect('/articulos');
     }
@@ -70,8 +84,8 @@ class ArticuloController extends Controller
     {
         
         $articulo = Articulo::find($id_articulo);
-
-        return view('articulo.edit')->with('articulo',$articulo);
+        $categorias =Categoria_articulo::all();
+        return view('articulo.edit',compact('articulo','categorias'));
     }
 
     /**
@@ -83,12 +97,21 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, $id_articulo)
     {
-        $articulo = Articulo::find($id_articulo);
         
-        $articulo->id_categoria_articulo= $request->get('categoria');
+        $articulo = Articulo::find($id_articulo);
+        /* return($request->all()); */
+        if($request->hasFile('imagen')){
+            $file = $request->file('imagen');
+            $path = 'img/';
+            $filename = date('YmdHis').'_'.$file->getClientOriginalName();
+            $uploadSuccess = $file->move($path, $filename);
+            $articulo->imagen= "$filename";
+        }else{
+            unset($articulo['imagen']);
+        }
+        $articulo->id_categoria_articulo= $request->get('id_categoria_articulo');
         $articulo->nombre= $request->get('nombre');
         $articulo->descripcion= $request->get('descripcion');
-        $articulo->imagen= $request->get('imagen');
         
         $articulo->save();
         //redireccionar luego de crear

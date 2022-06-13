@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Livewire\CategoriaArticulos;
+use App\Http\Controllers\CategoriaArticuloController;
+use App\Http\Controllers\CategoriaInsumoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,20 +25,21 @@ Route::get('/',function(){
 
 Route::resource('articulos', ArticuloController::class)->middleware('auth');
 Route::resource('insumos', InsumoController::class)->middleware('auth');
-
+Route::get('categoria_articulos', [CategoriaArticuloController::class,'index'])->middleware('auth');
+Route::get('categoria_insumos', [CategoriaInsumoController::class,'index'])->middleware('auth');
 /* Route::get('categoria_articulos',CategoriaArticulos::class); */
 
 /* Route::get('articulos', function(){
     return view('articulo.index');
 }); */
 
-Route::get('categoria_articulos', function(){
+/* Route::get('categoria_articulos', function(){
     return view('categoria_articulos.index');
 });
 
 Route::get('categoria_insumos', function(){
     return view('categoria_insumos.index');
-});
+}); */
 /* Route::get('insumos', function(){
     return view('insumo.index');
 }); */
