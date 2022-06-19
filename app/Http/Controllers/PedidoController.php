@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pedido;
+use App\Models\User;
+use App\Models\Usuario;
+use App\Models\Empresa;
+use App\Models\Cliente;
+
 
 class PedidoController extends Controller
 {
@@ -13,7 +19,8 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pedidos = Pedido::all();
+        return view('pedido.index',compact('pedidos'));
     }
 
     /**
@@ -23,7 +30,12 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        /* dd(auth()->user()->id); */
+        $usuarios =Usuario::all();
+        $users =User::all();
+        $empresas =Empresa::all();
+        $clientes =Cliente::all();
+        return view('pedido.create',compact('usuarios','empresas','clientes','users'));
     }
 
     /**
@@ -33,8 +45,27 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $nit = Empresa::find($request->id_empresa);
+        
+        
+        $pedido = new Pedido();
+        $pedido->id_empresa= $request->get('id_empresa');
+        $pedido->id_cliente= $request->get('id_cliente');
+        $pedido->fecha_entrega= $request->get('fecha_entrega');
+        $pedido->descuento= $request->get('descuento');
+        $pedido->comentarios= $request->get('comentarios');
+        $pedido->direccion_entrega= $request->get('direccion_entrega');
+        $pedido->total = $request->get('total');
+
+        $pedido->estado=('espera');
+        /* $pedido->id_usuario=(1); */
+        $pedido->id_usuario=(1);
+        $pedido->id_user=(auth()->user()->id);
+        $pedido->nit = $nit->nit;
+        $pedido->save();
+        //redireccionar luego de listado
+        return redirect('/pedidos');
     }
 
     /**

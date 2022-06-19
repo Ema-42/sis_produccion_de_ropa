@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
+    //el id debe ser el que esta en pedido
     public function users(){
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class,'id_user');
+    }
+    public function usuarios(){
+        return $this->belongsTo(Usuario::class,'id_usuario');
     }
     public function empresas(){
         return $this->belongsTo(Empresa::class,'id_empresa');

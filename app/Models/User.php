@@ -12,9 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    public function pedidos(){
-        return $this->hasMany(Pedido::class,'id_pedido');
-    }
+
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -73,6 +71,9 @@ class User extends Authenticatable
     public function adminlte_profile_url()
     {
         return 'profile/username';
+    }
+    public function pedidos(){
+        return $this->hasMany(Pedido::class,'id_pedido');
     }
 
 }
