@@ -247,11 +247,30 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        [
+            'text'    => 'Pedidos',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Pedido',
+                    'url'  => 'pedidos/create',
+                ],
+                [
+                    'text' => 'Listado',
+                    'url'  => 'pedidos',
+                    
+                ],
+            ],
+        ],
         //anadido recien
         [
             'text'    => 'Articulos',
             'icon'    => '',
             'submenu' => [
+                [
+                    'text' => 'Crear',
+                    'url'  => 'articulos/create',
+                ],
                 [
                     'text' => 'Listado',
                     'url'  => 'articulos',
@@ -270,6 +289,10 @@ return [
             'icon'    => '',
             'submenu' => [
                 [
+                    'text' => 'Crear',
+                    'url'  => 'insumos/create',
+                ],
+                [
                     'text' => 'Listado',
                     'url'  => 'insumos',
                     
@@ -278,6 +301,49 @@ return [
                 [
                     'text' => 'Categorias',
                     'url'  => 'categoria_insumos',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Clientes',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'clientes',
+                    'icon' => 'fas fa-fw fa-user',
+                    
+                ],
+
+                [
+                    'text' => 'Crear',
+                    'url'  => 'clientes/create',
+                ],
+            ],
+        ],
+        ['header' => 'DETALLES DE ARTICULOS'],
+        [
+            'text'    => 'Detalles',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Tallas',
+                    'url'  => 'tallas',
+                ],
+                [
+                    'text' => 'Materiales',
+                    'url'  => 'materiales',
+                ],
+            ],
+        ],
+        ['header' => 'DATOS DE EMPRESA'],
+        [
+            'text'    => 'Empresa',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar',
+                    'url'  => 'empresas',  
                 ],
             ],
         ],

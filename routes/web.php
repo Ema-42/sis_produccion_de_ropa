@@ -6,6 +6,11 @@ use App\Http\Controllers\InsumoController;
 use App\Http\Livewire\CategoriaArticulos;
 use App\Http\Controllers\CategoriaArticuloController;
 use App\Http\Controllers\CategoriaInsumoController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\TallaController;
+use App\Http\Controllers\MaterialController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +27,10 @@ Route::get('/',function(){
     return view('auth.login');
 });
 //busca por defecto el metodo index del controlador
-
+Route::resource('tallas', TallaController::class)->middleware('auth');
+Route::resource('materiales', MaterialController::class)->middleware('auth');
+Route::resource('empresas', EmpresaController::class)->middleware('auth');
+Route::resource('clientes', ClienteController::class)->middleware('auth');
 Route::resource('articulos', ArticuloController::class)->middleware('auth');
 Route::resource('insumos', InsumoController::class)->middleware('auth');
 Route::get('categoria_articulos', [CategoriaArticuloController::class,'index'])->middleware('auth');

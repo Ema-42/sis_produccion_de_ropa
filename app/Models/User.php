@@ -12,6 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function pedidos(){
+        return $this->hasMany(Pedido::class,'id_pedido');
+    }
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
