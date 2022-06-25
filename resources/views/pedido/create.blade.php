@@ -3,7 +3,7 @@
 @section('title', 'Sistema de Produccion')
 
 @section('content_header')
-    <h1>Nuevo Pedido</h1>
+    <h1>Realizar Cotización</h1>
 @stop
 
 @section('content')

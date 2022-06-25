@@ -321,6 +321,23 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Proveedores',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'proveedores',
+                    'icon' => 'fas fa-fw fa-user',
+                    
+                ],
+
+                [
+                    'text' => 'Crear',
+                    'url'  => 'proveedores/create',
+                ],
+            ],
+        ],
         ['header' => 'DETALLES DE ARTICULOS'],
         [
             'text'    => 'Detalles',

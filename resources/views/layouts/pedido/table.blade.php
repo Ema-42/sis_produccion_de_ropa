@@ -8,8 +8,8 @@
         <th scope="col">Cliente</th>
         <th scope="col">Fecha Registro</th>
         <th scope="col">Fecha Entrega</th>
-        <th scope="col">Fecha Entregado</th>
         <th scope="col">Estado</th>
+        <th scope="col">Fecha Entregado</th>
         <th scope="col" >Comentarios</th>
         <th scope="col">Lugar de entrega</th>
         <th scope="col" >Descuento</th>
@@ -42,10 +42,10 @@
                     {{$pedido->fecha_entrega}}
                 </td>
                 <td>
-                    {{$pedido->fecha_entregado}}
+                    {{$pedido->estado}}
                 </td>
                 <td>
-                    {{$pedido->estado}}
+                    {{$pedido->fecha_entregado}}
                 </td>
                 <td>
                     {{$pedido->comentarios}}

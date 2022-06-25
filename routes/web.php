@@ -11,6 +11,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\TallaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\ProveedorController;
 
 
 /*
@@ -29,6 +30,7 @@ Route::get('/',function(){
 });
 //busca por defecto el metodo index del controlador
 Route::resource('tallas', TallaController::class)->middleware('auth');
+Route::resource('proveedores', ProveedorController::class)->middleware('auth');
 Route::resource('pedidos', PedidoController::class)->middleware('auth');
 Route::resource('materiales', MaterialController::class)->middleware('auth');
 Route::resource('empresas', EmpresaController::class)->middleware('auth');
