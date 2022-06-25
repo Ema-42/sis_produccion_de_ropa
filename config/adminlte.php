@@ -304,6 +304,7 @@ return [
                 ],
             ],
         ],
+        ['header' => 'PERSONAS'],
         [
             'text'    => 'Clientes',
             'icon'    => '',
@@ -335,6 +336,23 @@ return [
                 [
                     'text' => 'Crear',
                     'url'  => 'proveedores/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Encargado de produccion',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'encargado_producciones',
+                    'icon' => 'fas fa-fw fa-user',
+                    
+                ],
+
+                [
+                    'text' => 'Crear',
+                    'url'  => 'encargado_producciones/create',
                 ],
             ],
         ],
