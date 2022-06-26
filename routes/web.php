@@ -12,7 +12,9 @@ use App\Http\Controllers\TallaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EncargadoProduccionController;
+use App\Http\Controllers\ListaNegraController;
 
 
 /*
@@ -30,8 +32,13 @@ Route::get('/',function(){
     return view('auth.login');
 });
 //busca por defecto el metodo index del controlador
+Route::get('usuarios/b_list',[UsuarioController::class,'b_list'])->middleware('auth');
+/* Route::post('usuarios/block/{id}',[UsuarioController::class,'block'])->middleware('auth');
+ */
+
 Route::resource('encargado_producciones',EncargadoProduccionController::class)->middleware('auth');
 Route::resource('tallas', TallaController::class)->middleware('auth');
+Route::resource('usuarios', UsuarioController::class)->middleware('auth');
 Route::resource('proveedores', ProveedorController::class)->middleware('auth');
 Route::resource('pedidos', PedidoController::class)->middleware('auth');
 Route::resource('materiales', MaterialController::class)->middleware('auth');
@@ -43,8 +50,8 @@ Route::get('categoria_articulos', [CategoriaArticuloController::class,'index'])-
 Route::get('categoria_insumos', [CategoriaInsumoController::class,'index'])->middleware('auth');
 /* Route::get('categoria_articulos',CategoriaArticulos::class); */
 
-/* Route::get('articulos', function(){
-    return view('articulo.index');
+/* Route::get('lista_negra', function(){
+    return view('lista_negra.index');
 }); */
 
 /* Route::get('categoria_articulos', function(){

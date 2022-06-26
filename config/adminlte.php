@@ -356,6 +356,27 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Usuarios',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'usuarios',
+                    'icon' => 'fas fa-fw fa-user',
+                    
+                ],
+
+                [
+                    'text' => 'Crear',
+                    'url'  => 'usuarios/create',
+                ],
+                [
+                    'text' => 'Usuarios Bloqueados',
+                    'url'  => 'usuarios/b_list',
+                ],
+            ],
+        ],
         ['header' => 'DETALLES DE ARTICULOS'],
         [
             'text'    => 'Detalles',
