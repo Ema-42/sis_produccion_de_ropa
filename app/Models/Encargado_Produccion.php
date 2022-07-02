@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Encargado_Produccion extends Model
 {
+    public function detallePedidos(){
+        /* al final la tabla pivote */
+        return $this->belongsToMany(Detalle_pedido::class,'pedido_producciones');
+    }
+
     use HasFactory;
     protected $table ='encargado_producciones';
     protected $primaryKey = "id_encargado_produccion";

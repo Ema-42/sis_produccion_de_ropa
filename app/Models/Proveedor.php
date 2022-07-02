@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model
 {
+    public function ingresos(){
+        return $this->hasMany(Ingreso::class,'id_ingreso');
+    }
+    
     use HasFactory;
     protected $table ='proveedores';
     protected $primaryKey = "id_proveedor";

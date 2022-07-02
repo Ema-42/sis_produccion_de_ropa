@@ -14,6 +14,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EncargadoProduccionController;
+use App\Http\Controllers\PedidoProduccionController;
 use App\Http\Controllers\ListaNegraController;
 
 
@@ -33,9 +34,13 @@ Route::get('/',function(){
 });
 //busca por defecto el metodo index del controlador
 Route::get('usuarios/b_list',[UsuarioController::class,'b_list'])->middleware('auth');
-/* Route::post('usuarios/block/{id}',[UsuarioController::class,'block'])->middleware('auth');
- */
+/* Route::post('usuarios/block/{id}',[UsuarioController::class,'block'])->middleware('auth');*/
+Route::get('produccion/{id_pedido}/asignar',[PedidoProduccionController::class,'asignar'])->middleware('auth')->name('produccion.asignar');
+Route::get('produccion/sin_asignar',[PedidoProduccionController::class,'sin_asignar'])->middleware('auth')->name('produccion.sin_asignar');
+Route::get('produccion/produciendo',[PedidoProduccionController::class,'produciendo'])->middleware('auth')->name('produccion.produciendo');
 
+
+Route::resource('produccion',PedidoProduccionController::class)->middleware('auth');
 Route::resource('encargado_producciones',EncargadoProduccionController::class)->middleware('auth');
 Route::resource('tallas', TallaController::class)->middleware('auth');
 Route::resource('usuarios', UsuarioController::class)->middleware('auth');

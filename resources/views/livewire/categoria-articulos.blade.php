@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-    @endif
+        @endif
         <button wire:click="crear()"  class="btn btn-success mb-4">Crear</button>
         @if($formulario)
             @include('livewire.crear-categoria-articulos')   

@@ -13,6 +13,10 @@ class Insumo extends Model
         return $this->belongsTo(Categoria_insumo::class,'id_categoria_insumo');
     }
 
+    public function detalle_ingresos(){
+        return $this->hasMany(DetalleIngreso::class,'id_detalle_ingresos');
+    }
+    
     protected $primaryKey = "id_insumo";
     protected $fillable = ['nombre','descripcion','stock','imagen','id_categoria_insumo'];
 }

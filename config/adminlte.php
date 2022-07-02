@@ -248,6 +248,24 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'    => 'Produccion de Pedidos',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'produccion',
+                ],
+                [
+                    'text' => 'Produciendo',
+                    'url'  => 'produccion/produciendo',
+                ],
+                [
+                    'text' => 'Sin Asignar',
+                    'url'  => 'produccion/sin_asignar',
+                ],
+            ],
+        ],
+        [
             'text'    => 'Pedidos',
             'icon'    => '',
             'submenu' => [
@@ -262,6 +280,22 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Ingresos',
+            'icon'    => '',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Ingreso',
+                    'url'  => 'ingresos/create',
+                ],
+                [
+                    'text' => 'Listado',
+                    'url'  => 'ingresos',
+                    
+                ],
+            ],
+        ],
+
         //anadido recien
         [
             'text'    => 'Articulos',
@@ -403,7 +437,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'account_settings'],
+        /* ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'user/profile',
@@ -451,8 +485,8 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ], */
+        /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -467,7 +501,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*
