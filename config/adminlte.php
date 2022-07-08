@@ -249,48 +249,60 @@ return [
         ],
         [
             'text'    => 'Produccion de Pedidos',
-            'icon'    => '',
+            'icon'    => 'fas fa-pencil-ruler',
             'submenu' => [
                 [
                     'text' => 'Listado',
                     'url'  => 'produccion',
+                    'icon'    => 'nav-icon fas fa-table',
                 ],
                 [
                     'text' => 'Produciendo',
                     'url'  => 'produccion/produciendo',
+                    'icon' => 'fas fa-hard-hat',
                 ],
                 [
                     'text' => 'Sin Asignar',
                     'url'  => 'produccion/sin_asignar',
+                    'icon' =>'	fas fa-exclamation',
+                ],
+                [
+                    'text' => 'Entregados',
+                    'url'  => 'produccion/entregados',
+                    'icon'=>'fas fa-handshake',
                 ],
             ],
         ],
         [
             'text'    => 'Pedidos',
-            'icon'    => '',
+            'icon'    => 'fas fa-cart-arrow-down',
             'submenu' => [
                 [
                     'text' => 'Nuevo Pedido',
                     'url'  => 'pedidos/create',
+                    'icon'=>'fas fa-plus-circle',
                 ],
                 [
                     'text' => 'Listado',
                     'url'  => 'pedidos',
+                    'icon'    => 'nav-icon fas fa-table',
                     
                 ],
             ],
         ],
         [
             'text'    => 'Ingresos',
-            'icon'    => '',
+            'icon'    => 'fas fa-truck',
             'submenu' => [
                 [
                     'text' => 'Nuevo Ingreso',
                     'url'  => 'ingresos/create',
+                    'icon'=>'fas fa-plus-circle',
                 ],
                 [
                     'text' => 'Listado',
                     'url'  => 'ingresos',
+                    'icon' => 'nav-icon fas fa-table',
                     
                 ],
             ],
@@ -299,15 +311,17 @@ return [
         //anadido recien
         [
             'text'    => 'Articulos',
-            'icon'    => '',
+            'icon'    => 'fas fa-briefcase',
             'submenu' => [
                 [
                     'text' => 'Crear',
                     'url'  => 'articulos/create',
+                    'icon' => 'fas fa-tshirt',
                 ],
                 [
                     'text' => 'Listado',
                     'url'  => 'articulos',
+                    'icon'    => 'nav-icon fas fa-table',
                     
                     
                 ],
@@ -315,125 +329,137 @@ return [
                 [
                     'text' => 'Categorias',
                     'url'  => 'categoria_articulos',
+                    'icon'=> 'fas fa-shapes',
                 ],
             ],
         ],
         [
             'text'    => 'Insumos',
-            'icon'    => '',
+            'icon'    => 'fas fa-luggage-cart',
             'submenu' => [
                 [
                     'text' => 'Crear',
                     'url'  => 'insumos/create',
+                    'icon'=>'fas fa-calendar-plus',
                 ],
                 [
                     'text' => 'Listado',
                     'url'  => 'insumos',
+                    'icon'    => 'nav-icon fas fa-table',
                     
                 ],
 
                 [
                     'text' => 'Categorias',
                     'url'  => 'categoria_insumos',
+                    'icon'=> 'fas fa-shapes',
                 ],
             ],
         ],
         ['header' => 'PERSONAS'],
         [
             'text'    => 'Clientes',
-            'icon'    => '',
+            'icon'    => 'fas fa-fw fa-user',
             'submenu' => [
                 [
                     'text' => 'Listado',
                     'url'  => 'clientes',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon' => 'fas fa-address-card',
                     
                 ],
 
                 [
                     'text' => 'Crear',
                     'url'  => 'clientes/create',
+                    'icon'=>'fas fa-user-plus',
                 ],
             ],
         ],
         [
             'text'    => 'Proveedores',
-            'icon'    => '',
+            'icon'    => 'fas fa-user-tie',
             'submenu' => [
                 [
                     'text' => 'Listado',
                     'url'  => 'proveedores',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon'    => 'nav-icon fas fa-table',
                     
                 ],
 
                 [
                     'text' => 'Crear',
                     'url'  => 'proveedores/create',
+                    'icon'=>'fas fa-user-plus',
                 ],
             ],
         ],
         [
             'text'    => 'Encargado de produccion',
-            'icon'    => '',
+            'icon'    => 'fas fa-user-friends',
             'submenu' => [
                 [
                     'text' => 'Listado',
                     'url'  => 'encargado_producciones',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon'    => 'nav-icon fas fa-table',
                     
                 ],
 
                 [
                     'text' => 'Crear',
                     'url'  => 'encargado_producciones/create',
+                    'icon'=>'fas fa-user-plus',
                 ],
             ],
         ],
         [
             'text'    => 'Usuarios',
-            'icon'    => '',
+            'icon'    => 'fas fa-users',
             'submenu' => [
                 [
                     'text' => 'Listado',
                     'url'  => 'usuarios',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon'    => 'nav-icon fas fa-table',
                     
                 ],
 
                 [
                     'text' => 'Crear',
                     'url'  => 'usuarios/create',
+                    'icon'=>'fas fa-user-plus',
                 ],
                 [
                     'text' => 'Usuarios Bloqueados',
                     'url'  => 'usuarios/b_list',
+                    'icon'=>'fas fa-user-alt-slash',
                 ],
             ],
         ],
         ['header' => 'DETALLES DE ARTICULOS'],
         [
             'text'    => 'Detalles',
-            'icon'    => '',
+            'icon'    => 'fas fa-tools',
             'submenu' => [
                 [
                     'text' => 'Tallas',
                     'url'  => 'tallas',
+                    'icon'=>'fas fa-ruler-combined',
                 ],
                 [
                     'text' => 'Materiales',
                     'url'  => 'materiales',
+                    'icon'=>'fas fa-tint',
                 ],
             ],
         ],
         ['header' => 'DATOS DE EMPRESA'],
         [
             'text'    => 'Empresa',
-            'icon'    => '',
+            'icon'    => 'fas fa-building',
             'submenu' => [
                 [
                     'text' => 'Gestionar',
-                    'url'  => 'empresas',  
+                    'url'  => 'empresas',
+                    'icon'=>'fas fa-money-check',  
                 ],
             ],
         ],

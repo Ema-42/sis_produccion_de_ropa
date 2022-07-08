@@ -27,6 +27,29 @@ class PedidoProduccionController extends Controller
         $pedidos = Pedido::all();
         return view('produccion.index',compact('pedidos'));
     }
+    public function entregados()
+    {
+        $producciones = PedidoProduccion::all();
+        $pedidos = Pedido::all();
+        return view('produccion.entregados',compact('pedidos'));
+    }
+    public function entregar($id_pedido)
+    {
+        $fecha_actual = date('Y-m-d H:i:s');
+
+        $pedido=  Pedido::find($id_pedido);
+        $pedido->estado ='entregado';
+        $pedido->fecha_entregado = $fecha_actual;
+        $pedido->save();
+        return redirect('/produccion/produciendo');
+    }
+
+    public function ver_detalles($id_pedido)
+    {
+        $pedido = Pedido::find($id_pedido);
+        $detalles = Detalle_pedido::all();
+        return view('produccion.ver_detalles',compact('pedido','detalles','id_pedido'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,6 +60,16 @@ class PedidoProduccionController extends Controller
     {
         
     }
+    public function ver_asignaciones($id_pedido)
+    {   $tallas= Talla::all();
+        $materiales= Material::all();
+        $detalles = Detalle_pedido::all();
+        $producciones = PedidoProduccion::all();
+        $encargados = Encargado_Produccion::all();
+        $pedido = Pedido::find($id_pedido);
+        return view('produccion.ver_asignaciones',compact('pedido','materiales','tallas','id_pedido','detalles','producciones','encargados'));
+    }
+
     public function asignar($id_pedido)
     {   $tallas= Talla::all();
         $materiales= Material::all();
@@ -52,7 +85,6 @@ class PedidoProduccionController extends Controller
         $producciones = PedidoProduccion::all();
         $detalles = Detalle_pedido::all();
         $pedidos = Pedido::all();
-
         //solo se toma los pedidos que tienen detalles
         $nuevo = array();
         foreach ($pedidos as $pedido) {
@@ -60,17 +92,17 @@ class PedidoProduccionController extends Controller
                 foreach ($producciones as $produccion) {
                     if ($pedido->id_pedido == $detalle->id_pedido) {
                         if ($produccion->id_detalle_pedido ==$detalle->id_detalle_pedido) {
-                        }
-                        else {
                             if (in_array($pedido,$nuevo)==false) {
                                 array_push($nuevo,$pedido);
                             }
                         }
-                    }  
+                    }
                 }
             }
         }
-        $pedidos = $nuevo;
+        /* en [0] esta el array con todos los pedidos */
+        $pedidos = array($pedidos->all());/*  transformando el obj a array */
+        $pedidos = array_diff($pedidos[0],$nuevo);
         return view('produccion.sin_asignar',compact('pedidos','detalles','producciones'));
     }
     public function produciendo()
@@ -105,14 +137,19 @@ class PedidoProduccionController extends Controller
      */
     public function store(Request $request)
     {
-        for ($i=0; $i < count($request['id_detalle_pedido']) ; $i++) { 
-            $pedido_produccion = new PedidoProduccion();
-            $pedido_produccion->id_detalle_pedido = $request['id_detalle_pedido'][$i];
-            $pedido_produccion->id_encargado_produccion = $request['id_encargado_produccion'][$i];
-            $pedido_produccion->fecha_entrega = $request['fecha_entrega'];
-            $pedido_produccion->save();
+        if ($request['id_detalle_pedido']==null) {
+            return redirect('/produccion/sin_asignar');
+        } else {
+            for ($i=0; $i < count($request['id_detalle_pedido']) ; $i++) { 
+                $pedido_produccion = new PedidoProduccion();
+                $pedido_produccion->id_detalle_pedido = $request['id_detalle_pedido'][$i];
+                $pedido_produccion->id_encargado_produccion = $request['id_encargado_produccion'][$i];
+                $pedido_produccion->fecha_entrega = $request['fecha_entrega'];
+                $pedido_produccion->save();
+            }
+            return redirect('/produccion');
         }
-        return redirect('/produccion');
+        
 
         
     }
@@ -134,9 +171,15 @@ class PedidoProduccionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_pedido)
     {
-        //
+        $tallas= Talla::all();
+        $materiales= Material::all();
+        $detalles = Detalle_pedido::all();
+        $producciones = PedidoProduccion::all();
+        $encargados = Encargado_Produccion::all();
+        $pedido = Pedido::find($id_pedido);
+        return view('produccion.edit',compact('pedido','materiales','tallas','id_pedido','detalles','producciones','encargados'));
     }
 
     /**
@@ -146,9 +189,16 @@ class PedidoProduccionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pedido)
     {
-        //
+        /* dd($request); */
+        for ($i=0; $i < count($request['id_detalle_pedido']) ; $i++) { 
+            /* $pedido_produccion = new PedidoProduccion(); */
+            $pedido_produccion = PedidoProduccion::find($request['id_detalle_pedido'][$i]);
+            $pedido_produccion->id_encargado_produccion = $request['id_encargado_produccion'][$i];
+            $pedido_produccion->save();
+        }
+        return redirect('/produccion/produciendo');
     }
 
     /**

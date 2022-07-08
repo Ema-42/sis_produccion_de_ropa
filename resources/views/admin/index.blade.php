@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>Pantalla de inicio</p>
+    
 @stop
 
 @section('css')

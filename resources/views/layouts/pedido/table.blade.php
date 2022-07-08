@@ -19,56 +19,38 @@
     </thead>
     <tbody>
         @foreach ($pedidos as $pedido)
-            <tr>
-                <td>
-                    {{$pedido->id_pedido}}
-                </td>
-                <td>
-                   {{$pedido->users->name}} {{-- {{$pedido->usuarios->apellido_paterno}} --}}{{-- {{$pedido->users->name}} --}}
-                </td>
-                <td>
-                    {{$pedido->empresas->nombre}}
-                </td>
-                <td>
-                    {{$pedido->nit}}
-                </td>
-                <td>
-                    {{$pedido->clientes->primer_nombre}} {{$pedido->clientes->apellido_paterno}}
-                </td>
-                <td>
-                    {{$pedido->created_at}}
-                </td>
-                <td>
-                    {{$pedido->fecha_entrega}}
-                </td>
-                <td>
-                    {{$pedido->estado}}
-                </td>
-                <td>
-                    {{$pedido->fecha_entregado}}
-                </td>
-                <td>
-                    {{$pedido->comentarios}}
-                </td>
-                <td>
-                    {{$pedido->direccion_entrega}}
-                </td>
-                <td>
-                    {{$pedido->descuento}}
-                </td>
-                <td>
-                    {{$pedido->total}}
-                </td>
-                <td style="width: 180px">
-                    <form action="{{route('pedidos.destroy',$pedido->id_pedido)}}" method="POST" class="formBorrar">    
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{route('pedidos.edit',$pedido->id_pedido)}}" class="btn btn-primary">Editar</a>
-                        <a href="{{route('pedidos.show',$pedido->id_pedido)}}" class="btn btn-info">Ver</a>
-                        <button type="submit" class="btn btn-danger">Borrar</button>
-                    </form>
-                </td>
+            @if ($pedido->estado!='eliminado')
+            <tr @if ($pedido->estado=='entregado') style=" background: #E0FFDE ;" @endif>
+                <td>{{$pedido->id_pedido}}</td>
+                <td>{{$pedido->users->name}}</td>
+                <td>{{$pedido->empresas->nombre}}</td>
+                <td>{{$pedido->nit}}</td>
+                <td>{{$pedido->clientes->primer_nombre}} {{$pedido->clientes->apellido_paterno}}</td>
+                <td>{{$pedido->created_at}}</td>
+                <td>{{$pedido->fecha_entrega}}</td>
+                <td>{{$pedido->estado}}</td>
+                <td>{{$pedido->fecha_entregado}}</td>
+                <td>{{$pedido->comentarios}}</td>
+                <td>{{$pedido->direccion_entrega}}</td>
+                <td>{{$pedido->descuento}}</td>
+                <td>{{$pedido->total}}</td>
+                @if ($pedido->estado=='entregado')
+                    <td>
+                        <button disabled class="btn btn-success" style="color: black">Pedido Entregado</button>
+                    </td>
+                @else
+                    <td style="width: 250px">
+                        <form action="{{route('pedidos.destroy',$pedido->id_pedido)}}" method="POST" class="formBorrar">    
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{route('pedidos.edit',$pedido->id_pedido)}}" class="btn btn-primary">Editar</a>
+                            <a href="{{route('pedidos.ver_detalles',$pedido->id_pedido)}}" class="btn btn-info">Detalles</a>
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        </form>
+                    </td>
+                @endif
             </tr>
+            @endif
         @endforeach
     </tbody>   
 </table>

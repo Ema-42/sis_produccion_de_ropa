@@ -25,6 +25,7 @@ class Detalle_pedido extends Model
         return $this->belongsTo(Material::class,'id_material');
     }
     use HasFactory;
+    public $timestamps = false;
     protected $primaryKey = "id_detalle_pedido";
     protected $fillable = ['id_pedido','id_articulo','id_material','id_talla','cantidad','precio_unitario','descuento','sub_total','color','detalles'];
 }

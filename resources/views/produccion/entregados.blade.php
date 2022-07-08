@@ -3,7 +3,7 @@
 @section('title', 'Sistema de Produccion')
 
 @section('content_header')
-    <h1>Todos los Pedidos</h1>
+    <h1>Pedidos entregados</h1>
 @stop
 
 @section('content')
@@ -16,15 +16,16 @@
         <th scope="col">Fecha Registro</th>
         <th scope="col">Estado</th>
         <th scope="col">Fecha Entrega</th>
-        <th scope="col">Dias restantes</th>
+        <th scope="col">Fecha Entregado</th>
+        <th scope="col">Dias de Diferencia</th>
         <th scope="col">Lugar de entrega</th>
         <th scope="col">TOTAL</th>
-       {{--  <th scope="col" style="width: 180px">Acciones</th> --}}
+        <th scope="col">Detalles</th>
     </tr>   
     </thead>
     <tbody>
         @foreach ($pedidos as $pedido)
-            @if ($pedido->estado!='eliminado')
+            @if ($pedido->estado == 'entregado')
                 <tr>
                     <td>{{$pedido->id_pedido}}</td>
                     <td>{{$pedido->users->name}}</td>
@@ -32,20 +33,20 @@
                     <td>{{$pedido->created_at}}</td>
                     <td>{{$pedido->estado}}</td>
                     <td >{{$pedido->fecha_entrega}}</td>
-                    @if (intval($pedido->dias())> 5)
-                        <td style=" background: #58ca67;text-align: center; font-size: 17px;"><b>{{$pedido->dias()+0}}</b></td>                   
+                    <td >{{$pedido->fecha_entregado}}</td>
+                    @if (intval($pedido->diasEntrega())> -1)
+                        <td style=" background: #58ca67;text-align: center; font-size: 17px;"><b>{{$pedido->diasEntrega()+0}}</b></td>                   
                     @endif
-                    @if (intval($pedido->dias()) >= 2 and intval($pedido->dias())<= 5)
-                        <td style=" background: yellow;text-align: center; font-size: 17px;"><b>{{$pedido->dias()+0}}</b></td>                   
-                    @endif
-                    @if (intval($pedido->dias()) <= 1)
-                        <td style=" background: #C70039;text-align: center;color:white; font-size: 17px;"><b>{{$pedido->dias()+0}}</b></td>                   
+                    @if (intval($pedido->diasEntrega()) <0)
+                        <td style=" background: #C70039;text-align: center;color:white; font-size: 17px;"><b>{{$pedido->diasEntrega()+0}}</b></td>                   
                     @endif
                     {{-- dias funcion en el modelo pedido --}}
                     <td>{{$pedido->direccion_entrega}}</td>
                     <td>{{$pedido->total}}</td>
+                    <td>
+                        <a href="{{route('produccion.ver_detalles',$pedido->id_pedido)}}" class="btn btn-info">Ver Detalles</a>
+                    </td>
                 </tr>
-                
             @endif
         @endforeach
     </tbody>   

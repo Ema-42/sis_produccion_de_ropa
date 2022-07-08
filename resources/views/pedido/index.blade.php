@@ -27,7 +27,7 @@
 <script>
     $(document).ready(function () {
     $('#pedidos').DataTable({
-        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+        'lengthMenu':[[7,10,50,-1],[7,10,50,'All']]
     });
     })
 </script>

@@ -8,10 +8,10 @@
 @stop
 
 @section('content')
-<div class="card">
+<div class="card" id="maincard">
     
     <div class="card-body">
-        <form action="/pedidos" method="POST" class="row g-3">
+        <form action="/pedidos" method="POST" class="row g-3 formRegistrar">
             @csrf
             <div class="mb-3 col-md-2">
                 <label for="" class="form-label">Empresa</label>
@@ -29,12 +29,12 @@
             </div>
             <div class="mb-3 col-md-2">
                 <label  for="" class="form-label">Cliente</label><br>
-                <select name="id_cliente" id="id_cliente" class="form-control select_clientes" aria-label="Default select example" tabindex="2">
+                <select name="id_cliente" id="id_cliente" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
                     @foreach ($clientes as $cliente)
                         <option value="{{$cliente->id_cliente}}">{{$cliente->primer_nombre}} {{$cliente->apellido_paterno}} {{$cliente->apellido_materno}}</option>
                     @endforeach
                         <option selected value="">Ninguno</option>
-                  </select>
+                </select>
             </div>  
             <div class="mb-3 col-md-2">
                 <label for="" class="form-label">Fecha de Entrega</label>
@@ -42,30 +42,33 @@
             </div>   
             <div class="mb-3 col-md-3">
                 <label for="" class="form-label">Comentarios</label>
-                <input required id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3">
+                <input  id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3">
             </div>
           
             <div class="mb-3 col-md-3">
                 <label for="" class="form-label">Direccion de entrega</label>
-                <input required id="direccion_entrega" name="direccion_entrega" type="text" class="form-control" tabindex="3">
+                <input  id="direccion_entrega" name="direccion_entrega" type="text" class="form-control" tabindex="3">
             </div>
             <div class="mb-3 mt-4 col-md-6">
                 <a href="/pedidos" class="btn btn-secondary" tabindex="5" style="width: 300px ; height: 50px;">CANCELAR</a>
                 {{-- laravel  sabe que este guardas va deriar al store del controlador de articulos --}}
-                <button type="submit" class="btn btn-success" tabindex="6" style="width: 300px; height: 50px;">REGISTRAR PEDIDO</button>
+                <button type="submit" class="btn btn-success registrar_pedido" tabindex="6" style="width: 300px; height: 50px;">REGISTRAR PEDIDO</button>
             </div>
-            <div class="mb-3 col-md-1">
-                <label for="" class="form-label">TOTAL (Bs.)</label>
-                <input   id="total" name="total" type="number" class="form-control" tabindex="3" style="font-size: 25px">
-            </div>
+
             <div hidden class="mb-3 col-md-1">
                 <label for="" class="form-label ">Descuento (%)</label>
                 <input id="descuento" name="descuento" type="number" class="form-control" tabindex="2" value="0" min="0" max="100" style="font-size: 25px">
             </div>
+            {{-- @livewire('detalles-pedidos') --}}
+            @include('layouts.pedido.form_detalles')
+            <div class="mb-3 col-md-1">
+                <label for="" class="form-label" style="font-size: 25px ; width: 200px">TOTAL (Bs.)</label>
+                <input readonly value="0"  id="total" name="total" type="number" class="form-control" tabindex="3" style="font-size: 25px; width: 200px">
+            </div>
         </form>
     </div>
 </div>
-@livewire('detalles-pedidos')
+
 
 
 @stop
@@ -75,56 +78,130 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
     {{-- select con busqueda --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
 @stop
 
 @section('js')
 @livewireScripts
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ mix('js/app.js') }}" defer></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 {{-- select con busqueda --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
-    $('.select_clientes').select2();
+    $('.select2').select2();
     });
 </script>
-<script>
-    $(document).ready(function() {
-    $('.select_articulos').select2();
-    });
-</script>
-<script>
-    $(document).ready(function() {
-    $('.select_materiales').select2();
-    });
-</script>
-<script>
-    $(document).ready(function() {
-    $('.select_tallas').select2();
-    });
-</script>
+
 
 <script>
     function agregarItem() {
       var $select_material = document.getElementById("id_material");
-      $select_material = $select_material.options[$select_material.selectedIndex].value
+      $textoMaterial = $select_material.options[$select_material.selectedIndex].innerHTML
+      $idMaterial = $select_material.options[$select_material.selectedIndex].value
+      
       var $select_articulo = document.getElementById("id_articulo");
-      $select_articulo = $select_articulo.options[$select_articulo.selectedIndex].value
-      var $select_tallas = document.getElementById("id_talla");
-      $select_tallas = $select_tallas.options[$select_tallas.selectedIndex].value
+      $textoArticulo = $select_articulo.options[$select_articulo.selectedIndex].innerHTML
+      $idArticulo = $select_articulo.options[$select_articulo.selectedIndex].value
+      
+      var $select_talla = document.getElementById("id_talla");
+      $textoTalla = $select_talla.options[$select_talla.selectedIndex].innerHTML
+      $idTalla = $select_talla.options[$select_talla.selectedIndex].value
 
       var $cantidad = document.getElementById("cantidad").value;
+      let $descuento = document.getElementById("descuento_detalles").value;
+
+      if ($descuento=='' || $descuento<0) {
+        $descuento =0
+      }
+      if ($descuento>100) {
+        $descuento =100
+      }
       var $precio_unitario = document.getElementById("precio_unitario").value;
       var $detalles = document.getElementById("detalles").value;
-      var $sub_total = $precio_unitario*$cantidad;
-      
-/*       var fila = "<tr><td>"+$select_articulo+"</td><td>"+$select_material+"</td><td>"+$select_tallas+"</td><td>"+$cantidad+"</td><td>"+$precio_unitario+"</td><td>"+$sub_total+"</td><td>"+$detalles+"</td></tr>";
+      let $sub_total = $precio_unitario*$cantidad;
+      $sub_total = $sub_total-($sub_total*($descuento/100))
+
+      if($cantidad<=0 || $precio_unitario<=0){
+        Swal.fire({
+        icon: 'warning',
+        title: 'Revise los campos...',
+        text: 'La cantidad debe ser diferente de 0 y digite un precio unitario valido :)',
+        })
+        return 0;
+      }
+      var fila = "<tr> <td><input hidden type='number' name='id_articulo[]' value="+$idArticulo+"> "+$textoArticulo+
+        "</td><td> <input  hidden type='number' name='id_material[]' value="+$idMaterial+"> "+$textoMaterial+
+            "</td><td> <input hidden  type='number' name='id_talla[]' value="+$idTalla+"> "+$textoTalla+
+            "</td><td> <input hidden  type='number' name='cantidad[]' value="+$cantidad+"> "+$cantidad+
+            "</td><td> <input hidden  type='number' name='precio_unitario[]' value="+$precio_unitario+"> "+$precio_unitario+
+            "</td><td> <input hidden  type='number' name='descuento_detalles[]' value="+$descuento+"> "+$descuento+
+            "</td><td> <input hidden  type='number' name='sub_total[]' value="+$sub_total+"> "+$sub_total+
+            "</td><td> <input hidden  type='text' name='detalles[]' value="+$detalles+"> "+$detalles+
+            "</td><td><input type='button' value='Quitar' class='borrar btn btn-danger'></td></tr>";
+
       var btn = document.createElement("TR");
       btn.innerHTML=fila;
-      document.getElementById("tablaitems").appendChild(btn); */
-
-      console.log($select_material,$select_articulo,$select_tallas,$cantidad,$precio_unitario,$detalles,$sub_total);
-      /* document.getElementById("form-item").reset(); */
+      document.getElementById("tablaitems").appendChild(btn);      
     }
+
+    function actualizarTotal() {
+        var total_col = 0;
+        //Recorro todos los tr ubicados en el tbody
+        $('#detalle_pedidos tbody').find('tr').each(function (i, el) {
+        //Voy incrementando las variables segun la fila ( .eq(5) representa la fila 5 )     
+        total_col += parseFloat($(this).find('td').eq(6).text());});
+
+        var $total_pedido = document.getElementById("total");
+        $total_pedido.value=total_col;
+    }
+
+    $(document).on('click', '.borrar', function(event) {
+        event.preventDefault();
+        $(this).closest('tr').remove();
+        actualizarTotal();
+    });
+
+    $(document).on('click', '.agregar', function(event){
+        actualizarTotal();
+    });
+
+
+    
+    /* impidiendo que se envie un pedido sin detalles */
+    function impedirRegistroPedido() {
+        var $comentarios = document.getElementById("comentarios").value
+        var $direccion_entrega = document.getElementById("direccion_entrega").value
+        var $fecha_entrega = document.getElementById("fecha_entrega").value
+        var $total = document.getElementById("total").value
+        if ($fecha_entrega=='') {
+            return 1;
+        }
+        let date = new Date();
+        let fechaActual = date.getFullYear() + '-' +String(date.getMonth() + 1).padStart(2, '0')+'-' +  String(date.getDate()).padStart(2, '0');
+        
+        if ($fecha_entrega<fechaActual) {
+            alert('La fecha no debe ser anterior a la actual');
+            event.preventDefault()
+        }
+
+        if ($total == 0) {
+
+            alert('Debe asiganar detalles al pedido');
+            event.preventDefault()
+        }    
+    }
+    /* accionar  con click */
+    $(document).on('click', '.registrar_pedido', function(event){
+        if (impedirRegistroPedido()==1) {
+
+        }
+        
+    });
+
+
 </script>
+
+
 @stop

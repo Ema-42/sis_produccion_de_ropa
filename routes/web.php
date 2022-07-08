@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoriaInsumoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\TallaController;
+use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProveedorController;
@@ -36,13 +37,20 @@ Route::get('/',function(){
 Route::get('usuarios/b_list',[UsuarioController::class,'b_list'])->middleware('auth');
 /* Route::post('usuarios/block/{id}',[UsuarioController::class,'block'])->middleware('auth');*/
 Route::get('produccion/{id_pedido}/asignar',[PedidoProduccionController::class,'asignar'])->middleware('auth')->name('produccion.asignar');
+Route::get('produccion/{id_pedido}/ver_asignaciones',[PedidoProduccionController::class,'ver_asignaciones'])->middleware('auth')->name('produccion.ver_asignaciones');
 Route::get('produccion/sin_asignar',[PedidoProduccionController::class,'sin_asignar'])->middleware('auth')->name('produccion.sin_asignar');
 Route::get('produccion/produciendo',[PedidoProduccionController::class,'produciendo'])->middleware('auth')->name('produccion.produciendo');
+Route::get('produccion/entregados',[PedidoProduccionController::class,'entregados'])->middleware('auth')->name('produccion.entregados');
+Route::post('produccion/{id_pedido}/entregar',[PedidoProduccionController::class,'entregar'])->middleware('auth')->name('produccion.entregar');
+Route::get('produccion/{id_pedido}/ver_detalles',[PedidoProduccionController::class,'ver_detalles'])->middleware('auth')->name('produccion.ver_detalles');
+
+Route::get('pedidos/{id_pedido}/ver_detalles',[PedidoController::class,'ver_detalles'])->middleware('auth')->name('pedidos.ver_detalles');
 
 
 Route::resource('produccion',PedidoProduccionController::class)->middleware('auth');
 Route::resource('encargado_producciones',EncargadoProduccionController::class)->middleware('auth');
 Route::resource('tallas', TallaController::class)->middleware('auth');
+Route::resource('ingresos', IngresoController::class)->middleware('auth');
 Route::resource('usuarios', UsuarioController::class)->middleware('auth');
 Route::resource('proveedores', ProveedorController::class)->middleware('auth');
 Route::resource('pedidos', PedidoController::class)->middleware('auth');
