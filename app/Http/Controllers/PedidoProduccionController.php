@@ -137,9 +137,14 @@ class PedidoProduccionController extends Controller
      */
     public function store(Request $request)
     {
+        $id_pedido = $request['id_pedido'];
+        $pedido = Pedido::find($id_pedido);
+        
         if ($request['id_detalle_pedido']==null) {
             return redirect('/produccion/sin_asignar');
         } else {
+            $pedido->estado='produccion';
+            $pedido->save();
             for ($i=0; $i < count($request['id_detalle_pedido']) ; $i++) { 
                 $pedido_produccion = new PedidoProduccion();
                 $pedido_produccion->id_detalle_pedido = $request['id_detalle_pedido'][$i];

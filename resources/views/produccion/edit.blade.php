@@ -40,6 +40,10 @@
                             @foreach ($producciones  as $produccion)
                                 @if ($detalle->id_detalle_pedido==$produccion->id_detalle_pedido)
                                     <option  selected value="{{$produccion->id_encargado_produccion}}">{{$produccion->encargados->primer_nombre}} {{$produccion->encargados->segundo_nombre}} {{$produccion->encargados->apellido_paterno}} {{$produccion->encargados->apellido_materno}}</option>   
+{{--                                     @break
+                                @else
+                                    <option selected value="" >SIN ASIGNAR</option>
+                                                      --}}
                                 @endif
                             @endforeach
                         </select>

@@ -35,8 +35,10 @@
                         <select disabled style="width: 300px;font-size: 17px" name="id_encargado_produccion[]" {{-- id="id_encargado_produccion" --}} class="form-control col-md-4" aria-label="Disabled select example" tabindex="1">
                             @foreach ($producciones  as $produccion)
                                 @if ($detalle->id_detalle_pedido==$produccion->id_detalle_pedido)
-                                    <option  selected value="{{$produccion->id_encargado_produccion}}">{{$produccion->encargados->primer_nombre}} {{$produccion->encargados->segundo_nombre}} {{$produccion->encargados->apellido_paterno}} {{$produccion->encargados->apellido_materno}}</option>
-                                @endif
+                                    <option  selected value="{{$produccion->id_encargado_produccion}}">{{$produccion->encargados->primer_nombre}} {{$produccion->encargados->segundo_nombre}} {{$produccion->encargados->apellido_paterno}} {{$produccion->encargados->apellido_materno}}</option>                                    
+                               {{--  @else
+                                    <option value="" >SIN ASIGNAR</option>
+                                 --}}@endif
                             @endforeach
                         </select>
                     </td>

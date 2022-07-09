@@ -121,6 +121,9 @@ class PedidoController extends Controller
      */
     public function edit($id_pedido)
     {
+        $pedido = Pedido::find($id_pedido);
+        /* $pedidos = Pedido::all(); */
+        return view('pedido.edit',compact('pedido'));
 
     }
 

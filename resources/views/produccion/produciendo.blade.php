@@ -23,7 +23,7 @@
     </thead>
     <tbody>
         @foreach ($pedidos as $pedido)
-        @if ($pedido->estado !='entregado')
+        @if ($pedido->estado =='produccion')
             <tr>
                 <td>{{$pedido->id_pedido}}</td>
                 <td>{{$pedido->users->name}}</td>                

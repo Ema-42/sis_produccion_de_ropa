@@ -19,6 +19,13 @@ class IngresoController extends Controller
         return view('ingreso.index',compact('ingresos'));
     }
 
+    public function ver_detalles($id_ingreso)
+    {
+        $ingreso = Ingreso::find($id_ingreso);
+        $detalles = DetalleIngreso::all();
+        return view('ingreso.ver_detalles',compact('ingreso','detalles','id_ingreso'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

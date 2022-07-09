@@ -20,7 +20,8 @@
     <tbody>
         @foreach ($pedidos as $pedido)
             @if ($pedido->estado!='eliminado')
-            <tr @if ($pedido->estado=='entregado') style=" background: #E0FFDE ;" @endif>
+            <tr @if ($pedido->estado=='entregado') style=" background: #E0FFDE ;" @endif
+                @if ($pedido->estado=='produccion') style=" background: rgb(195, 226, 252) ;" @endif>
                 <td>{{$pedido->id_pedido}}</td>
                 <td>{{$pedido->users->name}}</td>
                 <td>{{$pedido->empresas->nombre}}</td>
@@ -38,12 +39,18 @@
                     <td>
                         <button disabled class="btn btn-success" style="color: black">Pedido Entregado</button>
                     </td>
-                @else
+                @endif
+                @if ($pedido->estado=='produccion')
+                    <td>
+                        <button disabled class="btn btn-info" style="color: black">En producion</button>
+                    </td>
+                @endif
+                @if ($pedido->estado=='espera')
                     <td style="width: 250px">
                         <form action="{{route('pedidos.destroy',$pedido->id_pedido)}}" method="POST" class="formBorrar">    
                             @csrf
                             @method('DELETE')
-                            <a href="{{route('pedidos.edit',$pedido->id_pedido)}}" class="btn btn-primary">Editar</a>
+                            {{-- <a href="{{route('pedidos.edit',$pedido->id_pedido)}}" class="btn btn-primary">Editar</a> --}}
                             <a href="{{route('pedidos.ver_detalles',$pedido->id_pedido)}}" class="btn btn-info">Detalles</a>
                             <button type="submit" class="btn btn-danger">Borrar</button>
                         </form>

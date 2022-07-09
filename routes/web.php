@@ -46,6 +46,8 @@ Route::get('produccion/{id_pedido}/ver_detalles',[PedidoProduccionController::cl
 
 Route::get('pedidos/{id_pedido}/ver_detalles',[PedidoController::class,'ver_detalles'])->middleware('auth')->name('pedidos.ver_detalles');
 
+Route::get('ingresos/{id_ingreso}/ver_detalles',[IngresoController::class,'ver_detalles'])->middleware('auth')->name('ingresos.ver_detalles');
+
 
 Route::resource('produccion',PedidoProduccionController::class)->middleware('auth');
 Route::resource('encargado_producciones',EncargadoProduccionController::class)->middleware('auth');

@@ -47,7 +47,7 @@
                         @csrf
                         @method('DELETE')
                         <a href="{{route('ingresos.edit',$ingreso->id_ingreso)}}" class="btn btn-primary">Editar</a>
-                        <a {{-- href="{{route('ingresos.ver_detalles',$ingreso->id_ingreso)}}" --}} class="btn btn-info">Detalles</a>
+                        <a href="{{route('ingresos.ver_detalles',$ingreso->id_ingreso)}}" class="btn btn-info">Detalles</a>
                         <button type="submit" class="btn btn-danger">Borrar</button>
                     </form>
                 </td>

@@ -111,6 +111,8 @@
 
       var $cantidad = document.getElementById("cantidad").value;
       let $descuento = document.getElementById("descuento_detalles").value;
+      var $precio_unitario = document.getElementById("precio_unitario").value;
+      var $detalles = document.getElementById("detalles").value;
 
       if ($descuento=='' || $descuento<0) {
         $descuento =0
@@ -118,10 +120,13 @@
       if ($descuento>100) {
         $descuento =100
       }
-      var $precio_unitario = document.getElementById("precio_unitario").value;
-      var $detalles = document.getElementById("detalles").value;
+      if ($detalles=='') {
+        $detalles ='sinㅤdetalles';
+      }
+
       let $sub_total = $precio_unitario*$cantidad;
       $sub_total = $sub_total-($sub_total*($descuento/100))
+      $sub_total = Number($sub_total.toFixed(2));
 
       if($cantidad<=0 || $precio_unitario<=0){
         Swal.fire({
@@ -146,13 +151,24 @@
       document.getElementById("tablaitems").appendChild(btn);      
     }
 
+
+
+    /* input cantidad de solo numeros */
+    function validaNumericos(event) {
+        if(event.charCode >= 48 && event.charCode <= 57){
+        return true;
+        }
+        return false;        
+    }
+
+
     function actualizarTotal() {
         var total_col = 0;
         //Recorro todos los tr ubicados en el tbody
         $('#detalle_pedidos tbody').find('tr').each(function (i, el) {
         //Voy incrementando las variables segun la fila ( .eq(5) representa la fila 5 )     
         total_col += parseFloat($(this).find('td').eq(6).text());});
-
+        total_col = Number(total_col.toFixed(2));
         var $total_pedido = document.getElementById("total");
         $total_pedido.value=total_col;
     }

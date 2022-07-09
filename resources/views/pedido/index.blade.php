@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-<a href="pedidos/create" class="btn btn-success mb-4">Nuevo Pedido</a>
+<a  style="width: 250px;height: 40px;font-size: 20px;align-items: center" href="pedidos/create" class="btn btn-success mb-4">Nuevo Pedido</a>
 @include('layouts.pedido.table')
 {{-- @livewire('pedidos') --}}
 @stop

@@ -23,6 +23,7 @@
             <tbody>
                 {{-- LA FECHA DE TODOS LOS DETALLES --}}
                 <input hidden type="text" name="fecha_entrega" value="{{$pedido->fecha_entrega}}">
+                <input hidden type="text" name="id_pedido" value="{{$pedido->id_pedido}}">
                 @foreach ($detalles as $detalle)
                 @if ($detalle->id_pedido == $id_pedido)
                 <tr>

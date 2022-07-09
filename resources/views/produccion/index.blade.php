@@ -25,7 +25,8 @@
     <tbody>
         @foreach ($pedidos as $pedido)
             @if ($pedido->estado!='eliminado')
-                <tr>
+                <tr  @if ($pedido->estado=='entregado') style=" background: #E0FFDE ;" @endif
+                    @if ($pedido->estado=='produccion') style=" background: rgb(195, 226, 252) ;" @endif>
                     <td>{{$pedido->id_pedido}}</td>
                     <td>{{$pedido->users->name}}</td>
                     <td>{{$pedido->clientes->primer_nombre}} {{$pedido->clientes->apellido_paterno}}</td>

@@ -12,7 +12,7 @@
 </div>
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Material</label><br>
-    <select {{-- name="id_material" --}} id="id_material" style="width: 250px" class="form-control select_materiales  select2" aria-label="Default select example" tabindex="2" >
+    <select  {{-- name="id_material" --}} id="id_material" style="width: 250px" class="form-control select_materiales  select2" aria-label="Default select example" tabindex="2" >
         @foreach ($materiales as $material)
             <option value="{{$material->id_material}}">{{$material->nombre}}</option>
         @endforeach
@@ -30,15 +30,15 @@
 </div>
 <div class="mb-3 col-md-1">
     <label for="" class="form-label">Cantidad</label>
-    <input  id="cantidad" {{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
+    <input onkeypress='return validaNumericos(event)'  id="cantidad" style="font-size: 23px"{{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
 </div>
 <div class="mb-3 col-md-1">
     <label for="" class="form-label ">Precio Unitario</label>
-    <input  id="precio_unitario" {{-- name="precio_unitario" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
+    <input  id="precio_unitario" style="font-size: 23px"{{-- name="precio_unitario" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
 </div>
 <div class="mb-3 col-md-1">
     <label for="" class="form-label">Descuento</label>
-    <input  id="descuento_detalles" {{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" max="100">
+    <input  id="descuento_detalles"style="font-size: 23px" {{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" max="100">
 </div>
 <div hidden class="mb-3 col-md-1">
     <label for="" class="form-label ">Sub Total</label>

@@ -58,8 +58,6 @@
         <th scope="col">Cliente</th>
         <th scope="col">Fecha Registro</th>
         <th scope="col">Fecha Entrega</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Fecha Entregado</th>
         <th scope="col" >Comentarios</th>
         <th scope="col">Lugar de entrega</th>
         <th scope="col" >Descuento</th>
@@ -75,8 +73,6 @@
             <td>{{$pedido->clientes->primer_nombre}} {{$pedido->clientes->apellido_paterno}}</td>
             <td>{{$pedido->created_at}}</td>
             <td>{{$pedido->fecha_entrega}}</td>
-            <td>{{$pedido->estado}}</td>
-            <td>{{$pedido->fecha_entregado}}</td>
             <td>{{$pedido->comentarios}}</td>
             <td>{{$pedido->direccion_entrega}}</td>
             <td>{{$pedido->descuento}}</td>
