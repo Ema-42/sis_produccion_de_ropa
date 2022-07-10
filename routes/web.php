@@ -19,6 +19,8 @@ use App\Http\Controllers\PedidoProduccionController;
 use App\Http\Controllers\ListaNegraController;
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +65,12 @@ Route::resource('articulos', ArticuloController::class)->middleware('auth');
 Route::resource('insumos', InsumoController::class)->middleware('auth');
 Route::get('categoria_articulos', [CategoriaArticuloController::class,'index'])->middleware('auth');
 Route::get('categoria_insumos', [CategoriaInsumoController::class,'index'])->middleware('auth');
+
+
+
+
+
+
 /* Route::get('categoria_articulos',CategoriaArticulos::class); */
 
 /* Route::get('lista_negra', function(){

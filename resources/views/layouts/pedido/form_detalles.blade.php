@@ -34,11 +34,11 @@
 </div>
 <div class="mb-3 col-md-1">
     <label for="" class="form-label ">Precio Unitario</label>
-    <input  id="precio_unitario" style="font-size: 23px"{{-- name="precio_unitario" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
+    <input step="any" id="precio_unitario" style="font-size: 23px"{{-- name="precio_unitario" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
 </div>
 <div class="mb-3 col-md-1">
     <label for="" class="form-label">Descuento</label>
-    <input  id="descuento_detalles"style="font-size: 23px" {{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" max="100">
+    <input step="any" id="descuento_detalles"style="font-size: 23px" {{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" max="100">
 </div>
 <div hidden class="mb-3 col-md-1">
     <label for="" class="form-label ">Sub Total</label>
@@ -48,7 +48,7 @@
     <label for="" class="form-label ">Detalles</label>
     <input id="detalles" {{-- name="detalles" --}} type="text" class="form-control" tabindex="2" >
 </div>
-<a  onclick="agregarItem()"   class="btn btn-info mb-4 ml-2 agregar">Agregar Articulo</a>
+<a  onclick="agregarItem()"   class="btn btn-primary mb-4 ml-2 agregar">Agregar Articulo </a>
 <table id="detalle_pedidos" class="table table-striped table-hover">
     <thead class="bg-black text-white" >
     <tr>

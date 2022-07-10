@@ -3,11 +3,12 @@
 @section('title', 'Sistema de Produccion')
 
 @section('content_header')
-    <h1>Inicio</h1>
+    
 @stop
 
 @section('content')
-    
+    <br>
+    @include('layouts.home.cards')
 @stop
 
 @section('css')

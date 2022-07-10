@@ -9,52 +9,50 @@
 @section('content')
 <form action="/clientes" method="POST"  class="row g-3" >
     @csrf
-    <div class="mb-3 col-md-4">
+    <div class="mb-3 col-md-2">
         <label for="" class="form-label">Primer Nombre</label>
-        <input id="primer_nombre" name="primer_nombre" type="text" class="form-control " tabindex="1">
+        <input required id="primer_nombre" name="primer_nombre" type="text" class="form-control " tabindex="1">
     </div>
-    <div class="mb-3 col-md-4">
+    <div class="mb-3 col-md-2">
         <label for="" class="form-label">Segundo Nombre</label>
         <input id="segundo_nombre" name="segundo_nombre" type="text" class="form-control " tabindex="2">
     </div>
-    <div class="mb-3 col-md-4"></div>
-    <div class="mb-3 col-md-4">
+    
+    <div class="mb-3 col-md-2">
         <label for="" class="form-label">Apellido Paterno</label>
-        <input id="apellido_paterno" name="apellido_paterno" type="text" class="form-control " tabindex="3">
+        <input required id="apellido_paterno" name="apellido_paterno" type="text" class="form-control " tabindex="3">
     </div>
-    <div class="mb-3 col-md-4">
+    <div class="mb-3 col-md-2">
         <label for="" class="form-label">Apellido Materno</label>
         <input id="apellido_materno" name="apellido_materno" type="text" class="form-control " tabindex="4">
     </div>
     <div class="mb-3 col-md-4"></div>
-    <div class="mb-3 col-md-4">
+    <div class="mb-3 col-md-2">
         <label for="" class="form-label">Fecha de Nacimiento</label>
         <input id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
     </div>
-    <div class="mb-3 col-md-8"></div>
-    <div class="mb-3 col-md-4">
+
+    <div class="mb-3 col-md-2">
         <label for="" class="form-label" >Sexo</label>
         <select class="form-control" id="sexo" name="sexo" tabindex="6">
           <option selected value="m">Masculino</option>
           <option value="f">Femenino</option>
         </select>
     </div>
-    <div class="mb-3 col-md-8"></div>
-
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Telefono</label>
         <input id="telefono" name="telefono" type="text" class="form-control " tabindex="7">
     </div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Celular</label>
-        <input id="celular" name="celular" type="text" class="form-control " tabindex="8">
-    </div>
-    <div class="mb-3 col-md-4" >
-        <label for="" class="form-label">Numero DIP</label>
-        <input id="nro_dip" name="nro_dip" type="text" class="form-control " tabindex="9">
+        <input required id="celular" name="celular" type="text" class="form-control " tabindex="8">
     </div>
     <div class="mb-3 col-md-4"></div>
-    <div class="mb-3 col-md-4" >
+    <div class="mb-3 col-md-1" >
+        <label for="" class="form-label">Numero DIP</label>
+        <input required id="nro_dip" name="nro_dip" type="text" class="form-control " tabindex="9">
+    </div>
+    <div class="mb-3 col-md-3" >
         <label for="" class="form-label">Correo</label>
         <input id="correo" name="correo" type="email" class="form-control " tabindex="10">
     </div>

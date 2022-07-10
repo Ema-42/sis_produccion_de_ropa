@@ -3,7 +3,6 @@
 @section('title', 'Sistema de Produccion')
 
 @section('content_header')
-    <h1>Realizar Cotización</h1>
     @livewireStyles
 @stop
 
@@ -23,29 +22,36 @@
             </div>
             <div class="mb-3 ">
                 <label hidden for="" class="form-label ">NIT</label>
-                <input hidden readonly id="nit" name="nit" type="number" class="form-control" tabindex="2"
-                value=""
-                >
+                <input hidden readonly id="nit" name="nit" type="number" class="form-control" tabindex="2" value="">
             </div>
-            <div class="mb-3 col-md-2">
+            <div class="mb-3 col-md-3">
                 <label  for="" class="form-label">Cliente</label><br>
                 <select name="id_cliente" id="id_cliente" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
                     @foreach ($clientes as $cliente)
-                        <option value="{{$cliente->id_cliente}}">{{$cliente->primer_nombre}} {{$cliente->apellido_paterno}} {{$cliente->apellido_materno}}</option>
+                        <option value="{{$cliente->id_cliente}}">{{$cliente->primer_nombre}} {{$cliente->apellido_paterno}} {{$cliente->apellido_materno}}ㅤㅤNDIP: {{$cliente->nro_dip}}</option>
                     @endforeach
-                        <option selected value="">Ninguno</option>
+                        {{-- <option selected value="">Ninguno</option> --}}
                 </select>
-            </div>  
+            </div>
+
+
+
+            <div class="mb-3 col-md-1.5">
+                <label  for="" class="form-label">Añadir</label><br>
+                <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Nuevo Cliente</button>
+            </div>
+
+
+
             <div class="mb-3 col-md-2">
                 <label for="" class="form-label">Fecha de Entrega</label>
                 <input required id="fecha_entrega" name="fecha_entrega" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
             </div>   
-            <div class="mb-3 col-md-3">
+            <div class="mb-3 col-md-2">
                 <label for="" class="form-label">Comentarios</label>
                 <input  id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3">
             </div>
-          
-            <div class="mb-3 col-md-3">
+            <div class="mb-3 col-md-2">
                 <label for="" class="form-label">Direccion de entrega</label>
                 <input  id="direccion_entrega" name="direccion_entrega" type="text" class="form-control" tabindex="3">
             </div>
@@ -69,7 +75,54 @@
     </div>
 </div>
 
+<div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/clientes" method="POST">
+            @csrf
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">* Primer Nombre:</label>
+              <input required id="primer_nombre" name="primer_nombre" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">Segundo Nombre:</label>
+              <input  id="segundo_nombre" name="segundo_nombre" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">* Apellido Paterno:</label>
+              <input required id="apellido_paterno" name="apellido_paterno" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">Apellido Materno:</label>
+              <input  id="apellido_materno" name="apellido_materno" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">Fecha de Naciemiento:</label>
+              <input id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
+              <label for="recipient-name" class="col-form-label">Sexo:</label>
+              <select class="form-control" id="sexo" name="sexo">
+                <option selected value="m">Masculino</option>
+                <option value="f">Femenino</option>
+              </select>
+              <label for="recipient-name" class="col-form-label">* Celular:</label>
+              <input required id="celular" name="celular" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">* NDIP:</label>
+              <input required id="nro_dip" name="nro_dip" type="text" class="form-control ">
+              <label for="recipient-name" class="col-form-label">Direccion:</label>
+              <input id="direccion" name="direccion" type="text" class="form-control " tabindex="11">
+              <br>
+              <input hidden type="text" name="modal" value="1">
+              <input disabled id="created_at" name="created_at" class="form-control" type="date"  min="1900-01-01"  value="{{date('Y-m-d')}}"tabindex="12"/>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
 
+        </div>
+      </div>
+    </div>
+</div>
 
 @stop
 
@@ -78,7 +131,7 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
     {{-- select con busqueda --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    
+
 @stop
 
 @section('js')
@@ -150,8 +203,6 @@
       btn.innerHTML=fila;
       document.getElementById("tablaitems").appendChild(btn);      
     }
-
-
 
     /* input cantidad de solo numeros */
     function validaNumericos(event) {

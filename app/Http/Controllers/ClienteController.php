@@ -35,7 +35,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        /* dd($request); */
+
         $cliente= new Cliente();
         $cliente->primer_nombre = $request->get('primer_nombre');
         $cliente->segundo_nombre = $request->get('segundo_nombre');
@@ -50,7 +50,14 @@ class ClienteController extends Controller
         $cliente->direccion = $request->get('direccion');
 
         $cliente->save();
-        return redirect('/clientes');
+
+        if ($request['modal']==1) {
+            return redirect('/pedidos/create');
+        } else {
+            return redirect('/clientes');
+        }
+
+        
     }
 
     /**
