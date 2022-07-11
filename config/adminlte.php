@@ -247,6 +247,24 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
+        [
+            'text'    => 'Cotizaciones',
+            'icon'    => 'fas fa-file-alt',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Cotizacion',
+                    'url'  => 'contizaciones/create',
+                    'icon'    => 'fas fa-edit',
+                ],
+                [
+                    'text' => 'Listado',
+                    'url'  => 'cotizaciones',
+                    'icon' => 'nav-icon fas fa-table',
+                ],
+            ],
+        ],
+
         [
             'text'    => 'Produccion de Pedidos',
             'icon'    => 'fas fa-pencil-ruler',

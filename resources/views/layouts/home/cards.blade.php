@@ -6,7 +6,7 @@
         </div>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-2 ">
-        <div class="col col-md-3">
+        <div class="col col-md-3" onclick="window.location.href = '/pedidos/create'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://ilkaperea.com/wp-content/uploads/2021/02/quote-for-graphic-designers_cover.jpg" class="card-img-top" alt="Hollywood Sign on The Hill"/>
             <div class="card-body" >
@@ -15,7 +15,7 @@
               </div>
           </div>
         </div>
-        <div class="col col-md-3">
+        <div class="col col-md-3" onclick="window.location.href = '/clientes/create'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://pbs.twimg.com/media/EkQN8uCX0AAgt5-.png" class="card-img-top" alt="Palm Springs Road"/>
             <div class="card-body">
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <div class="col col-md-3">
+        <div class="col col-md-3" onclick="window.location.href = '/articulos/create'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://images.vexels.com/media/users/3/76314/raw/16a229b2cefb744a0c85916465d92b32-ropa-deportiva-para-hombre.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
             <div class="card-body">
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col col-md-3">
+        <div class="col col-md-3" onclick="window.location.href = '/pedidos'" style="cursor: grab">
           <div class="card">
             <img  style="height: 240px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSExOzpMeKSyMAc4LrP3RacREotXKrdLqLecXofc1HuKXzqDgc61QYGKxuiY30HLJh_jxA&usqp=CAU" class="card-img-top" alt="Skyscrapers"/>
             <div class="card-body">
@@ -42,9 +42,9 @@
               </div>
           </div>
         </div>
-        <div class="col col-md-4">
+        <div class="col col-md-4" onclick="window.location.href = '/produccion/entregados'" style="cursor: grab">
           <div class="card">
-            <img style="height: 240px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSExOzpMeKSyMAc4LrP3RacREotXKrdLqLecXofc1HuKXzqDgc61QYGKxuiY30HLJh_jxA&usqp=CAU" class="card-img-top" alt="Skyscrapers"/>
+            <img style="height: 240px"  src="https://www.adslzone.net/app/uploads-adslzone.net/2021/03/crear-encuestas.png" class="card-img-top" alt="Skyscrapers"/>
             <div class="card-body">
                 <a href="/produccion/entregados" class="btn mb-1" style="background: rgb(14, 129, 206);width: auto;color: white">Ver Lista de Pedidos Entregados</a>
                 <p class="card-text">Ultimo pedido entregado a {{$nombre}} {{$ap_paterno}} {{$ap_materno}} a las {{$fecha_UltPedido}}</p>

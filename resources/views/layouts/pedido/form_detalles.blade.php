@@ -37,7 +37,7 @@
     <input step="any" id="precio_unitario" style="font-size: 23px"{{-- name="precio_unitario" --}} type="number" class="form-control" tabindex="2" value="0" min="0" >
 </div>
 <div class="mb-3 col-md-1">
-    <label for="" class="form-label">Descuento</label>
+    <label for="" class="form-label">Descuento (%)</label>
     <input step="any" id="descuento_detalles"style="font-size: 23px" {{-- name="cantidad" --}} type="number" class="form-control" tabindex="2" value="0" min="0" max="100">
 </div>
 <div hidden class="mb-3 col-md-1">
@@ -48,7 +48,11 @@
     <label for="" class="form-label ">Detalles</label>
     <input id="detalles" {{-- name="detalles" --}} type="text" class="form-control" tabindex="2" >
 </div>
-<a  onclick="agregarItem()"   class="btn btn-primary mb-4 ml-2 agregar">Agregar Articulo </a>
+<a  onclick="agregarItem()"   class="btn btn-primary mb-4 ml-2 agregar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"></path>
+      </svg>
+      ㅤAgregar Articulo </a>
 <table id="detalle_pedidos" class="table table-striped table-hover">
     <thead class="bg-black text-white" >
     <tr>

@@ -12,6 +12,7 @@ use App\Http\Controllers\TallaController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EncargadoProduccionController;
@@ -48,6 +49,9 @@ Route::get('produccion/{id_pedido}/ver_detalles',[PedidoProduccionController::cl
 
 Route::get('pedidos/{id_pedido}/ver_detalles',[PedidoController::class,'ver_detalles'])->middleware('auth')->name('pedidos.ver_detalles');
 
+Route::get('cotizaciones/{id_cotizacion}/ver_detalles',[CotizacionController::class,'ver_detalles'])->middleware('auth')->name('cotizaciones.ver_detalles');
+
+
 Route::get('ingresos/{id_ingreso}/ver_detalles',[IngresoController::class,'ver_detalles'])->middleware('auth')->name('ingresos.ver_detalles');
 
 
@@ -58,6 +62,9 @@ Route::resource('ingresos', IngresoController::class)->middleware('auth');
 Route::resource('usuarios', UsuarioController::class)->middleware('auth');
 Route::resource('proveedores', ProveedorController::class)->middleware('auth');
 Route::resource('pedidos', PedidoController::class)->middleware('auth');
+
+Route::resource('cotizaciones', CotizacionController::class)->middleware('auth');
+
 Route::resource('materiales', MaterialController::class)->middleware('auth');
 Route::resource('empresas', EmpresaController::class)->middleware('auth');
 Route::resource('clientes', ClienteController::class)->middleware('auth');

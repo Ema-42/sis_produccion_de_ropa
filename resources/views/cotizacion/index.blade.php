@@ -3,14 +3,13 @@
 @section('title', 'Sistema de Produccion')
 
 @section('content_header')
-    <h1>Listado de Pedidos</h1>
+    <h1>Listado de Cotizaciones</h1>
     @livewireStyles
 @stop
 
 @section('content')
-<a  style="width: 250px;height: 40px;font-size: 20px;align-items: center" href="pedidos/create" class="btn btn-success mb-4">Nuevo Pedido</a>
-@include('layouts.pedido.table')
-{{-- @livewire('pedidos') --}}
+<a  style="width: 250px;height: 40px;font-size: 20px;align-items: center" href="cotizaciones/create" class="btn btn-success mb-4">Nuevo Cotización</a>
+    @include('layouts.cotizacion.table')
 @stop
 
 @section('css')
@@ -26,7 +25,7 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $(document).ready(function () {
-    $('#pedidos').DataTable({
+    $('#cotizaciones').DataTable({
         'lengthMenu':[[7,10,50,-1],[7,10,50,'All']],
         "order": [[ 0, "desc" ]]
     });

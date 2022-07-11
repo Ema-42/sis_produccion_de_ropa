@@ -56,21 +56,27 @@
                 <input  id="direccion_entrega" name="direccion_entrega" type="text" class="form-control" tabindex="3">
             </div>
             <div class="mb-3 mt-4 col-md-6">
-                <a href="/pedidos" class="btn btn-secondary" tabindex="5" style="width: 300px ; height: 50px;">CANCELAR</a>
+                <a href="/pedidos" class="btn btn-secondary" tabindex="5" style="width: 300px ; height: 50px;">CANCELAR
+                </a>
                 {{-- laravel  sabe que este guardas va deriar al store del controlador de articulos --}}
-                <button type="submit" class="btn btn-success registrar_pedido" tabindex="6" style="width: 300px; height: 50px;">REGISTRAR PEDIDO</button>
+                <button type="submit" class="btn btn-success registrar_pedido" tabindex="6" style="width: 300px; height: 50px;">
+                    REGISTRAR PEDIDOㅤㅤ
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-plus-fill" viewBox="0 0 16 16">
+                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM8.5 8.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5a.5.5 0 0 1 1 0z"/>
+                      </svg>
+                    </button>
             </div>
 
             <div hidden class="mb-3 col-md-1">
                 <label for="" class="form-label ">Descuento (%)</label>
                 <input id="descuento" name="descuento" type="number" class="form-control" tabindex="2" value="0" min="0" max="100" style="font-size: 25px">
             </div>
-            {{-- @livewire('detalles-pedidos') --}}
-            @include('layouts.pedido.form_detalles')
             <div class="mb-3 col-md-1">
-                <label for="" class="form-label" style="font-size: 25px ; width: 200px">TOTAL (Bs.)</label>
+                <label for="" class="form-label" style="font-size: 20px ; width: 200px">Total (Bs.)</label>
                 <input readonly value="0"  id="total" name="total" type="number" class="form-control" tabindex="3" style="font-size: 25px; width: 200px">
             </div>
+            {{-- @livewire('detalles-pedidos') --}}
+            @include('layouts.pedido.form_detalles')
         </form>
     </div>
 </div>
