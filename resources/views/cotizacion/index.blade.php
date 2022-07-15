@@ -8,7 +8,8 @@
 @stop
 
 @section('content')
-<a  style="width: 250px;height: 40px;font-size: 20px;align-items: center" href="cotizaciones/create" class="btn btn-success mb-4">Nuevo Cotización</a>
+    <a  style="width: 250px;height: 40px;font-size: 20px;align-items: center" href="cotizaciones/create" class="btn btn-success mb-4">Nuevo Cotización</a>
+    <a href="{{route('cotizaciones.listaReporte')}}" class="btn btn-primary float-right" >Reporte PDF</a>
     @include('layouts.cotizacion.table')
 @stop
 

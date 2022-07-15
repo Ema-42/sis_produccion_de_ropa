@@ -6,12 +6,21 @@
         </div>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-2 ">
-        <div class="col col-md-3" onclick="window.location.href = '/pedidos/create'" style="cursor: grab">
+        <div class="col col-md-3" onclick="window.location.href = '/cotizaciones/create'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://ilkaperea.com/wp-content/uploads/2021/02/quote-for-graphic-designers_cover.jpg" class="card-img-top" alt="Hollywood Sign on The Hill"/>
             <div class="card-body" >
-                <a href="/pedidos/create" class="btn btn-success mb-1" style="width: auto;">Realizar Cotización</a>
+                <a href="/cotizaciones/create" class="btn btn-success mb-1" style="width: auto;">Realizar Cotización</a>
                 <p class="card-text">Click para iniciar cotizacion</p>
+              </div>
+          </div>
+        </div>
+        <div class="col col-md-3" onclick="window.location.href = '/cotizaciones'" style="cursor: grab">
+          <div class="card">
+            <img style="height: 240px"  src="https://www.argentarium.com/wp-content/uploads/2015/11/revision_portafolio-e1447248979217-890x500_c.jpg" class="card-img-top" alt="Hollywood Sign on The Hill"/>
+            <div class="card-body" >
+                <a href="/cotizaciones" class="btn btn-primary mb-1" style="width: auto;">Lista de Cotización</a>
+                <p class="card-text">Click para ver el listado</p>
               </div>
           </div>
         </div>

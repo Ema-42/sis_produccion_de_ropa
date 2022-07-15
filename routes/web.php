@@ -48,12 +48,13 @@ Route::post('produccion/{id_pedido}/entregar',[PedidoProduccionController::class
 Route::get('produccion/{id_pedido}/ver_detalles',[PedidoProduccionController::class,'ver_detalles'])->middleware('auth')->name('produccion.ver_detalles');
 
 Route::get('pedidos/{id_pedido}/ver_detalles',[PedidoController::class,'ver_detalles'])->middleware('auth')->name('pedidos.ver_detalles');
+Route::get('pedidos/{id_cotizacion}/iniciar_pedido',[PedidoController::class,'iniciarPedido'])->middleware('auth')->name('pedidos.iniciarPedido');
+Route::post('pedidos/guardar_pedido',[PedidoController::class,'guardarPedido'])->middleware('auth')->name('pedidos.guardar');
 
 Route::get('cotizaciones/{id_cotizacion}/ver_detalles',[CotizacionController::class,'ver_detalles'])->middleware('auth')->name('cotizaciones.ver_detalles');
-
+Route::get('cotizaciones/listaReporte',[CotizacionController::class,'listaReporte'])->middleware('auth')->name('cotizaciones.listaReporte');
 
 Route::get('ingresos/{id_ingreso}/ver_detalles',[IngresoController::class,'ver_detalles'])->middleware('auth')->name('ingresos.ver_detalles');
-
 
 Route::resource('produccion',PedidoProduccionController::class)->middleware('auth');
 Route::resource('encargado_producciones',EncargadoProduccionController::class)->middleware('auth');

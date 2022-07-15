@@ -34,6 +34,7 @@ class CotizacionController extends Controller
  
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +42,14 @@ class CotizacionController extends Controller
      */
     public function create()
     {
-        //
+        $articulos =Articulo::all();
+        $materiales =Material::all();
+
+        $users =User::all();
+        $empresas =Empresa::all();
+        $clientes =Cliente::all();
+        return view('cotizacion.create',compact('articulos','materiales','empresas','clientes','users'));
+
     }
 
     /**
@@ -52,7 +60,43 @@ class CotizacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cotizacion = new Cotizacion();
+        $cotizacion->id_empresa= $request->get('id_empresa');
+        $cotizacion->id_cliente= $request->get('id_cliente');
+        $cotizacion->id_user=(auth()->user()->id);
+        $cotizacion->fecha_entrega= $request->get('fecha_entrega');
+        $cotizacion->total = $request->get('total');
+        $cotizacion->estado=('espera');
+        $cotizacion->comentarios= $request->get('comentarios');
+
+        $cotizacion->save();
+
+        /* para los detalles */
+        $ultimaCotizacion = Cotizacion::latest('id_cotizacion')->first();
+        if ($request['id_articulo']==null) {
+            
+        } else {
+            for ($i=0; $i < count($request['id_articulo']) ; $i++) { 
+                $detalle_cotizacion = new DetalleCotizacion();
+                $detalle_cotizacion->id_cotizacion = $ultimaCotizacion->id_cotizacion;
+                $detalle_cotizacion->id_articulo = $request['id_articulo'][$i];
+                $detalle_cotizacion->id_material = $request['id_material'][$i];
+                $detalle_cotizacion->cantidad = $request['cantidad'][$i];
+                $detalle_cotizacion->precio_unitario = $request['precio_unitario'][$i];
+                $detalle_cotizacion->sub_total = $request['sub_total'][$i];
+                $detalle_cotizacion->detalles = $request['detalles'][$i];
+                $detalle_cotizacion->descuento = $request['descuento_detalles'][$i];
+                $detalle_cotizacion->save();
+            }
+        }
+        return redirect('/cotizaciones');
+    }
+
+    public function listaReporte()
+    {   
+        
+        $cotizaciones = Cotizacion::all();
+        return view('cotizacion.listaReporte',compact('cotizaciones'));
     }
 
     /**

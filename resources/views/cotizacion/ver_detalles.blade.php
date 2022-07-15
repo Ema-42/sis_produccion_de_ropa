@@ -47,16 +47,16 @@
         <input hidden type="text" name="fecha_entrega" value="{{$cotizacion->fecha_entrega}}">
         @foreach ($detalles as $detalle)
         @if ($detalle->id_cotizacion == $id_cotizacion)
-        <tr>
-            <td>{{$detalle->id_detalle_cotizacion}}</td>
-            <td >{{$detalle->articulos->nombre}}</td>
-            <td >{{$detalle->materiales->nombre}}</td>
-            <td >{{$detalle->cantidad}}</td>
-            <td >{{$detalle->precio_unitario}}</td>
-            <td >{{$detalle->descuento}}</td>
-            <td >{{$detalle->sub_total}}</td>
-            <td >{{$detalle->detalles}}</td>
-        </tr>
+            <tr>
+                <td>{{$detalle->id_detalle_cotizacion}}</td>
+                <td >{{$detalle->articulos->nombre}}</td>
+                <td >{{$detalle->materiales->nombre}}</td>
+                <td >{{$detalle->cantidad}}</td>
+                <td >{{$detalle->precio_unitario}}</td>
+                <td >{{$detalle->descuento}}</td>
+                <td >{{$detalle->sub_total}}</td>
+                <td >{{$detalle->detalles}}</td>
+            </tr>
         @endif
         @endforeach
 

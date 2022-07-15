@@ -254,7 +254,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Nueva Cotizacion',
-                    'url'  => 'contizaciones/create',
+                    'url'  => 'cotizaciones/create',
                     'icon'    => 'fas fa-edit',
                 ],
                 [
@@ -295,11 +295,11 @@ return [
             'text'    => 'Pedidos',
             'icon'    => 'fas fa-cart-arrow-down',
             'submenu' => [
-                [
+/*                 [
                     'text' => 'Nuevo Pedido',
                     'url'  => 'pedidos/create',
                     'icon'=>'fas fa-plus-circle',
-                ],
+                ], */
                 [
                     'text' => 'Listado',
                     'url'  => 'pedidos',

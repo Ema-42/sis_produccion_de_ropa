@@ -207,7 +207,8 @@
 
       var btn = document.createElement("TR");
       btn.innerHTML=fila;
-      document.getElementById("tablaitems").appendChild(btn);      
+      document.getElementById("tablaitems").appendChild(btn);  
+   
     }
 
     /* input cantidad de solo numeros */
