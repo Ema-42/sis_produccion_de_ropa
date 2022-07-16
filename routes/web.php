@@ -50,9 +50,14 @@ Route::get('produccion/{id_pedido}/ver_detalles',[PedidoProduccionController::cl
 Route::get('pedidos/{id_pedido}/ver_detalles',[PedidoController::class,'ver_detalles'])->middleware('auth')->name('pedidos.ver_detalles');
 Route::get('pedidos/{id_cotizacion}/iniciar_pedido',[PedidoController::class,'iniciarPedido'])->middleware('auth')->name('pedidos.iniciarPedido');
 Route::post('pedidos/guardar_pedido',[PedidoController::class,'guardarPedido'])->middleware('auth')->name('pedidos.guardar');
+Route::post('pedidos/editar_pedido',[PedidoController::class,'editarPedido'])->middleware('auth')->name('pedidos.editar');
+Route::get('pedidos/{id_pedido}/detalleReporte',[PedidoController::class,'detalleReporte'])->middleware('auth')->name('pedidos.detalleReporte');
+
 
 Route::get('cotizaciones/{id_cotizacion}/ver_detalles',[CotizacionController::class,'ver_detalles'])->middleware('auth')->name('cotizaciones.ver_detalles');
 Route::get('cotizaciones/listaReporte',[CotizacionController::class,'listaReporte'])->middleware('auth')->name('cotizaciones.listaReporte');
+Route::get('cotizaciones/{id_cotizacion}/detalleReporte',[CotizacionController::class,'detalleReporte'])->middleware('auth')->name('cotizaciones.detalleReporte');
+
 
 Route::get('ingresos/{id_ingreso}/ver_detalles',[IngresoController::class,'ver_detalles'])->middleware('auth')->name('ingresos.ver_detalles');
 

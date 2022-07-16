@@ -9,8 +9,11 @@ use App\Models\Empresa;
 use App\Models\Cliente;
 use App\Models\Articulo;
 use App\Models\Material;
-
 use App\Models\DetalleCotizacion;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 
 class CotizacionController extends Controller
@@ -92,11 +95,28 @@ class CotizacionController extends Controller
         return redirect('/cotizaciones');
     }
 
-    public function listaReporte()
+    public function listaReporte(Request $request)
     {   
         
         $cotizaciones = Cotizacion::all();
-        return view('cotizacion.listaReporte',compact('cotizaciones'));
+        $usuario = User::find((auth()->user()->id));
+        $nombreUsuario = $usuario->name;
+
+        $pdf = PDF::loadView('cotizacion.listaReporte',['cotizaciones'=>$cotizaciones,'nombreUsuario'=>$nombreUsuario]);
+        return $pdf->stream();
+        /* return view('cotizacion.listaReporte',compact('cotizaciones')); */
+        /* return $pdf->download('cotizaciones.pdf'); */
+    }
+    public function detalleReporte($id_cotizacion)
+    {   
+        $cotizacion = Cotizacion::find($id_cotizacion);
+        $detalles = DetalleCotizacion::all();
+        $usuario = User::find((auth()->user()->id));
+        $nombreUsuario = $usuario->name;
+
+        $pdf = PDF::loadView('cotizacion.detalleReporte',['id_cotizacion'=>$id_cotizacion,'detalles'=>$detalles,'cotizacion'=>$cotizacion,'nombreUsuario'=>$nombreUsuario]);
+        return $pdf->stream();
+
     }
 
     /**

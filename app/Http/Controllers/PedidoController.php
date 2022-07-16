@@ -15,6 +15,10 @@ use App\Models\Detalle_pedido;
 use App\Models\Cotizacion;
 use App\Models\DetalleCotizacion;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
+
 class PedidoController extends Controller
 {
     /**
@@ -175,6 +179,16 @@ class PedidoController extends Controller
 
 
 
+
+    public function editarPedido(Request $request)
+    {
+        dd($request);
+        /* deberia borrar todo los detalles ligados al id del pedido y registrar los que venen en este request */
+
+    }
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -183,11 +197,33 @@ class PedidoController extends Controller
      */
     public function edit($id_pedido)
     {
+        $detalles = Detalle_pedido::all();
+
+        $articulos =Articulo::all();
+        $materiales =Material::all();
+        $tallas =Talla::all(); 
+
+        $users =User::all();
+        $empresas =Empresa::all();
+        $clientes =Cliente::all();
         $pedido = Pedido::find($id_pedido);
-        /* $pedidos = Pedido::all(); */
-        return view('pedido.edit',compact('pedido'));
+
+        return view('pedido.edit',compact('pedido','detalles','id_pedido','articulos','materiales','tallas','empresas','clientes','users'));
 
     }
+    public function detalleReporte($id_pedido)
+    {   
+        $pedido = Pedido::find($id_pedido);
+        $detalles = Detalle_pedido::all();
+        $usuario = User::find((auth()->user()->id));
+        $nombreUsuario = $usuario->name;
+
+        $pdf = PDF::loadView('pedido.detalleReporte',['id_pedido'=>$id_pedido,'pedido'=>$pedido,'detalles'=>$detalles,'nombreUsuario'=>$nombreUsuario]);
+        return $pdf->stream();
+
+    }
+
+
 
     /**
      * Update the specified resource in storage.

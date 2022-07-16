@@ -35,18 +35,18 @@
 
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Fecha de Entrega</label>
-    <input required id="fecha_entrega" value="{{$cotizacion->fecha_entrega}}" name="fecha_entrega" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
+    <input required id="fecha_entrega" value="{{$pedido->fecha_entrega}}" name="fecha_entrega" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
 </div>   
 <div class="mb-3 col-md-3">
     <label for="" class="form-label">Comentarios</label>
-    <input  id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3">
+    <input  id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3" value="{{$pedido->comentarios}}">
 </div>
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Direccion de entrega</label>
-    <input  id="direccion_entrega" name="direccion_entrega" type="text" class="form-control" tabindex="3">
+    <input  id="direccion_entrega" name="direccion_entrega" type="text" class="form-control" tabindex="3" value="{{$pedido->direccion_entrega}}">
 </div>
 <div class="mb-3 mt-4 col-md-6">
-    <a href="/cotizaciones" class="btn btn-secondary" tabindex="5" style="width: 300px ; height: 50px;">CANCELAR
+    <a href="/pedidos" class="btn btn-secondary" tabindex="5" style="width: 300px ; height: 50px;">CANCELAR
     </a>
     {{-- laravel  sabe que este guardas va deriar al store del controlador de articulos --}}
     <button type="submit" class="btn btn-success registrar_pedido" tabindex="6" style="width: 300px; height: 50px;">
