@@ -1,8 +1,12 @@
+
+{{-- para el pedido --}}
+<input hidden name="id_cotizacion" type="number" value="{{$cotizacion->id_cotizacion}}">
+
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Empresa</label>
     <select name="id_empresa" id="id_empresa" class=" form-control" aria-label="Default select example" tabindex="1">
         @foreach ($empresas as $empresa)
-            @if ($empresa->id_empresa==$pedido->id_empresa)
+            @if ($empresa->id_empresa==$cotizacion->id_empresa)
             <option selected value="{{$empresa->id_empresa}}">{{$empresa->nombre}}</option>
             @else
             <option value="{{$empresa->id_empresa}}">{{$empresa->nombre}}</option>
@@ -18,7 +22,7 @@
     <label  for="" class="form-label">Cliente</label><br>
     <select name="id_cliente" id="id_cliente" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
         @foreach ($clientes as $cliente)
-            @if ($cliente->id_cliente==$pedido->id_cliente)
+            @if ($cliente->id_cliente==$cotizacion->id_cliente)
                 <option selected value="{{$cliente->id_cliente}}">{{$cliente->primer_nombre}} {{$cliente->apellido_paterno}} {{$cliente->apellido_materno}}ㅤㅤNDIP: {{$cliente->nro_dip}}</option>  
             @else
                 <option value="{{$cliente->id_cliente}}">{{$cliente->primer_nombre}} {{$cliente->apellido_paterno}} {{$cliente->apellido_materno}}ㅤㅤNDIP: {{$cliente->nro_dip}}</option>
@@ -28,16 +32,17 @@
     </select>
 </div>
 
-{{-- <div class="mb-3 col-md-1.5">
+
+<div class="mb-3 col-md-1.5">
     <label  for="" class="form-label">Añadir</label><br>
     <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Nuevo Cliente</button>
-</div> --}}
+</div>
 
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Fecha de Entrega</label>
     <input required id="fecha_entrega" value="{{$cotizacion->fecha_entrega}}" name="fecha_entrega" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
 </div>   
-<div class="mb-3 col-md-3">
+<div class="mb-3 col-md-2">
     <label for="" class="form-label">Comentarios</label>
     <input  id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3">
 </div>
@@ -65,4 +70,10 @@
     <label for="" class="form-label" style="font-size: 20px ; width: 200px">Total (Bs.)</label>
     <input readonly value="0"  id="total" name="total" type="number" class="form-control" tabindex="3" style="font-size: 25px; width: 200px">
 </div>
+
+
+
+
+
+
         

@@ -52,7 +52,7 @@ Route::get('pedidos/{id_cotizacion}/iniciar_pedido',[PedidoController::class,'in
 Route::post('pedidos/guardar_pedido',[PedidoController::class,'guardarPedido'])->middleware('auth')->name('pedidos.guardar');
 Route::post('pedidos/editar_pedido',[PedidoController::class,'editarPedido'])->middleware('auth')->name('pedidos.editar');
 Route::get('pedidos/{id_pedido}/detalleReporte',[PedidoController::class,'detalleReporte'])->middleware('auth')->name('pedidos.detalleReporte');
-
+Route::get('pedidos/listaReporte',[PedidoController::class,'listaReporte'])->middleware('auth')->name('pedidos.listaReporte');
 
 Route::get('cotizaciones/{id_cotizacion}/ver_detalles',[CotizacionController::class,'ver_detalles'])->middleware('auth')->name('cotizaciones.ver_detalles');
 Route::get('cotizaciones/listaReporte',[CotizacionController::class,'listaReporte'])->middleware('auth')->name('cotizaciones.listaReporte');

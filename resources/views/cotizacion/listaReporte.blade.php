@@ -31,7 +31,7 @@
         <p>Fecha: <span> {{date('d-m-Y H:i:s')}}</span></p>
         <h4 class="texto">Lista de Cotizaciones :</h4>
         <table id="cotizaciones" class="table texto" style="border: 1px solid;text-align: center" >
-            <thead>
+            <thead style=" background: black;color: white">
             <tr >
                 <th style="border: 1px solid" scope="col">ID</th>
                 <th style="border: 1px solid" scope="col">Usuario</th>

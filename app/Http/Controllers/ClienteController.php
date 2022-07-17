@@ -50,7 +50,13 @@ class ClienteController extends Controller
         $cliente->direccion = $request->get('direccion');
 
         $cliente->save();
-
+        if ($request['modal']==2) {
+            return redirect('/cotizaciones/create');
+        }
+        if ($request['modal']==3) {
+            $id_cotizacion = $request->get('id_cotizacion');
+            return redirect() ->back();
+        }
         if ($request['modal']==1) {
             return redirect('/pedidos/create');
         } else {

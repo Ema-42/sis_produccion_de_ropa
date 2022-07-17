@@ -32,7 +32,7 @@
         </div>
         <p class="texto">Detalles de la Pedido :</p>
         <table class="texto" style="border: 1px solid; width: 100%">
-            <thead style="border: 1px solid;" >
+            <thead style="border: 1px solid; background: black;color: white" >
             <tr style="border: 1px solid;">
                 <tr  style="border: 1px solid;">
                     <th scope="col" style="border: 1px solid;">ID Detalle</th>

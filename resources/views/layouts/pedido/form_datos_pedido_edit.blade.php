@@ -1,3 +1,4 @@
+<input hidden name="id_pedido" type="number" value="{{$pedido->id_pedido}}">
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Empresa</label>
     <select name="id_empresa" id="id_empresa" class=" form-control" aria-label="Default select example" tabindex="1">
@@ -28,10 +29,6 @@
     </select>
 </div>
 
-{{-- <div class="mb-3 col-md-1.5">
-    <label  for="" class="form-label">Añadir</label><br>
-    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Nuevo Cliente</button>
-</div> --}}
 
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Fecha de Entrega</label>

@@ -1,3 +1,20 @@
+<head>
+    <style type="text/css"> 
+        thead tr th { 
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #272836;
+        }
+    
+        .table-responsive { 
+            height:200px;
+            overflow:scroll;
+        }
+    </style>
+</head>
+
+
 <div class="mb-3 mt-4 col-md-12">
     <h4>Agrega Articulos a la Cotizacion</h4>
 </div>
@@ -47,19 +64,22 @@
           ㅤAgregar Articulo </a>
 </div>
 
-<table id="detalle_cotizacion" class="table table-striped table-hover">
-    <thead class="bg-black text-white" >
-    <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Material</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Precio Unitario</th>
-        <th scope="col">Descuento (%)</th>
-        <th scope="col">Sub Total</th>
-        <th scope="col">Detalles</th>
-        <th scope="col">Quitar</th>
-    </tr>
-    </thead>
-    <tbody id="tablaitems">
-    </tbody>   
-</table>
+<div style="height: 500px !important;overflow:auto;width:1650px"> 
+
+    <table id="detalle_cotizacion" class="table table-striped table-hover">
+        <thead class="bg-black text-white" >
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Material</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Descuento (%)</th>
+            <th scope="col">Sub Total</th>
+            <th scope="col">Detalles</th>
+            <th scope="col">Quitar</th>
+        </tr>
+        </thead>
+        <tbody id="tablaitems">
+        </tbody>   
+    </table>
+</div>

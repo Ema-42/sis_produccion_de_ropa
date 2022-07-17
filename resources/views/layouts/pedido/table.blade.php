@@ -24,7 +24,7 @@
                 <td>{{$pedido->empresas->nombre}}</td>
                 <td>{{$pedido->nit}}</td>
                 <td>{{$pedido->clientes->primer_nombre}} {{$pedido->clientes->apellido_paterno}}ㅤㅤNDIP : {{$pedido->clientes->nro_dip}}</td>
-                <td>{{$pedido->estado}}</td>
+                <td>{{$pedido->id_cotizacion}}</td>
                 <td>{{$pedido->fecha_entrega}}</td>
                 {{-- <td>{{$pedido->fecha_entregado}}</td> --}}
                 <td>{{$pedido->direccion_entrega}}</td>

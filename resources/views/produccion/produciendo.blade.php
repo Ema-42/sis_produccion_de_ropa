@@ -46,7 +46,7 @@
                         @csrf
                         <a href="{{route('produccion.ver_asignaciones',$pedido->id_pedido)}}" class="btn btn-info">Ver Asignaciones</a>
                         <a href="{{route('produccion.edit',$pedido->id_pedido)}}" class="btn btn-warning">Editar Asignaciones</a>
-                        <button type="submit" class="btn btn-success">Entregado</button>
+                        <button type="submit" class="btn btn-success">Entregar</button>
                     </form>
                 </td>
             </tr>

@@ -1,3 +1,19 @@
+<head>
+    <style type="text/css"> 
+        thead tr th { 
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #272836;
+        }
+    
+        .table-responsive { 
+            height:200px;
+            overflow:scroll;
+        }
+    </style>
+</head>
+
 <div class="mb-3 mt-3 col-md-12">
     <h4>Agrega Articulos al Pedido</h4>
 </div>
@@ -57,16 +73,16 @@
     </a>
 </div>
 
-<div style="height: 500px !important;overflow:auto;width:1650px">
 
-    <p style="height: 30px;background: rgb(208, 255, 217);width: 300px;border-radius: 50px">ㅤ
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-          </svg>
-          ㅤPertenece a la Cotización
-    </p>
-   
+<p style="height: 30px;background: rgb(208, 255, 217);width: 300px;border-radius: 50px">ㅤ
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+      </svg>
+      ㅤPertenece a la Cotización
+</p>
+
+<div style="height: 500px !important;overflow:auto;width:1650px">   
     <table id="detalle_pedidos" class="table table-striped table-hover">
         <thead class="bg-black text-white" >
         <tr>
@@ -99,7 +115,8 @@
                 <td ><input hidden  type='number' name='precio_unitario[]' value={{$detalle->precio_unitario}}> {{$detalle->precio_unitario}}</td>
                 <td ><input hidden  type='number' name='descuento_detalles[]' value={{$detalle->descuento}}>{{$detalle->descuento}}</td>
                 <td ><input hidden  type='number' name='sub_total[]' value={{$detalle->sub_total}}> {{$detalle->sub_total}}</td>
-                <td ><input hidden  type='text' name='detalles[]' value={{$detalle->detalles}}>{{$detalle->detalles}}</td>
+                {{-- <td ><input hidden  type='text' name='detalles[]' value='{{$detalle->detalles}}'>{{$detalle->detalles}}</td> --}}
+                <td ><input style="width: 450px" maxlength="290"  type='text' name='detalles[]' value='{{$detalle->detalles}}'></td>
                 <td><input type='button' value='Quitar' class='borrar btn btn-danger'></td>
             </tr>
             @endif

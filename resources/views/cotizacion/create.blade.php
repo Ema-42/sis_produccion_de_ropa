@@ -116,7 +116,7 @@
               <label for="recipient-name" class="col-form-label">Direccion:</label>
               <input id="direccion" name="direccion" type="text" class="form-control " tabindex="11">
               <br>
-              <input hidden type="text" name="modal" value="1">
+              <input hidden type="text" name="modal" value="2">
               <input disabled id="created_at" name="created_at" class="form-control" type="date"  min="1900-01-01"  value="{{date('Y-m-d')}}"tabindex="12"/>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -235,7 +235,7 @@
             "</td><td> <input hidden  type='number' name='precio_unitario[]' value="+$precio_unitario+"> "+$precio_unitario+
             "</td><td> <input hidden  type='number' name='descuento_detalles[]' value="+$descuento+"> "+$descuento+
             "</td><td> <input hidden  type='number' name='sub_total[]' value="+$sub_total+"> "+$sub_total+
-            "</td><td> <input hidden  type='text' name='detalles[]' value="+$detalles+"> "+$detalles+
+            "</td><td> <input hidden  type='text' name='detalles[]' value='"+$detalles+"'> "+$detalles+
             "</td><td><input type='button' value='Quitar' class='borrar btn btn-danger'></td></tr>";
 
       var btn = document.createElement("TR");

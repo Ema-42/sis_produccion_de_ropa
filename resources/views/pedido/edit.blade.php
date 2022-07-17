@@ -131,7 +131,7 @@
             "</td><td> <input hidden  type='number' name='precio_unitario[]' value="+$precio_unitario+"> "+$precio_unitario+
             "</td><td> <input hidden  type='number' name='descuento_detalles[]' value="+$descuento+"> "+$descuento+
             "</td><td> <input hidden  type='number' name='sub_total[]' value="+$sub_total+"> "+$sub_total+
-            "</td><td> <input hidden  type='text' name='detalles[]' value="+$detalles+"> "+$detalles+
+            "</td><td> <input hidden  type='text' name='detalles[]' value='"+$detalles+"'> "+$detalles+
             "</td><td><input type='button' value='Quitar' class='borrar btn btn-danger'></td></tr>";
 
       var btn = document.createElement("TR");

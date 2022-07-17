@@ -13,44 +13,60 @@
       <form action="/pedidos/guardar_pedido" method="POST" class="row g-3 formRegistrar">
         @csrf
         @include('layouts.pedido.form_datos_pedido')
-        {{-- <div style="height: 250px !important;overflow:auto;width:1650px" >
-            <table id="detalles" class="table table-striped table-hover" style="">
-                <thead style="background: rgb(55, 70, 80)" class=" text-white">
-                    <tr style="background: rgb(55, 70, 80)" class=" text-white">
-                        <th scope="col"  >Item</th>
-                        <th scope="col" >Material</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col" >Precio Unitario</th>
-                        <th scope="col" >Descuento</th>
-                        <th scope="col">Sub total</th>
-                        <th scope="col" >Detalles</th>
-                        <th scope="col">Quitar</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    LA FECHA DE TODOS LOS DETALLES
-                    <input hidden type="text" name="fecha_entrega" value="{{$cotizacion->fecha_entrega}}">
-                    @foreach ($detalles as $detalle)
-                    @if ($detalle->id_cotizacion == $id_cotizacion)
-                    <tr>
-                        <td > <input hidden  type='number' name='id_articulo[]' value={{$detalle->id_articulo}}>{{$detalle->articulos->nombre}}</td>
-                        <td ><input hidden  type='number' name='id_material[]' value={{$detalle->id_material}}>{{$detalle->materiales->nombre}}</td>
-                        <td ><input hidden  type='number' name='cantidad[]' value={{$detalle->cantidad}}>{{$detalle->cantidad}}</td>
-                        <td ><input hidden  type='number' name='precio_unitario[]' value={{$detalle->precio_unitario}}>{{$detalle->precio_unitario}}</td>
-                        <td ><input hidden  type='number' name='descuento_detalles[]' value={{$detalle->descuento}}>{{$detalle->descuento}}</td>
-                        <td ><input hidden  type='number' name='sub_total[]' value={{$detalle->sub_total}}>{{$detalle->sub_total}}</td>
-                        <td ><input hidden  type='text' name='detalles[]' value={{$detalle->detalles}}>{{$detalle->detalles}}</td>
-                        <td><input type='button' value='Quitar' class='borrar btn btn-danger'></td>
-                    </tr>
-                    @endif
-                    @endforeach
-            
-                </tbody>   
-            </table>
-        </div> --}}
-
+    
         @include('layouts.pedido.form_detalles2')
     </form>
+    </div>
+</div>
+
+
+<div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/clientes" method="POST">
+            @csrf
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">* Primer Nombre:</label>
+              <input required id="primer_nombre" name="primer_nombre" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">Segundo Nombre:</label>
+              <input  id="segundo_nombre" name="segundo_nombre" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">* Apellido Paterno:</label>
+              <input required id="apellido_paterno" name="apellido_paterno" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">Apellido Materno:</label>
+              <input  id="apellido_materno" name="apellido_materno" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">Fecha de Naciemiento:</label>
+              <input id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" type="date"  min="1900-01-01" tabindex="5"/>
+              <label for="recipient-name" class="col-form-label">Sexo:</label>
+              <select class="form-control" id="sexo" name="sexo">
+                <option selected value="m">Masculino</option>
+                <option value="f">Femenino</option>
+              </select>
+              <label for="recipient-name" class="col-form-label">* Celular:</label>
+              <input required id="celular" name="celular" type="text" class="form-control">
+              <label for="recipient-name" class="col-form-label">* NDIP:</label>
+              <input required id="nro_dip" name="nro_dip" type="text" class="form-control ">
+              <label for="recipient-name" class="col-form-label">Direccion:</label>
+              <input id="direccion" name="direccion" type="text" class="form-control " tabindex="11">
+              <br>
+              <input hidden type="text" name="modal" value="3">
+              <input hidden type="number" name="id_cotizacion" value="{{$cotizacion->id_cotizacion}}">
+              <input disabled id="created_at" name="created_at" class="form-control" type="date"  min="1900-01-01"  value="{{date('Y-m-d')}}"tabindex="12"/>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
     </div>
 </div>
 
@@ -166,7 +182,7 @@
             "</td><td> <input hidden  type='number' name='precio_unitario[]' value="+$precio_unitario+"> "+$precio_unitario+
             "</td><td> <input hidden  type='number' name='descuento_detalles[]' value="+$descuento+"> "+$descuento+
             "</td><td> <input hidden  type='number' name='sub_total[]' value="+$sub_total+"> "+$sub_total+
-            "</td><td> <input hidden  type='text' name='detalles[]' value="+$detalles+"> "+$detalles+
+            "</td><td> <input hidden  type='text' name='detalles[]' value='"+$detalles+"'> "+$detalles+
             "</td><td><input type='button' value='Quitar' class='borrar btn btn-danger'></td></tr>";
 
       var btn = document.createElement("TR");
