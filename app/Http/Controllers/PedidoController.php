@@ -173,6 +173,13 @@ class PedidoController extends Controller
         }
         return redirect('/pedidos');
     }
+    
+
+
+
+
+
+
 
     public function editarPedido(Request $request)
     {   

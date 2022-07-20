@@ -8,8 +8,10 @@ use App\Models\Encargado_Produccion;
 use App\Models\Pedido;
 use App\Models\Talla;
 use App\Models\Material;
+use App\Models\User;
 use App\Models\Detalle_pedido;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Support\Facades\DB;
 
@@ -86,6 +88,25 @@ class PedidoProduccionController extends Controller
         $detalles = Detalle_pedido::all();
         $pedidos = Pedido::all();
         //solo se toma los pedidos que tienen detalles
+
+        $pedidosSinAsignar=Pedido::where('estado','=','espera')->get();
+        $pedidos = $pedidosSinAsignar;
+        
+        $listaIdPedidosEnEspera =[];
+        for ($i=0; $i <count($pedidos) ; $i++) { 
+            array_push($listaIdPedidosEnEspera,$pedidos[$i]['id_pedido']);
+        }
+        $detalles2 = [];
+        for ($i=0; $i <count($detalles) ; $i++) { 
+            if (Pedido::find($detalles[$i]['id_pedido'])['estado'] =='espera') {
+                array_push($detalles2,$detalles[$i]);
+            }
+        }
+        /* dd($detalles2); */
+        $detalles = $detalles2;
+        /* dd(count($listaIdPedidosEnEspera),$listaIdPedidosEnEspera); */
+
+
         $nuevo = array();
         foreach ($pedidos as $pedido) {
             foreach ($detalles as $detalle) {
@@ -110,6 +131,11 @@ class PedidoProduccionController extends Controller
         $producciones = PedidoProduccion::all();
         $detalles = Detalle_pedido::all();
         $pedidos = Pedido::all();
+
+        
+
+        $pedidosProduciendo=Pedido::where('estado','=','produccion')->get();
+        $pedidos = $pedidosProduciendo;
 
         $nuevo = array();
         foreach ($pedidos as $pedido) {
@@ -158,6 +184,26 @@ class PedidoProduccionController extends Controller
 
         
     }
+
+
+    public function detalleReporte($id_pedido)
+    {   
+        $tallas= Talla::all();
+        $materiales= Material::all();
+        $detalles = Detalle_pedido::all();
+        $producciones = PedidoProduccion::all();
+        $encargados = Encargado_Produccion::all();
+        $pedido = Pedido::find($id_pedido);
+        
+        $usuario = User::find((auth()->user()->id));
+        $nombreUsuario = $usuario->name;
+
+        $pdf = PDF::loadView('produccion.detalleReporte',['tallas'=>$tallas,'materiales'=>$materiales,'producciones'=>$producciones,'encargados'=>$encargados,'id_pedido'=>$id_pedido,'detalles'=>$detalles,'pedido'=>$pedido,'nombreUsuario'=>$nombreUsuario]);
+        return $pdf->stream();
+
+    }
+
+
 
     /**
      * Display the specified resource.

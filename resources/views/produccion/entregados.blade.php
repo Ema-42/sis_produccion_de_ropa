@@ -66,7 +66,8 @@
 <script>
     $(document).ready(function () {
     $('#pedidos').DataTable({
-        'lengthMenu':[[12,20,50,-1],[12,20,50,'All']]
+        'lengthMenu':[[12,20,50,-1],[12,20,50,'All']],
+        "order": [[ 0, "desc" ]]
     });
     })
 </script>

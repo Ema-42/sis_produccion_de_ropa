@@ -46,10 +46,10 @@
                     {{$encargado->celular}}
                 </td>
                 <td>
-                    {{$encargado->correo}}
+                    {{$encargado->direccion}}
                 </td>
                 <td>
-                    {{$encargado->direccion}}
+                    {{$encargado->correo}}
                 </td>
                 <td>
                     {{$encargado->fecha_nacimiento}}

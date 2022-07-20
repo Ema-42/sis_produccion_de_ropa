@@ -98,6 +98,7 @@
             @foreach ($detalles as $detalle)
             @if ($detalle->id_pedido == $id_pedido)
             <tr style="background: rgb(215, 234, 255)">
+                {{-- <td><input type="checkbox"   id="chk_1" ></td> --}}
                 {{-- EL ID DE CADA DETALLE SOLO LOS DEL PEDIDO TENDRAN, ESOS HAY QUE ACTUALIZARLOS --}}
                 <td > <input hidden  type='number' name='id_detalle_pedido[]' value={{$detalle->id_detalle_pedido}}> <input hidden  type='number' name='id_articulo[]' value={{$detalle->id_articulo}}>{{$detalle->articulos->nombre}}</td>
                 <td ><input hidden  type='number' name='id_material[]' value={{$detalle->id_material}}>{{$detalle->materiales->nombre}}</td>
@@ -123,3 +124,4 @@
         </tbody>   
     </table>
 </div>
+

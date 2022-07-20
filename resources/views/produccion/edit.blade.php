@@ -18,6 +18,7 @@
                 <th scope="col">Material</th>
                 <th scope="col">Talla</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Detalles</th>
                 <th scope="col">Asignar encargado</th>
             </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <td ><input hidden type="number" name="id_material[]" value="{{$detalle->id_material}}"> {{$detalle->materiales->nombre}}</td>
                     <td ><input hidden type="number" name="id_talla[]" value="{{$detalle->id_talla}}" > {{$detalle->tallas->nombre}}</td>
                     <td ><input hidden type="number" name="cantidad[]" value="{{$detalle->cantidad}}"> {{$detalle->cantidad}}</td>
+                    <td ><input hidden type="number" name="detalle[]" value="{{$detalle->detalles}}"> {{$detalle->detalles}}</td>
                     <td>
                         <select  style="width: 300px;font-size: 17px" name="id_encargado_produccion[]" {{-- id="id_encargado_produccion" --}} class="form-control col-md-4" aria-label="Disabled select example" tabindex="1">
                             @foreach ($encargados as $encargado)                     

@@ -117,10 +117,12 @@
                 <td ><input hidden  type='number' name='sub_total[]' value={{$detalle->sub_total}}> {{$detalle->sub_total}}</td>
                 {{-- <td ><input hidden  type='text' name='detalles[]' value='{{$detalle->detalles}}'>{{$detalle->detalles}}</td> --}}
                 <td ><input style="width: 450px" maxlength="290"  type='text' name='detalles[]' value='{{$detalle->detalles}}'></td>
-                <td><input type='button' value='Quitar' class='borrar btn btn-danger'></td>
+                <td><input type='button' value='Quitar' class='borrar btn btn-danger'>ㅤ<button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#editItemModal" data-whatever="@getbootstrap" onclick="pasarValores({{$detalle->id_articulo}},'{{$detalle->articulos->nombre}}',{{$detalle->id_material}},'{{$detalle->materiales->nombre}}',{{$detalle->cantidad}},{{$detalle->precio_unitario}})">Editar</button></td>
             </tr>
             @endif
             @endforeach
         </tbody>   
     </table>
 </div>
+
+

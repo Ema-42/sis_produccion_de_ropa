@@ -1,5 +1,5 @@
 <div class="row g-3">
-    <div class="card text-white mb-2 mr-3 col-md-12" style="background: rgb(69, 85, 114)">
+    <div class="card text-white mb-2 mr-3 col-md-12" style="background: rgb(22, 136, 111)">
         <div class="card-header"><span style="font-size: 20px">Bienvenido al Sistema</span></div>
         <div class="card-body">
           <p class="card-text"><span style="font-size: 20px">Usuario : {{(auth()->user()->name)}}</span></p>

@@ -47,6 +47,9 @@ Route::get('produccion/entregados',[PedidoProduccionController::class,'entregado
 Route::post('produccion/{id_pedido}/entregar',[PedidoProduccionController::class,'entregar'])->middleware('auth')->name('produccion.entregar');
 Route::get('produccion/{id_pedido}/ver_detalles',[PedidoProduccionController::class,'ver_detalles'])->middleware('auth')->name('produccion.ver_detalles');
 
+Route::get('produccion/{id_pedido}/detalleReporte',[PedidoProduccionController::class,'detalleReporte'])->middleware('auth')->name('produccion.detalleReporte');
+
+
 Route::get('pedidos/{id_pedido}/ver_detalles',[PedidoController::class,'ver_detalles'])->middleware('auth')->name('pedidos.ver_detalles');
 Route::get('pedidos/{id_cotizacion}/iniciar_pedido',[PedidoController::class,'iniciarPedido'])->middleware('auth')->name('pedidos.iniciarPedido');
 Route::post('pedidos/guardar_pedido',[PedidoController::class,'guardarPedido'])->middleware('auth')->name('pedidos.guardar');

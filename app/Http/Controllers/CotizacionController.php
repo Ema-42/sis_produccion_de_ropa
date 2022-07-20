@@ -159,8 +159,11 @@ class CotizacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_cotizacion)
     {
-        //
+        $cotizacion=  Cotizacion::find($id_cotizacion);
+        $cotizacion->estado ='eliminado';
+        $cotizacion->save();
+        return redirect('/cotizaciones');
     }
 }
