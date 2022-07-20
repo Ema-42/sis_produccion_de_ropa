@@ -9,12 +9,13 @@
 @section('content')
 <a href="usuarios/create" class="btn btn-success mb-4">Registrar Nuevo Usuario</a>
 <table id="usuarios" class="table table-striped table-hover">
-    <thead class="bg-secondary text-white">
+    <thead  style="background: rgb(53, 71, 102)" class="text-white">
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Nombre</th>
         <th scope="col">Correo</th>
         <th scope="col">Fecha de Registro</th>
+        <th scope="col">Estado</th>
         <th scope="col">Registro Última Edicion</th>
         <th scope="col">Acciones</th>
     </tr>
@@ -34,6 +35,9 @@
                     </td>
                     <td>
                         {{$usuario->created_at}}
+                    </td>
+                    <td>
+                        {{$usuario->state}}
                     </td>
                     <td>
                         {{$usuario->updated_at}}

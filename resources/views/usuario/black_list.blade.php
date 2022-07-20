@@ -8,13 +8,14 @@
 
 @section('content')
 <table id="usuarios" class="table table-striped table-hover">
-    <thead class="bg-info text-white">
+    <thead class="bg-black text-white">
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Nombre</th>
         <th scope="col">Correo</th>
         <th scope="col">Fecha de Creacion de Usuario</th>
         <th scope="col">Fecha de Bloqueo</th>
+        <th scope="col">Estado</th>
         <th scope="col" style="width: 300px">Acciones</th>
     </tr>
     </thead>
@@ -36,6 +37,9 @@
                 </td>
                 <td>
                     {{$usuario->updated_at}}
+                </td>
+                <td>
+                    {{$usuario->state}}
                 </td>
                 <td style="width: 180px">
                     <form action="{{route('usuarios.destroy',$usuario->id)}}" method="POST" class="formBorrar">    

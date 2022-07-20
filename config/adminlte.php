@@ -247,7 +247,6 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-
         [
             'text'    => 'Cotizaciones',
             'icon'    => 'fas fa-file-alt',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -41,7 +42,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $usuario = new User();
+
+        $usuario->name= $request->get('nombre');
+        $usuario->state= 'active';
+        $usuario->email= $request->get('correo');
+        $usuario->password= Hash::make($request->get('password'));
+        
+        $usuario->save();
+
+        //redireccionar luego de crear
+        return redirect('/usuarios');
     }
 
     /**
@@ -63,7 +75,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::find($id);
+        return view('usuario.edit',compact('usuario'));
     }
 
     /**
@@ -75,7 +88,14 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = User::find($id);
+
+        $usuario->name= $request->get('nombre');
+        $usuario->state= 'active';
+        $usuario->email= $request->get('correo');
+        $usuario->password= Hash::make($request->get('password'));
+        $usuario->save();
+        return redirect('/usuarios');
     }
 
     /**

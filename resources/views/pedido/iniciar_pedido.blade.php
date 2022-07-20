@@ -103,13 +103,13 @@
               </div>
 
           </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a  onclick="insertarDatosModalItem()"   class="btn btn-primary mb-1 ml-2 agregarEditados">Agregar a la Lista</a>
+          <button type="button" class="btn btn-secondary" id="btnCerrarModalItem" data-dismiss="modal">Cancelar</button>
+          <a  onclick="insertarDatosModalItem()"  class="btn btn-primary mb-1 ml-2 agregarEditados">Agregar a la Lista</a>
           {{-- <button type="submit" class="btn btn-success">Agregar a la Lista</button> --}}
         </form>
 
         {{-- FILA --}}
-        <form    class="form " >
+        <form    class="form " id="form_filas_edit" >
           <div class="form-group">
             <div class="row">
             <div class="col-md-2 mt-4">
@@ -122,7 +122,7 @@
             </div>
             <div class="col-md-1.5 mt-4">
               <label for="" class="form-label">Cantidad</label>
-              <input onkeypress='return validaNumericos(event)' style="font-size: 23px;width: 100px" type="number" class="form-control cantidad_modal" tabindex="2" value="0" min="0" >
+              <input onkeypress='return validaNumericos(event)' style="font-size: 23px;width: 100px" type="number" class="form-control cantidad_modal" tabindex="2" value="1" min="1" >
             </div>ㅤ
             <div class="col-md-1.5 mt-4">
               <label for="" class="form-label ">Precio Unitario</label>
@@ -175,7 +175,6 @@
     });
 </script>
 
-
 <script>
   function pasarValores(id_articulo,nombre_articulo,id_material,nombre_material,cantidad,precio_unitario) {
       document.getElementById('id_articulo_oculto').value = id_articulo;
@@ -184,6 +183,7 @@
       document.getElementById('id_material_visible').value = nombre_material;
       document.getElementById('cantidad_visible').value = cantidad;
       document.getElementById('precio_unitario_modal').value = precio_unitario;
+     
   }
 </script>
 <script>
@@ -198,7 +198,28 @@
       let descuentos = document.getElementsByClassName("descuento_modal");
       let detalles = document.getElementsByClassName("detalles_modal");
 
-      console.log('articulo', idArticuloEdit,'material',idMaterialEdit);
+      /* VALIDANDO */
+      for (let i = 0; i < tallas.length; i++) {
+        if (cantidades[i].value == 0) {
+          alert("Las cantidades deben ser mayores que 0");
+          return 0;
+          }
+          if (precios[i].value <= 0) {
+          alert("Los precios deben ser mayor que 0");
+          return 0;
+          }
+          if (descuentos[i].value > 100) {
+          alert("El limite de descuento es 100%");
+          return 0;
+          }
+          if (descuentos[i].value < 0) {
+          alert("El limite inferior de descuento es 0%");
+          return 0;
+          }
+          
+      }
+
+
       for (let i = 0; i < tallas.length; i++) {
         let sub_total = precios[i].value*cantidades[i].value;
         sub_total = sub_total-(sub_total*(descuentos[i].value/100))
@@ -219,7 +240,7 @@
             "</td><td> <input hidden  type='number' name='sub_total[]' value="+sub_total+"> "+sub_total+
             "</td><td> <input style='width: 450px'  type='text' name='detalles[]' value='"+detalles[i].value+"'> "/* +detalles[i].value */+
             "</td><td><input type='button' value='Quitar' class='borrar btn btn-danger'></td></tr>";
-
+      
       var btn = document.createElement("TR");
       btn.innerHTML=fila;
       document.getElementById("tablaitems").appendChild(btn);
@@ -227,17 +248,27 @@
         /* console.log(tallas[i].options[tallas[i].selectedIndex].value,tallas[i].options[tallas[i].selectedIndex].innerHTML,cantidades[i].value,precios[i].value,descuentos[i].value,detalles[i].value); */
       
       }
-  
+      document.getElementById('form_filas_edit').reset();
+      document.getElementById('btnCerrarModalItem').click();
+      let divsGenerados = document.getElementsByClassName("divGeneradoItem");
+      for (let i = 0; i < divsGenerados.length; i++) {
+        divsGenerados[i].remove()
+      }
+      for (let i = 0; i < divsGenerados.length; i++) {
+        divsGenerados[i].remove()
+      }
+      for (let i = 0; i < divsGenerados.length; i++) {
+        divsGenerados[i].remove()
+      } /* console.log(document.getElementsByClassName("divGeneradoItem").length); */
   }
 </script>
 
-
 <script>
   $(document).ready(function () {
-  var maxField = 10; //Input fields increment limitation
+  var maxField = 50; //Input fields increment limitation
   var addButton = $('.add_button'); //Add button selector
   var wrapper = $('.form'); //Input field wrapper
-  var fieldHTML = '<div class="form-group">' +
+  var fieldHTML = '<div class="form-group divGeneradoItem">' +
       '<div class="row">'+
       '<div class="col-md-2 mt-4">'+   
       '<select  style="width: 150px" class="form-control talla_modal " aria-label="Default select example" tabindex="2" >'+
@@ -247,10 +278,10 @@
       '</select>'+
       '</div>'+
       '<div class="col-md-1.5 mt-4">'+
-        '<input onkeypress="return validaNumericos(event)"  style="font-size: 23px;width: 100px" type="number" class="form-control cantidad_modal"  value="0" min="0" >'+
+        '<input onkeypress="return validaNumericos(event)"  style="font-size: 23px;width: 100px" type="number" class="form-control cantidad_modal"  value="1" min="1" >'+
       '</div>ㅤ'+
       '<div class="col-md-1.5 mt-4">'+
-        '<input step="any"  style="font-size: 23px;width: 120px" type="number" class="form-control precio_modal" tabindex="2" value="0" min="0" >'+
+        '<input step="any"  style="font-size: 23px;width: 120px" type="number" class="form-control precio_modal" tabindex="2" value="1" min="1" >'+
       '</div>ㅤ'+
       '<div class="col-md-1.5 mt-4">'+
         '<input onkeypress="return validaNumericos(event)" step="any" style="font-size: 23px;width: 120px" type="number" class="form-control descuento_modal" tabindex="2" value="0" min="0" max="100">'+
@@ -272,7 +303,7 @@
       if (x < maxField) { //Check maximum number of input fields
           x++; //Increment field counter
           $(wrapper).append(fieldHTML); // Add field html
-      }
+      }      
   });
 
   $(wrapper).on('click', '.remove_button', function (e) { //Once remove button is clicked
@@ -280,11 +311,8 @@
       $(this).parent('div').remove(); //Remove field html
       x--; //Decrement field counter
   });
-
-
 });
 </script>
-
 
 
 {{-- confirmar envio de form --}}
