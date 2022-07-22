@@ -16,7 +16,6 @@
     
         @include('layouts.pedido.form_detalles2')
     </form>
-    
     </div>
 </div>
 
@@ -187,7 +186,12 @@
   }
 </script>
 <script>
+      $(document).on('click', '.editarFila', function(event){
+        globalThis.filaQuitar = $(this).closest('tr');
+      });
   function insertarDatosModalItem() {
+      /* quitando la fila orginal */
+      filaQuitar.remove();
       let idArticuloEdit = document.getElementById('id_articulo_oculto').value;
       let txtArticuloEdit = document.getElementById('id_articulo_visible').value;
       let idMaterialEdit = document.getElementById('id_material_oculto').value;
@@ -268,6 +272,7 @@
   var maxField = 50; //Input fields increment limitation
   var addButton = $('.add_button'); //Add button selector
   var wrapper = $('.form'); //Input field wrapper
+  
   var fieldHTML = '<div class="form-group divGeneradoItem">' +
       '<div class="row">'+
       '<div class="col-md-2 mt-4">'+   
@@ -449,6 +454,21 @@
 
     $(document).on('click', '.agregar', function(event){
         actualizarTotal();
+    });
+
+
+
+    $(document).on('click', '#btnCerrarModalItem', function(event){
+      let divsGenerados = document.getElementsByClassName("divGeneradoItem");
+      for (let i = 0; i < divsGenerados.length; i++) {
+        divsGenerados[i].remove()
+      }
+      for (let i = 0; i < divsGenerados.length; i++) {
+        divsGenerados[i].remove()
+      }
+      for (let i = 0; i < divsGenerados.length; i++) {
+        divsGenerados[i].remove()
+      }
     });
 
     /* impidiendo que se envie un pedido sin detalles */

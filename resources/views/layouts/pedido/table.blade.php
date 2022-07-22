@@ -40,7 +40,7 @@
                     </td>
                 @endif
                 @if ($pedido->estado=='espera')
-                    <td style="width: 340px">
+                    <td style="width: 480px">
                         <form action="{{route('pedidos.destroy',$pedido->id_pedido)}}" method="POST" class="formBorrar">    
                             @csrf
                             @method('DELETE')
@@ -52,6 +52,10 @@
                                 </svg>
                                 Imprimir</a>
                             <a href="{{route('pedidos.ver_detalles',$pedido->id_pedido)}}" class="btn btn-info">Detalles</a>
+                            {{-- usuarios con permiso de modificacion de ingresos --}}
+                            @can('ingresos.crud')
+                                <a href="{{route('ingresos.create',$pedido->id_pedido)}}" class="btn btn-warning">Realizar Ingreso</a>
+                            @endcan
                             <button type="submit" class="btn btn-danger">Borrar</button>
                         </form>
                     </td>

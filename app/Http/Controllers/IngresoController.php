@@ -38,14 +38,15 @@ class IngresoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $id_pedidoEnlazado = key($request->all());
         $insumos =Insumo::all();
         $empresas =Empresa::all();
         $proveedores =Proveedor::all();
         $pedidos =Pedido::all();
 
-        return view('ingreso.create',compact('pedidos','insumos','empresas','proveedores'));
+        return view('ingreso.create',compact('id_pedidoEnlazado','pedidos','insumos','empresas','proveedores'));
     }
 
     /**

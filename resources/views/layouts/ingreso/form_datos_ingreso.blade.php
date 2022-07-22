@@ -38,18 +38,30 @@
     <input  id="comentarios" name="comentarios" type="text" class="form-control" tabindex="3">
 </div>
 
-<div class="mb-3 col-md-5">
+<div class="mb-3 col-md-7">
     <label  for="" class="form-label">Enlazar Pedido</label><br>
     <select name="id_pedido" id="id_pedido" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
-        @foreach ($pedidos as $pedido)
-                <option value="{{$pedido->id_pedido}}">ID Pedido: &nbsp {{$pedido->id_pedido}} &nbsp &nbsp Cliente:&nbsp{{$pedido->clientes->primer_nombre}}&nbsp{{$pedido->clientes->apellido_paterno}}&nbsp{{$pedido->clientes->apellido_materno}} &nbsp &nbsp Fecha de Entrega:&nbsp{{$pedido->fecha_entrega}}</option>
-        @endforeach
-        <option selected value="">Ninguno</option>
+        
+        @if ($id_pedidoEnlazado==null)
+            @foreach ($pedidos as $pedido)
+                <option value="{{$pedido->id_pedido}}">ID Pedido: &nbsp {{$pedido->id_pedido}} &nbsp &nbsp Cliente:&nbsp{{$pedido->clientes->primer_nombre}}&nbsp{{$pedido->clientes->apellido_paterno}}&nbsp{{$pedido->clientes->apellido_materno}}&nbsp &nbsp Fecha de Registro:&nbsp{{$pedido->created_at}} &nbsp &nbsp Fecha de Entrega:&nbsp{{$pedido->fecha_entrega}}</option>
+            @endforeach
+            <option selected value="">Ninguno</option>
+        @else
+            @foreach ($pedidos as $pedido)
+                @if ($id_pedidoEnlazado==$pedido->id_pedido)
+                
+                    <option selected value="{{$pedido->id_pedido}}">ID Pedido: &nbsp {{$pedido->id_pedido}} &nbsp &nbsp Cliente:&nbsp{{$pedido->clientes->primer_nombre}}&nbsp{{$pedido->clientes->apellido_paterno}}&nbsp{{$pedido->clientes->apellido_materno}}&nbsp &nbsp Fecha de Registro:&nbsp{{$pedido->created_at}} &nbsp &nbsp Fecha de Entrega:&nbsp{{$pedido->fecha_entrega}}</option>
+                @else
+                    <option value="{{$pedido->id_pedido}}">ID Pedido: &nbsp {{$pedido->id_pedido}} &nbsp &nbsp Cliente:&nbsp{{$pedido->clientes->primer_nombre}}&nbsp{{$pedido->clientes->apellido_paterno}}&nbsp{{$pedido->clientes->apellido_materno}}&nbsp &nbsp Fecha de Registro:&nbsp{{$pedido->created_at}} &nbsp &nbsp Fecha de Entrega:&nbsp{{$pedido->fecha_entrega}}</option>
+                @endif
+            @endforeach
+        @endif
     </select>
 </div>
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Número de Comprobante</label>
-    <input  id="num_comprobante" name="num_comprobante" type="text" class="form-control" tabindex="3">
+    <input required  id="num_comprobante" name="num_comprobante" type="text" class="form-control" tabindex="3">
 </div>
 
 <div class="mb-3 mt-4 col-md-6">
