@@ -17,10 +17,11 @@
         <th scope="col">Proveedor (empresa)</th>
         <th scope="col">Proveedor (representante)</th>
         <th scope="col">Proveedor (celular)</th>
-        <th scope="col">Proveedor (correo)</th>
+       {{--  <th scope="col">Proveedor (correo)</th> --}}
         <th scope="col">ID Pedido</th>
         <th scope="col">Fecha Registro</th>
-        <th scope="col">Tipo Comprobante</th>
+        <th scope="col">Fecha Entrega</th>
+        <th scope="col">Comentarios</th>
         <th scope="col" >Numero Comprobante</th>
         <th scope="col">Total (Bs.)</th>
     </tr>    
@@ -33,10 +34,10 @@
             <td>{{$ingreso->proveedores->nombre_empresa}}</td>
             <td>{{$ingreso->proveedores->primer_nombre}} {{$ingreso->proveedores->apellido_paterno}}</td>
             <td>{{$ingreso->proveedores->celular}}</td>
-            <td>{{$ingreso->proveedores->correo}}</td>
             <td>{{$ingreso->id_pedido}}</td>
             <td>{{$ingreso->created_at}}</td>
-            <td>{{$ingreso->tipo_comprobante}}</td>
+            <td>{{$ingreso->fecha_entrega}}</td>
+            <td>{{$ingreso->comentarios}}</td>
             <td>{{$ingreso->numero_comprobante}}</td>
             <td style="font-size: 20px;background:rgb(7, 145, 81);color: white ;width: 150px;text-align: center">{{$ingreso->total}}</td>
         </tr>
@@ -45,8 +46,9 @@
             <th scope="col" colspan="3" >Item</th>
             <th scope="col" >Precio Unitario</th>
             <th scope="col" >Cantidad</th>
+            <th scope="col" >Descuento</th>
             <th scope="col" colspan="2">Sub total</th>
-            <th scope="col" colspan="4">Detalles de produccion</th>
+            <th scope="col" colspan="4">Detalles de Insumo</th>
         </tr>
         @foreach ($detalles as $detalle)
         @if ($detalle->id_ingreso == $id_ingreso)
@@ -55,6 +57,7 @@
             <td colspan="3">{{$detalle->insumos->nombre}}</td>
             <td colspan="1">{{$detalle->precio_unitario}}</td>
             <td colspan="1">{{$detalle->cantidad}}</td>
+            <td colspan="1">{{$detalle->descuento}}</td>
             <td colspan="2">{{$detalle->sub_total}}</td>
             <td colspan="4">{{$detalle->detalles}}</td>
         </tr>

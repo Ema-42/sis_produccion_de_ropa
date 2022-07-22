@@ -3,25 +3,23 @@
 @section('title', 'Sistema de Produccion')
 
 @section('content_header')
-    <h1>Editar el Pedido</h1>
+    <h1>Registrar un Nuevo Ingreso</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body mb-4">
       {{-- <h4>Datos de Cotizacion</h4> --}}
-      <form action="/pedidos/editar_pedido" method="POST" class="row g-3 formRegistrar">
+      <form action="/ingresos/{{$ingreso->id_ingreso}}" method="POST" class="row g-3 formRegistrar">
         @csrf
-        @include('layouts.pedido.form_datos_pedido_edit')
-
-        @include('layouts.pedido.form_detalles_edit')
-    </form>
+        @method('PUT')
+        @include('layouts.ingreso.form_datos_ingreso_edit')
+    
+        @include('layouts.ingreso.form_detalles_ingreso_edit')
+      </form>
     </div>
 </div>
-
-
-
-
+    
 @stop
 
 @section('css')
@@ -35,16 +33,12 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 {{-- select con busqueda --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
 <script>
     $(document).ready(function() {
     $('.select2').select2();
     actualizarTotal();
     });
 </script>
-
-
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -59,8 +53,8 @@
                 event.preventDefault()
                 event.stopPropagation()
                 Swal.fire({
-                    title: '¿Desea registrar el Pedido?',
-                    text: "esta a punto de editar el pedido!",
+                    title: '¿Desea registrar el Ingreso Editado?',
+                    text: "esta a punto de registrar las modificaciones del ingreso!",
                     icon: 'info',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -71,7 +65,7 @@
                         this.submit();
                         Swal.fire(
                         'Registrado!',
-                        'El pedido fue editado existosamente.',
+                        'El ingreso fue editado existosamente.',
                         'success'
                         )
                     }
@@ -82,20 +76,14 @@
 </script>
 
 
-
 <script>
-    function agregarItem() {
-      var $select_material = document.getElementById("id_material");
-      $textoMaterial = $select_material.options[$select_material.selectedIndex].innerHTML
-      $idMaterial = $select_material.options[$select_material.selectedIndex].value
+
+function agregarItem() {
       
-      var $select_articulo = document.getElementById("id_articulo");
-      $textoArticulo = $select_articulo.options[$select_articulo.selectedIndex].innerHTML
-      $idArticulo = $select_articulo.options[$select_articulo.selectedIndex].value
+      var $select_insumo = document.getElementById("id_insumo");
+      $textoInsumo = $select_insumo.options[$select_insumo.selectedIndex].innerHTML
+      $idInsumo = $select_insumo.options[$select_insumo.selectedIndex].value
       
-      var $select_talla = document.getElementById("id_talla");
-      $textoTalla = $select_talla.options[$select_talla.selectedIndex].innerHTML
-      $idTalla = $select_talla.options[$select_talla.selectedIndex].value
 
       var $cantidad = document.getElementById("cantidad").value;
       let $descuento = document.getElementById("descuento_detalles").value;
@@ -124,27 +112,18 @@
         })
         return 0;
       }
-      var fila = "<tr> <td><input hidden type='number' name='id_articulo[]' value="+$idArticulo+"> "+$textoArticulo+
-        "</td><td> <input  hidden type='number' name='id_material[]' value="+$idMaterial+"> "+$textoMaterial+
-            '</td><td><select name="id_talla[]"  style="width: 150px" class="form-control">'+
-                    '@foreach ($tallas as $talla)'+
-                        '<option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>'+
-                    '@endforeach'+
-                        '<option selected value='+$idTalla+'>'+$textoTalla+'</option>'+
-            '</select>'+
-            /* "</td><td> <input hidden  type='number' name='id_talla[]' value="+$idTalla+"> "+$textoTalla+ */
+      var fila = "<tr> <td><input hidden type='number' name='id_insumo[]' value="+$idInsumo+"> "+$textoInsumo+
             "</td><td> <input hidden  type='number' name='cantidad[]' value="+$cantidad+"> "+$cantidad+
             "</td><td> <input hidden  type='number' name='precio_unitario[]' value="+$precio_unitario+"> "+$precio_unitario+
             "</td><td> <input hidden  type='number' name='descuento_detalles[]' value="+$descuento+"> "+$descuento+
             "</td><td> <input hidden  type='number' name='sub_total[]' value="+$sub_total+"> "+$sub_total+
-            "</td><td> <input style='width: 450px'  type='text' name='detalles[]' value='"+$detalles+"'> "+
+            "</td><td> <input style='width: 450px'  type='text' name='detalles[]' value='"+$detalles+"'> "/* +$detalles */+
             "</td><td><input type='button' value='Quitar' class='borrar btn btn-danger'></td></tr>";
 
       var btn = document.createElement("TR");
       btn.innerHTML=fila;
       document.getElementById("tablaitems").appendChild(btn);
     }
-
     /* input cantidad de solo numeros */
     function validaNumericos(event) {
         if(event.charCode >= 48 && event.charCode <= 57){
@@ -157,9 +136,9 @@
     function actualizarTotal() {
         var total_col = 0;
         //Recorro todos los tr ubicados en el tbody
-        $('#detalle_pedidos tbody').find('tr').each(function (i, el) {
+        $('#detalle_ingresos tbody').find('tr').each(function (i, el) {
         //Voy incrementando las variables segun la fila ( .eq(5) representa la fila 5 )     
-        total_col += parseFloat($(this).find('td').eq(6).text());});
+        total_col += parseFloat($(this).find('td').eq(4).text());});
         total_col = Number(total_col.toFixed(2));
         var $total_pedido = document.getElementById("total");
         $total_pedido.value=total_col;
@@ -176,9 +155,8 @@
     });
 
     /* impidiendo que se envie un pedido sin detalles */
-    function impedirRegistroPedido() {
+    function impedirRegistroIngreso() {
         var $comentarios = document.getElementById("comentarios").value
-        var $direccion_entrega = document.getElementById("direccion_entrega").value
         var $fecha_entrega = document.getElementById("fecha_entrega").value
         var $total = document.getElementById("total").value
         if ($fecha_entrega=='') {
@@ -194,15 +172,15 @@
 
         if ($total == 0) {
 
-            alert('Debe asiganar detalles al pedido');
+            alert('Debe asiganar detalles al ingreso');
             event.preventDefault()
         }    
     }
     /* accionar  con click */
-    $(document).on('click', '.registrar_pedido', function(event){
-        if (impedirRegistroPedido()==1) {
+    $(document).on('click', '.registrar_ingreso', function(event){
+        if (impedirRegistroIngreso()==1) {
+            
         }
     });
-
 </script>
 @stop

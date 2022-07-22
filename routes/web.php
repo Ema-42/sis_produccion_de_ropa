@@ -63,6 +63,9 @@ Route::get('cotizaciones/{id_cotizacion}/detalleReporte',[CotizacionController::
 
 
 Route::get('ingresos/{id_ingreso}/ver_detalles',[IngresoController::class,'ver_detalles'])->middleware('auth')->name('ingresos.ver_detalles');
+Route::get('ingresos/{id_ingreso}/detalleReporte',[IngresoController::class,'detalleReporte'])->middleware('auth')->name('ingresos.detalleReporte');
+Route::get('ingresos/listaReporte',[IngresoController::class,'listaReporte'])->middleware('auth')->name('ingresos.listaReporte');
+
 
 Route::resource('produccion',PedidoProduccionController::class)->middleware('auth');
 Route::resource('encargado_producciones',EncargadoProduccionController::class)->middleware('auth');

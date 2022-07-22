@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 class UsuarioController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $usuarios = User::all();
         return view('usuario.index',compact('usuarios'));
     }
@@ -26,7 +28,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+        $roles = Role::all();
+        return view('usuario.create',compact('roles'));
     }
     public function b_list()
     {
@@ -44,16 +47,31 @@ class UsuarioController extends Controller
     {
         
         $usuario = new User();
-
         $usuario->name= $request->get('nombre');
+        $usuario->apellidos= $request->get('apellido');
         $usuario->state= 'active';
+        $usuario->ndip= $request->get('ndip');
+        $usuario->direccion= $request->get('direccion');
+        $usuario->celular= $request->get('celular');
         $usuario->email= $request->get('correo');
         $usuario->password= Hash::make($request->get('password'));
-        
+        if ($request->get('rol')==1) {
+            $usuario->rol= 'Admin';
+        }
+        if ($request->get('rol')==2) {
+            $usuario->rol= 'Empleado';
+        }
+
         $usuario->save();
 
+        $usuario = User::latest('id')->first();
+        /* guardando el usuario y rol en la tabla model_has_roles */
+        $usuario->roles()->sync($request->get('rol'));
+       
+        
+
         //redireccionar luego de crear
-        return redirect('/usuarios');
+        return redirect('/usuarios')->with('info','Se registró el usuario correctamente');
     }
 
     /**
@@ -76,7 +94,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = User::find($id);
-        return view('usuario.edit',compact('usuario'));
+        $roles = Role::all();
+        return view('usuario.edit',compact('usuario','roles'));
     }
 
     /**
@@ -89,13 +108,25 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = User::find($id);
-
+        
         $usuario->name= $request->get('nombre');
+        $usuario->apellidos= $request->get('apellido');
         $usuario->state= 'active';
         $usuario->email= $request->get('correo');
+        $usuario->ndip= $request->get('ndip');
+        $usuario->direccion= $request->get('direccion');
+        $usuario->celular= $request->get('celular');
         $usuario->password= Hash::make($request->get('password'));
+        if ($request->get('rol')==1) {
+            $usuario->rol= 'Admin';
+        }
+        if ($request->get('rol')==2) {
+            $usuario->rol= 'Empleado';
+        }
+        $usuario->roles()->sync($request->get('rol'));
         $usuario->save();
-        return redirect('/usuarios');
+
+        return redirect('/usuarios')->with('info','Se editó el usuario correctamente');
     }
 
     /**

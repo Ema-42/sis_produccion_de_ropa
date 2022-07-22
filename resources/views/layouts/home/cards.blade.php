@@ -3,6 +3,7 @@
         <div class="card-header"><span style="font-size: 20px">Bienvenido al Sistema</span></div>
         <div class="card-body">
           <p class="card-text"><span style="font-size: 20px">Usuario : {{(auth()->user()->name)}}</span></p>
+          <p class="card-text"><span style="font-size: 20px">Rol : {{(auth()->user()->rol)}}</span></p>
         </div>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-2 ">
@@ -33,6 +34,11 @@
             </div>
           </div>
         </div>
+        {{-- @if ($usuario->roles()->first()->name=='Admin') --}}
+        {{-- @can('Admin') --}}
+        {{-- php artisan cache:clear   = para borrar la cache, al crear cada permiso de rol --}}
+        @can('cards.admin')
+        {{-- @role('Admin') --}}
         <div class="col col-md-3" onclick="window.location.href = '/articulos/create'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://images.vexels.com/media/users/3/76314/raw/16a229b2cefb744a0c85916465d92b32-ropa-deportiva-para-hombre.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
@@ -42,6 +48,7 @@
             </div>
           </div>
         </div>
+
         <div class="col col-md-3" onclick="window.location.href = '/insumos/create'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://almacenesfreigenedo.com/blog/wp-content/uploads/2022/03/cual-comprar.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
@@ -51,6 +58,11 @@
             </div>
           </div>
         </div>
+        @endcan
+        {{-- @endrole --}}
+        {{-- @endcan --}}
+        {{-- @endif --}}
+        
         <div class="col col-md-3" onclick="window.location.href = '/pedidos'" style="cursor: grab">
           <div class="card">
             <img  style="height: 240px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSExOzpMeKSyMAc4LrP3RacREotXKrdLqLecXofc1HuKXzqDgc61QYGKxuiY30HLJh_jxA&usqp=CAU" class="card-img-top" alt="Skyscrapers"/>
@@ -60,6 +72,9 @@
               </div>
           </div>
         </div>
+            
+        
+
         <div class="col col-md-4" onclick="window.location.href = '/produccion/entregados'" style="cursor: grab">
           <div class="card">
             <img style="height: 240px"  src="https://www.adslzone.net/app/uploads-adslzone.net/2021/03/crear-encuestas.png" class="card-img-top" alt="Skyscrapers"/>

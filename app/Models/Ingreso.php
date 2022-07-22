@@ -23,6 +23,9 @@ class Ingreso extends Model
         public function pedidos(){
             return $this->belongsTo(Pedido::class,'id_pedido');
         }
+        public function clientes(){
+            return $this->belongsTo(Cliente::class,'id_cliente');
+        }
 
 
         public function detalle_ingresos(){

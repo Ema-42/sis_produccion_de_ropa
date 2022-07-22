@@ -16,6 +16,7 @@
         <th scope="col">Fecha de Creacion de Usuario</th>
         <th scope="col">Fecha de Bloqueo</th>
         <th scope="col">Estado</th>
+        <th scope="col">Rol</th>
         <th scope="col" style="width: 300px">Acciones</th>
     </tr>
     </thead>
@@ -40,6 +41,9 @@
                 </td>
                 <td>
                     {{$usuario->state}}
+                </td>
+                <td>
+                    {{$usuario->rol}}
                 </td>
                 <td style="width: 180px">
                     <form action="{{route('usuarios.destroy',$usuario->id)}}" method="POST" class="formBorrar">    

@@ -8,15 +8,24 @@
 
 @section('content')
 <a href="usuarios/create" class="btn btn-success mb-4">Registrar Nuevo Usuario</a>
+@if (session('info'))
+    <div class="alert alert-success"><strong>{{session('info')}}</strong></div>
+@endif
 <table id="usuarios" class="table table-striped table-hover">
     <thead  style="background: rgb(53, 71, 102)" class="text-white">
     <tr>
         <th scope="col">ID</th>
-        <th scope="col">Nombre</th>
+        <th scope="col">Nombres</th>
+        {{-- <th scope="col">Nombres</th> --}}
+        <th scope="col">Apellidos</th>
         <th scope="col">Correo</th>
+        <th scope="col">NDIP</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Celular</th>
         <th scope="col">Fecha de Registro</th>
         <th scope="col">Estado</th>
-        <th scope="col">Registro Última Edicion</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Última Edicion</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -24,24 +33,18 @@
         @foreach ($usuarios as $usuario)
             @if ($usuario->state !='blocked')
                 <tr>
-                    <td>
-                        {{$usuario->id}}
-                    </td>
-                    <td>
-                        {{$usuario->name}}
-                    </td>
-                    <td>
-                        {{$usuario->email}}
-                    </td>
-                    <td>
-                        {{$usuario->created_at}}
-                    </td>
-                    <td>
-                        {{$usuario->state}}
-                    </td>
-                    <td>
-                        {{$usuario->updated_at}}
-                    </td>
+                    <td>{{$usuario->id}}</td>
+                    <td>{{$usuario->name}}</td>
+                    {{-- <td>{{$usuario->nombres}}</td> --}}
+                    <td>{{$usuario->apellidos}}</td>
+                    <td>{{$usuario->email}}</td>
+                    <td>{{$usuario->ndip}}</td>
+                    <td>{{$usuario->direccion}}</td>
+                    <td>{{$usuario->celular}}</td>
+                    <td>{{$usuario->created_at}}</td>
+                    <td>{{$usuario->state}}</td>
+                    <td>{{$usuario->rol}}</td>
+                    <td>{{$usuario->updated_at}}</td>
                     <td style="width: 180px">
                         <form action="{{route('usuarios.destroy',$usuario->id)}}" method="POST" class="formBorrar">    
                             @csrf
@@ -72,7 +75,8 @@
 <script>
     $(document).ready(function () {
     $('#usuarios').DataTable({
-        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+        'lengthMenu':[[10,20,-1],[10,20,'All']],
+        "order": [[ 0, "desc" ]]
     });
     })
 </script>

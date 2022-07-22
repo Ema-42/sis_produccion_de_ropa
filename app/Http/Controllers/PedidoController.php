@@ -192,10 +192,17 @@ class PedidoController extends Controller
         }
         
         $detallesActualizar = $request['id_detalle_pedido'];
-        $detallesELiminar = array_diff($detalles,$detallesActualizar);
-        $detallesELiminar2 = array_values($detallesELiminar);/*  reseteando keys */
 
-        if (count($detallesELiminar2)!=0) {
+        if ($detallesActualizar!=null) {
+            $detallesELiminar = array_diff($detalles,$detallesActualizar);
+            $detallesELiminar2 = array_values($detallesELiminar);/*  reseteando keys */
+        }
+        else {
+            $detallesELiminar = $detalles;
+            $detallesELiminar2 = array_values($detallesELiminar);/*  reseteando keys */
+        }
+
+        if ($detallesELiminar2!=null) {
             for ($i=0; $i <count($detallesELiminar2) ; $i++) { 
                 $detalle =  Detalle_pedido::find($detallesELiminar2[$i]);
                 $detalle->delete();
@@ -216,7 +223,7 @@ class PedidoController extends Controller
         $pedido->nit = $nit->nit;
         $pedido->save();
 
-        if (count($request['id_detalle_pedido'])>=1) {
+        if ($request['id_detalle_pedido']!=null and count($request['id_detalle_pedido'])>=1) {
             for ($i=0; $i < count($request['id_detalle_pedido']) ; $i++) {
 
                 $detalle_pedido =  Detalle_pedido::find($request['id_detalle_pedido'][$i]);
@@ -233,7 +240,7 @@ class PedidoController extends Controller
                 $detalle_pedido->save();
             }
         }
-        if (count($request['id_detalle_pedido'])<count($request['id_articulo'])) {
+        if ($request['id_detalle_pedido']!=null and  count($request['id_detalle_pedido'])<count($request['id_articulo'])) {
             for ($i=count($request['id_detalle_pedido']); $i < count($request['id_articulo']) ; $i++) { 
                 $detalle_pedido = new Detalle_pedido();
                 $detalle_pedido->id_pedido = $request['id_pedido'];

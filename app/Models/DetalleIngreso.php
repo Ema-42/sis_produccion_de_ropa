@@ -18,4 +18,5 @@ class DetalleIngreso extends Model
     protected $primaryKey = "id_detalle_ingreso";
     protected $fillable = ['id_ingreso','id_insumo','precio_unitario','cantidad','descuento','subtotal','sub_total','detalles'];
     use HasFactory;
+    public $timestamps = false;
 }

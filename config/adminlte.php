@@ -267,6 +267,7 @@ return [
         [
             'text'    => 'Produccion de Pedidos',
             'icon'    => 'fas fa-pencil-ruler',
+            'can'      =>    'produccion.index',
             'submenu' => [
                 [
                     'text' => 'Listado',
@@ -310,6 +311,7 @@ return [
         [
             'text'    => 'Ingresos',
             'icon'    => 'fas fa-truck',
+            'can' =>'ingresos.crud',
             'submenu' => [
                 [
                     'text' => 'Nuevo Ingreso',
@@ -353,6 +355,7 @@ return [
         [
             'text'    => 'Insumos',
             'icon'    => 'fas fa-luggage-cart',
+            'can' =>'insumos.crud',
             'submenu' => [
                 [
                     'text' => 'Crear',
@@ -395,6 +398,7 @@ return [
         [
             'text'    => 'Proveedores',
             'icon'    => 'fas fa-user-tie',
+            'can' =>'proveedores.crud',
             'submenu' => [
                 [
                     'text' => 'Listado',
@@ -413,6 +417,7 @@ return [
         [
             'text'    => 'Encargado de produccion',
             'icon'    => 'fas fa-user-friends',
+            'can' =>'encargados.crud',
             'submenu' => [
                 [
                     'text' => 'Listado',
@@ -431,6 +436,7 @@ return [
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-users',
+            'can' =>'usuarios.crud',
             'submenu' => [
                 [
                     'text' => 'Listado',
@@ -472,6 +478,7 @@ return [
         [
             'text'    => 'Empresa',
             'icon'    => 'fas fa-building',
+            'can' =>'empresa.crud',
             'submenu' => [
                 [
                     'text' => 'Gestionar',

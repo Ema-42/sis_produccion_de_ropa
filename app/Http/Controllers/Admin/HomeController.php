@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Articulo;
 use App\Models\Pedido;
 use App\Models\Insumo;
-
+use Spatie\Permission\Models\Permission;
 class HomeController extends Controller
 {
-
     public function index(){
         $clientes = count(Cliente::all());
         $articulos = count(Articulo::all());
@@ -37,6 +36,11 @@ class HomeController extends Controller
         $nombre = $cliente->primer_nombre ;
         $ap_paterno = $cliente->apellido_paterno; 
         $ap_materno = $cliente->apellido_materno;
-        return view('admin.index',compact('insumos','nombre','ap_paterno','ap_materno','fecha_UltPedido','clientes','articulos','num_pedidos'));
+        $usuario = auth()->user();
+        /* dd($usuario->hasPermissionTo("insumos.create")); */
+        /* dd($usuario->getAllPermissions());
+        dd($usuario->hasPermissionTo("insumos.create")); */
+        
+        return view('admin.index',compact('usuario','insumos','nombre','ap_paterno','ap_materno','fecha_UltPedido','clientes','articulos','num_pedidos'));
     }
 }
