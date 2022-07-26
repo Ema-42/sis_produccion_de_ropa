@@ -4,7 +4,7 @@
 
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Empresa</label>
-    <select name="id_empresa" id="id_empresa" class=" form-control" aria-label="Default select example" tabindex="1">
+    <select required name="id_empresa" id="id_empresa" class=" form-control" aria-label="Default select example" tabindex="1">
         @foreach ($empresas as $empresa)
             @if ($empresa->id_empresa==$cotizacion->id_empresa)
             <option selected value="{{$empresa->id_empresa}}">{{$empresa->nombre}}</option>
@@ -20,7 +20,7 @@
 </div>
 <div class="mb-3 col-md-3">
     <label  for="" class="form-label">Cliente</label><br>
-    <select name="id_cliente" id="id_cliente" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
+    <select required name="id_cliente" id="id_cliente" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
         @foreach ($clientes as $cliente)
             @if ($cliente->id_cliente==$cotizacion->id_cliente)
                 <option selected value="{{$cliente->id_cliente}}">{{$cliente->primer_nombre}} {{$cliente->apellido_paterno}} {{$cliente->apellido_materno}}ㅤㅤNDIP: {{$cliente->nro_dip}}</option>  

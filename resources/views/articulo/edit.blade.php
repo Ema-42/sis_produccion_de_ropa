@@ -27,7 +27,7 @@
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Nombre</label>
-            <input id="nombre" name="nombre" type="text" class="form-control col-md-4" tabindex="2" value="{{$articulo->nombre}}">
+            <input required id="nombre" name="nombre" type="text" class="form-control col-md-4" tabindex="2" value="{{$articulo->nombre}}">
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Descripcion</label>

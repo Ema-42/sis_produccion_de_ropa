@@ -113,9 +113,11 @@
             <div class="row">
             <div class="col-md-2 mt-4">
               <label for="" class="form-label">Tallas</label><br>
-              <select  style="width: 150px" class="form-control talla_modal" aria-label="Default select example" tabindex="2" >
+              <select required  style="width: 150px" class="form-control talla_modal" aria-label="Default select example" tabindex="2" >
                   @foreach ($tallas as $talla)
-                      <option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>
+                      @if ($talla->estado=='vigente')
+                        <option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>
+                      @endif
                   @endforeach
               </select>
             </div>

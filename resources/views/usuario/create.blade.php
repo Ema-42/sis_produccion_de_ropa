@@ -20,11 +20,11 @@
     <div class="mb-3 col-md-6"></div>
     <div class="mb-3 col-md-3" >
         <label for="" class="form-label">Correo</label>
-        <input required placeholder="Correo" id="correo" value="" name="correo" type="email" class="form-control " tabindex="10">
+        <input autocomplete="off" required placeholder="Correo" id="correo" value="" name="correo" type="email" class="form-control " tabindex="10">
     </div>
     <div class="mb-3 col-md-3" >
         <label for="" class="form-label" >Contraseña</label>
-        <input required id="password" name="password" type="password" class="form-control " tabindex="10">
+        <input autocomplete="off" required id="password" name="password" type="password" class="form-control " tabindex="10">
     </div>
     <div class="mb-3 col-md-6"></div>
     <div class="mb-3 col-md-3" >

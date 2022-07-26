@@ -22,6 +22,7 @@
         <th scope="col">Direccion</th>
         <th scope="col">Correo</th>
         <th scope="col">Fecha de Registro</th>
+        <th scope="col">Estado</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -61,12 +62,19 @@
                 <td>
                     {{$proveedor->created_at}}
                 </td>
+                <td>
+                    {{$proveedor->estado}}
+                </td>
                 <td style="width: 180px">
                     <form action="{{route('proveedores.destroy',$proveedor->id_proveedor)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
                         <a href="{{route('proveedores.edit',$proveedor->id_proveedor)}}" class="btn btn-primary">Editar</a>
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        @if ($proveedor->estado=='vigente')
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        @else
+                            <button type="submit" class="btn btn-success">Activar</button>
+                        @endif
                     </form>
                 </td>
             </tr>
@@ -89,7 +97,8 @@
 <script>
     $(document).ready(function () {
     $('#proveedores').DataTable({
-        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']],
+        "order": [[ 0, "desc" ]]
     });
     })
 </script>

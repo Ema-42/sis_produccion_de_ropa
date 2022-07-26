@@ -203,6 +203,35 @@ class PedidoProduccionController extends Controller
 
     }
 
+    public function detalleReporteEntregados($id_pedido)
+    {   
+        $tallas= Talla::all();
+        $materiales= Material::all();
+        $detalles = Detalle_pedido::all();
+        $producciones = PedidoProduccion::all();
+        $encargados = Encargado_Produccion::all();
+        $pedido = Pedido::find($id_pedido);
+        
+        $usuario = User::find((auth()->user()->id));
+        $nombreUsuario = $usuario->name;
+
+        $pdf = PDF::loadView('produccion.detalleReporteEntregados',['tallas'=>$tallas,'materiales'=>$materiales,'producciones'=>$producciones,'encargados'=>$encargados,'id_pedido'=>$id_pedido,'detalles'=>$detalles,'pedido'=>$pedido,'nombreUsuario'=>$nombreUsuario]);
+        return $pdf->stream();
+
+    }
+
+    public function listaReporteEntregados(Request $request)
+    {   
+        $pedidos = Pedido::all();
+        $usuario = User::find((auth()->user()->id));
+        $nombreUsuario = $usuario->name;
+
+        $pdf = PDF::loadView('produccion.listaReporteEntregados',['pedidos'=>$pedidos,'nombreUsuario'=>$nombreUsuario]);
+        return $pdf->stream();
+        /* return view('cotizacion.listaReporte',compact('cotizaciones')); */
+        /* return $pdf->download('cotizaciones.pdf'); */
+    }
+
 
 
     /**

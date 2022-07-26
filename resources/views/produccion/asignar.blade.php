@@ -34,8 +34,10 @@
                     <td ><input hidden type="number" name="cantidad[]" value="{{$detalle->cantidad}}"> {{$detalle->cantidad}}</td>
                     <td>
                         <select   name="id_encargado_produccion[]" class="form-control  col-md-4" aria-label="Default select example" tabindex="1" >
-                            @foreach ($encargados as $encargado)                     
+                            @foreach ($encargados as $encargado)
+                                @if ($encargado->estado=='vigente')
                                     <option  value="{{$encargado->id_encargado_produccion}}">{{$encargado->primer_nombre}} {{$encargado->apellido_paterno}} {{$encargado->apellido_materno}}</option>
+                                @endif                 
                             @endforeach                              
                         </select>
                     </td>

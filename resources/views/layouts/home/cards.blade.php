@@ -1,3 +1,4 @@
+@if ($usuario->state!='blocked')
 <div class="row g-3">
     <div class="card text-white mb-2 mr-3 col-md-12" style="background: rgb(22, 136, 111)">
         <div class="card-header"><span style="font-size: 20px">Bienvenido al Sistema</span></div>
@@ -85,4 +86,12 @@
           </div>
         </div>
       </div>
-</div>
+</div>    
+@else
+  <div class="card text-white mb-2 mr-3 col-md-12" style="background: rgb(177, 87, 87)">
+    <div class="card-header"><span style="font-size: 20px">Hola {{(auth()->user()->name)}}, los sentimos:</span></div>
+    <div class="card-body">
+      <p class="card-text"><span style="font-size: 20px">Has sido bloqueado del sistema, solicita el apoyo de un Administrador</span></p>
+    </div>
+  </div>
+@endif

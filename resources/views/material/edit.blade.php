@@ -12,7 +12,7 @@
     @method('PUT')
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Nombre del Material</label>
-        <input id="nombre" name="nombre" type="text" class="form-control " tabindex="1" value="{{$material->nombre}}">
+        <input required id="nombre" name="nombre" type="text" class="form-control " tabindex="1" value="{{$material->nombre}}">
     </div>
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Descripcion del Material</label>
@@ -25,7 +25,7 @@
         <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
     </div>
 </form>
-@include('layouts.material.table')
+{{-- @include('layouts.material.table') --}}
 @stop
 
 @section('css')

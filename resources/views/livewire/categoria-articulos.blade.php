@@ -17,23 +17,32 @@
         <table id="categoria_articulos" class=" table table-striped table-hover" >
             <thead class="bg-secondary text-white">
                 <tr>
-                    <th scope="col"  ">ID</th>
-                    <th  scope="col"  ">Nombre</th>
-                    <th  scope="col"  ">Descripcion</th>
-                    <th scope="col"">ACCIONES</th>  
+                    <th scope="col"  >ID</th>
+                    <th  scope="col"  >Nombre</th>
+                    <th  scope="col"  >Descripcion</th>
+                    <th  scope="col"  >Estado</th>
+                    <th scope="col">ACCIONES</th>  
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categoria_articulos as $categoria)
-                <tr>
-                    <td>{{$categoria->id_categoria_articulo}}</td>
-                    <td>{{$categoria->nombre}}</td>
-                    <td>{{$categoria->descripcion}}</td>
-                    <td>
-                        <button wire:click="editar({{$categoria->id_categoria_articulo}})"  class="btn btn-primary">Editar</button>
-                        <button wire:click="borrar({{$categoria->id_categoria_articulo}})" class="btn btn-danger">Borrar</button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{$categoria->id_categoria_articulo}}</td>
+                        <td>{{$categoria->nombre}}</td>
+                        <td>{{$categoria->descripcion}}</td>
+                        <td>{{$categoria->estado}}</td>
+                        <td>
+                            <button wire:click="editar({{$categoria->id_categoria_articulo}})"  class="btn btn-primary">Editar</button>
+                            @if ($categoria->estado=='vigente')
+                                <button wire:click="borrar({{$categoria->id_categoria_articulo}})" class="btn btn-danger">Borrar</button>
+                            @else
+                                <button wire:click="borrar({{$categoria->id_categoria_articulo}})" class="btn btn-success">Activar</button>
+                            @endif
+                            
+                        </td>
+                    </tr>
+    
+                
                 @endforeach
             </tbody>
         </table>

@@ -10,8 +10,8 @@
 
     <div class="col-12  mt-3 mb-3">
         <div class="d-grid gap-2 d-md-block">
-            <button wire:click.prevent="guardar()" type="button" class="btn btn-primary mr-4" type="button">Guardar</button>
-            <button wire:click="cerrarFormulario()" type="button" class="btn btn-secondary" type="button">Cancelar</button>
+            <button wire:click.prevent="guardar()" type="submit" class="btn btn-primary mr-4" >Guardar</button>
+            <button wire:click="cerrarFormulario()" type="button" class="btn btn-secondary" >Cancelar</button>
         </div>
     </div>
 </form>

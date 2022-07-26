@@ -15,14 +15,16 @@
         <label for="" class="form-label">Categoria</label>
         <select name="id_categoria_articulo" id="id_categoria_articulo" class=" form-control col-md-4" aria-label="Default select example" tabindex="1">
             @foreach ($categorias as $categoria)
-                <option value="{{$categoria->id_categoria_articulo}}">{{$categoria->descripcion}}</option>
+            @if ($categoria->estado=='vigente')
+                <option value="{{$categoria->id_categoria_articulo}}">{{$categoria->nombre}}</option>
+            @endif
             @endforeach
           </select>
         
     </div>
     <div class="mb-3">
         <label for="" class="form-label ">Nombre</label>
-        <input id="nombre" name="nombre" type="text" class="form-control col-md-4" tabindex="2">
+        <input required id="nombre" name="nombre" type="text" class="form-control col-md-4" tabindex="2">
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Descripcion</label>

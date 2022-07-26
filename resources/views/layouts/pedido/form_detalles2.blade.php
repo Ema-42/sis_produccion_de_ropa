@@ -21,7 +21,9 @@
     <label for="" class="form-label">Articulo</label><br>
     <select  id="id_articulo" style="width: 250px" class="form-control select_articulos  select2" aria-label="Default select example" tabindex="2" >
         @foreach ($articulos as $articulo)
-            <option value="{{$articulo->id_articulo}}">{{$articulo->nombre}}</option>
+            @if ($articulo->estado=='vigente')
+                <option value="{{$articulo->id_articulo}}">{{$articulo->nombre}}</option>
+            @endif
         @endforeach
             {{-- <option selected value="">Ninguno</option> --}}
     </select>
@@ -30,7 +32,9 @@
     <label for="" class="form-label">Material</label><br>
     <select  {{-- name="id_material" --}} id="id_material" style="width: 250px" class="form-control select_materiales  select2" aria-label="Default select example" tabindex="2" >
         @foreach ($materiales as $material)
+        @if ($material->estado=='vigente')
             <option value="{{$material->id_material}}">{{$material->nombre}}</option>
+        @endif
         @endforeach
             {{-- <option  selected value="">Ninguno</option> --}}
     </select>
@@ -39,7 +43,9 @@
     <label for="" class="form-label">Tallas</label><br>
     <select {{-- name="id_talla" --}} id="id_talla" style="width: 250px" class="form-control select_tallas  select2" aria-label="Default select example" tabindex="2" >
         @foreach ($tallas as $talla)
-            <option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>
+            @if ($talla->estado=='vigente')
+                <option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>
+            @endif
         @endforeach
             {{-- <option selected value="">Ninguno</option> --}}
     </select>
@@ -106,7 +112,9 @@
                 <td >
                     <select name='id_talla[]'  id="id_talla" style="width: 250px" class="form-control select_tallas" aria-label="Default select example" tabindex="2" >
                         @foreach ($tallas as $talla)
-                            <option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>
+                            @if ($talla->estado=='vigente')
+                                <option value="{{$talla->id_talla}}">{{$talla->nombre}}</option>
+                            @endif
                         @endforeach
                             {{-- <option selected value="">Ninguno</option> --}}
                     </select>

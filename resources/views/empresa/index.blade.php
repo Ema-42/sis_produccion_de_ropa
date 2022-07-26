@@ -12,11 +12,11 @@
     @csrf
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Nombre</label>
-        <input id="nombre" name="nombre" type="text" class="form-control " tabindex="1">
+        <input required id="nombre" name="nombre" type="text" class="form-control " tabindex="1">
     </div>
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">NIT</label>
-        <input id="nit" name="nit" type="text" class="form-control " tabindex="2">
+        <input required id="nit" name="nit" type="text" class="form-control " tabindex="2">
     </div>
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-2" >
@@ -25,11 +25,11 @@
     </div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Celular</label>
-        <input id="celular" name="celular" type="text" class="form-control " tabindex="4">
+        <input required id="celular" name="celular" type="text" class="form-control " tabindex="4">
     </div>
     <div class="mb-3 col-md-4" >
         <label for="" class="form-label">Direccion</label>
-        <input id="direccion" name="direccion" type="text" class="form-control " tabindex="5">
+        <input required id="direccion" name="direccion" type="text" class="form-control " tabindex="5">
     </div>
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-4" >
@@ -60,7 +60,7 @@
 <script>
     $(document).ready(function () {
     $('#empresas').DataTable({
-        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+        'lengthMenu':[[10,50,-1],[10,50,'All']]
     });
     })
 </script>

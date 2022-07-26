@@ -12,7 +12,7 @@
         @method('PUT')
         <div class="mb-3 col-md-4">
             <label for="" class="form-label">Nombre</label>
-            <input id="nombre" name="nombre" type="text" class="form-control " tabindex="1" value="{{$talla->nombre}}">
+            <input required id="nombre" name="nombre" type="text" class="form-control " tabindex="1" value="{{$talla->nombre}}">
         </div>
         <div class="mb-3 col-md-4">
             <label for="" class="form-label">Descripcion</label>
@@ -25,7 +25,7 @@
             <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
         </div>
     </form>
-    @include('layouts.talla.table')
+    {{-- @include('layouts.talla.table') --}}
 @stop
 
 @section('css')

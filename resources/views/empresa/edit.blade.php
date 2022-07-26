@@ -12,11 +12,11 @@
     @method('PUT')
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Nombre</label>
-        <input id="nombre" name="nombre" type="text" class="form-control " tabindex="1"  value="{{$empresa->nombre}}">
+        <input required id="nombre" name="nombre" type="text" class="form-control " tabindex="1"  value="{{$empresa->nombre}}">
     </div>
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">NIT</label>
-        <input id="nit" name="nit" type="text" class="form-control " tabindex="2" value="{{$empresa->nit}}">
+        <input required id="nit" name="nit" type="text" class="form-control " tabindex="2" value="{{$empresa->nit}}">
     </div>
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-2" >
@@ -25,11 +25,11 @@
     </div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Celular</label>
-        <input id="celular" name="celular" type="text" class="form-control " tabindex="4"value="{{$empresa->celular}}">
+        <input required id="celular" name="celular" type="text" class="form-control " tabindex="4"value="{{$empresa->celular}}">
     </div>
     <div class="mb-3 col-md-4" >
         <label for="" class="form-label">Direccion</label>
-        <input id="direccion" name="direccion" type="text" class="form-control " tabindex="5" value="{{$empresa->direccion}}">
+        <input required id="direccion" name="direccion" type="text" class="form-control " tabindex="5" value="{{$empresa->direccion}}">
     </div>
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-4" >
@@ -44,7 +44,7 @@
     </div>
     
 </form>
-@include('layouts.empresa.table')
+{{-- @include('layouts.empresa.table') --}}
 @stop
 
 @section('css')

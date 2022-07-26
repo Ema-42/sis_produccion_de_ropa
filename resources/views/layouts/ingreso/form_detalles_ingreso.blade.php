@@ -15,13 +15,15 @@
 </head>
 
 <div class="mb-3 mt-3 col-md-12">
-    <h4>Agrega Articulos al Pedido</h4>
+    <h4>Agrega Insumos al Ingreso</h4>
 </div>
 <div class="mb-3 col-md-3">
-    <label for="" class="form-label">Articulo</label><br>
+    <label for="" class="form-label">Insumo</label><br>
     <select  id="id_insumo" class="form-control select_articulos  select2" aria-label="Default select example" tabindex="2" >
         @foreach ($insumos as $insumo)
-            <option value="{{$insumo->id_insumo}}">{{$insumo->nombre}}</option>
+            @if ($insumo->estado=='vigente')
+                <option value="{{$insumo->id_insumo}}">{{$insumo->nombre}}</option>
+            @endif
         @endforeach
             {{-- <option selected value="">Ninguno</option> --}}
     </select>

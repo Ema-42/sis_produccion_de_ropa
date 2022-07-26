@@ -92,7 +92,13 @@ class MaterialController extends Controller
     public function destroy($id_material)
     {
         $material = Material::find($id_material);
-        $material->delete();
+        if ($material->estado=='vigente') {
+            $material->estado='eliminado';
+            $material->save();
+        } else {
+            $material->estado='vigente';
+            $material->save();
+        }
         return redirect('/materiales');
     }
 }

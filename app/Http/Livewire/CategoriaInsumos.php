@@ -43,12 +43,25 @@ class CategoriaInsumos extends Component
 
     public function borrar($id_categoria_insumo)
     {
-        Categoria_insumo::find($id_categoria_insumo)->delete();
-        session()->flash('message', 'Registro eliminado correctamente');
+        $cat_insumo = Categoria_insumo::find($id_categoria_insumo);
+        if ($cat_insumo->estado=='vigente') {
+            $cat_insumo->estado = 'eliminado';
+            $cat_insumo->save();
+        } else {
+            $cat_insumo->estado = 'vigente';
+            $cat_insumo->save();
+        }
+        session()->flash('message', 'Registro modificado correctamente');
     }
 
     public function guardar()
     {
+
+        $validatedData = $this->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            ]);
+
         Categoria_insumo::updateOrCreate(['id_categoria_insumo'=>$this->id_categoria_insumo],
             [
                 'nombre' => $this->nombre,

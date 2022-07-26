@@ -16,6 +16,7 @@
         <th scope="col">Nombre</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Imagen</th>
+        <th scope="col">Estado</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -38,11 +39,20 @@
                     <img src="/img/{{$insumo->imagen}}" width="6%">
                 </td>
                 <td style="width: 180px">
+                    {{$insumo->estado}}
+                </td>
+                <td style="width: 180px">
                     <form action="{{route('insumos.destroy',$insumo->id_insumo)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
                         <a href="{{route('insumos.edit',$insumo->id_insumo)}}" class="btn btn-primary">Editar</a>
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        @if ($insumo->estado=='vigente')
+                             <button type="submit" class="btn btn-danger">Borrar</button>
+                        @else
+                            <button type="submit" class="btn btn-success">Activar</button>
+                        @endif
+                        
+                        
                     </form>
                 </td>
             </tr>

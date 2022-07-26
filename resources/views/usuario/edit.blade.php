@@ -21,11 +21,11 @@
     <div class="mb-3 col-md-6"></div>
     <div class="mb-3 col-md-3" >
         <label for="" class="form-label">Correo</label>
-        <input required placeholder="Correo" id="correo" value="{{$usuario->email}}" name="correo" type="email" class="form-control " tabindex="10">
+        <input required placeholder="Correo" id="correo" value="{{$usuario->email}}" name="correo" type="email" class="form-control " autocomplete="off">
     </div>
     <div class="mb-3 col-md-3" >
         <label for="" class="form-label" >Contraseña</label>
-        <input required id="password" name="password" type="password" class="form-control " tabindex="10" value="{{$usuario->password}}">
+        <input required id="password" name="password" type="password" placeholder="Contraseña" class="form-control " value="" autocomplete="off">
     </div>
     <div class="mb-3 col-md-6"></div>
     <div class="mb-3 col-md-3" >

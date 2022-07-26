@@ -22,6 +22,7 @@
         <th scope="col">Correo</th>
         <th scope="col">Fecha de Nacimiento</th>
         <th scope="col">Fecha de Registro</th>
+        <th scope="col">Estado</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -66,12 +67,20 @@
                 <td>
                     {{$cliente->created_at}}
                 </td>
+                <td>
+                    {{$cliente->estado}}
+                </td>
                 <td style="width: 180px">
                     <form action="{{route('clientes.destroy',$cliente->id_cliente)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
                         <a href="{{route('clientes.edit',$cliente->id_cliente)}}" class="btn btn-primary">Editar</a>
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        @if ($cliente->estado=='vigente')
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        @else
+                            <button type="submit" class="btn btn-success">Activar</button>
+                        @endif
+                        
                     </form>
                 </td>
             </tr>

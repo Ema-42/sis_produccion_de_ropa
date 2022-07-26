@@ -49,7 +49,7 @@
                     <form action="{{route('usuarios.destroy',$usuario->id)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
-                        <a href="{{route('usuarios.edit',$usuario->id)}}" class="btn btn-warning">Editar</a>
+                        {{-- <a href="{{route('usuarios.edit',$usuario->id)}}" class="btn btn-warning">Editar</a> --}}
                         {{-- <a href="{{route('usuarios.destroy',$usuario->id)}}" class="btn btn-primary">Desbloquear</a> --}}
                         <button type="submit" class="btn btn-primary"  >Desbloquear</button>
                     </form>

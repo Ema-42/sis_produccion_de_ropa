@@ -20,6 +20,7 @@
                     <th scope="col"  >ID</th>
                     <th  scope="col"  >Nombre</th>
                     <th  scope="col"  >Descripcion</th>
+                    <th  scope="col"  >Estado</th>
                     <th scope="col">ACCIONES</th>  
                 </tr>
             </thead>
@@ -29,9 +30,15 @@
                     <td >{{$categoria->id_categoria_insumo}}</td>
                     <td >{{$categoria->nombre}}</td>
                     <td >{{$categoria->descripcion}}</td>
+                    <td>{{$categoria->estado}}</td>
                     <td >
                         <button wire:click="editar({{$categoria->id_categoria_insumo}})"  class="btn btn-primary">Editar</button>
+                        @if ($categoria->estado=='vigente')
                         <button wire:click="borrar({{$categoria->id_categoria_insumo}})" class="btn btn-danger">Borrar</button>
+                        @else
+                        <button wire:click="borrar({{$categoria->id_categoria_insumo}})" class="btn btn-success">Activar</button>
+                        @endif
+                        
                     </td>
                 </tr>
                 @endforeach

@@ -11,7 +11,7 @@
     @csrf
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Nombre</label>
-        <input id="nombre" name="nombre" type="text" class="form-control " tabindex="1">
+        <input required id="nombre" name="nombre" type="text" class="form-control " tabindex="1">
     </div>
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Descripcion</label>
@@ -40,7 +40,7 @@
     <script>
         $(document).ready(function () {
         $('#tallas').DataTable({
-            'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+            'lengthMenu':[[10,50,-1],[10,50,'All']]
         });
         })
     </script>

@@ -124,7 +124,14 @@ class ClienteController extends Controller
     public function destroy($id_cliente)
     {
         $cliente = Cliente::find($id_cliente);
-        $cliente->delete();
+        if ($cliente->estado=='vigente') {
+            $cliente->estado='eliminado';
+            $cliente->save();
+        } else {
+            $cliente->estado='vigente';
+            $cliente->save();
+        }
+        
         return redirect('/clientes');
     }
 }

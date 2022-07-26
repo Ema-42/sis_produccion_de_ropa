@@ -100,7 +100,13 @@ class EmpresaController extends Controller
     public function destroy($id_empresa)
     {
         $empresa = Empresa::find($id_empresa);
-        $empresa->delete();
+        if ($empresa->estado=='vigente') {
+            $empresa->estado='eliminado';
+            $empresa->save();
+        } else {
+            $empresa->estado='vigente';
+            $empresa->save();
+        }
         return redirect('/empresas');
     }
 }

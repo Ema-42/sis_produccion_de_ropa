@@ -21,6 +21,7 @@
         <th scope="col">Correo</th>
         <th scope="col">Fecha de Nacimiento</th>
         <th scope="col">Fecha de Registro</th>
+        <th scope="col">Estado</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -57,12 +58,19 @@
                 <td>
                     {{$encargado->created_at}}
                 </td>
+                <td>
+                    {{$encargado->estado}}
+                </td>
                 <td style="width: 180px">
                     <form action="{{route('encargado_producciones.destroy',$encargado->id_encargado_produccion)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
                         <a href="{{route('encargado_producciones.edit',$encargado->id_encargado_produccion)}}" class="btn btn-primary">Editar</a>
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        @if ($encargado->estado=='vigente')
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        @else
+                            <button type="submit" class="btn btn-success">Activar</button>
+                        @endif
                     </form>
                 </td>
             </tr>
@@ -85,7 +93,8 @@
 <script>
     $(document).ready(function () {
     $('#producciones').DataTable({
-        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']]
+        'lengthMenu':[[5,10,50,-1],[5,10,50,'All']],
+        "order": [[ 0, "desc" ]]
     });
     })
 </script>

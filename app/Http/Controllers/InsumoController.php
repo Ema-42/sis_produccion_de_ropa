@@ -119,7 +119,13 @@ class InsumoController extends Controller
     public function destroy($id_insumo)
     {
         $insumo = Insumo::find($id_insumo);
-        $insumo->delete();
+        if ($insumo->estado=='vigente') {
+            $insumo->estado = 'eliminado';
+            $insumo->save();
+        } else {
+            $insumo->estado = 'vigente';
+            $insumo->save();
+        }
         return redirect('/insumos');
     }
 }

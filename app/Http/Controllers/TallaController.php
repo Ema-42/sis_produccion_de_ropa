@@ -92,7 +92,14 @@ class TallaController extends Controller
     public function destroy($id_talla)
     {
         $talla = Talla::find($id_talla);
-        $talla->delete();
+        
+        if ($talla->estado=='vigente') {
+            $talla->estado='eliminado';
+            $talla->save();
+        } else {
+            $talla->estado='vigente';
+            $talla->save();
+        }
         return redirect('/tallas');
     }
 }

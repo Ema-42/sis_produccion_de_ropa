@@ -48,6 +48,7 @@ class UsuarioController extends Controller
         
         $usuario = new User();
         $usuario->name= $request->get('nombre');
+        $usuario->nombres= $request->get('nombre');
         $usuario->apellidos= $request->get('apellido');
         $usuario->state= 'active';
         $usuario->ndip= $request->get('ndip');
@@ -95,6 +96,7 @@ class UsuarioController extends Controller
     {
         $usuario = User::find($id);
         $roles = Role::all();
+        /* dd($usuario); */
         return view('usuario.edit',compact('usuario','roles'));
     }
 
@@ -111,7 +113,7 @@ class UsuarioController extends Controller
         
         $usuario->name= $request->get('nombre');
         $usuario->apellidos= $request->get('apellido');
-        $usuario->state= 'active';
+        
         $usuario->email= $request->get('correo');
         $usuario->ndip= $request->get('ndip');
         $usuario->direccion= $request->get('direccion');
@@ -119,9 +121,15 @@ class UsuarioController extends Controller
         $usuario->password= Hash::make($request->get('password'));
         if ($request->get('rol')==1) {
             $usuario->rol= 'Admin';
+            $usuario->state= 'active';
         }
         if ($request->get('rol')==2) {
             $usuario->rol= 'Empleado';
+            $usuario->state= 'active';
+        }
+        if ($request->get('rol')==4) {
+            $usuario->rol= 'Bloqueado';
+            $usuario->state= 'blocked';
         }
         $usuario->roles()->sync($request->get('rol'));
         $usuario->save();
@@ -140,10 +148,14 @@ class UsuarioController extends Controller
         $user=  User::find($id);
         if ($user->state =='blocked') {
             $user->state = 'active';
+            $user->roles()->sync(2);
+            $user->rol= 'Empleado';
             $user->save();
             return redirect('/usuarios/b_list');
         } else {
             $user->state = 'blocked';
+            $user->roles()->sync(4); /* id de rol blockeado */
+            $user->rol= 'Bloqueado';
             $user->save();
             return redirect('/usuarios');
         }

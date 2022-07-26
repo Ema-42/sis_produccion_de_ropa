@@ -30,7 +30,7 @@
                 <p><a style="font-weight: bold;">Empresa: </a>{{$pedido->empresas->nombre}} </p>
             </div>
         </div>
-        <p class="texto">Detalles de la producción y encargados :</p>
+        <p class="texto">Detalles del pedido entregado :</p>
         <table class="texto" style="border: 1px solid; width: 100%">
             <thead style="border: 1px solid; background: black;color: white">
             <tr style="border: 1px solid;">

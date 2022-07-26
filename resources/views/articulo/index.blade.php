@@ -16,6 +16,7 @@
         <th scope="col">Nombre</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Imagen</th>
+        <th scope="col">Estado</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -39,13 +40,22 @@
                     <img src="/img/{{$articulo->imagen}}" width="6%">
                 </td>
                 <td style="width: 180px">
+                    {{$articulo->estado}}
+                </td>
+                <td style="width: 180px">
                     <form action="{{route('articulos.destroy',$articulo->id_articulo)}}" method="POST" class="formBorrar">    
                         @csrf
                         @method('DELETE')
                         <a href="{{route('articulos.edit',$articulo->id_articulo)}}{{-- /articulos/{{$articulo->id_articulo}}/edit --}}" class="btn btn-primary">Editar</a>
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        @if ($articulo->estado=='vigente')
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        @else
+                            <button type="submit" class="btn btn-success">Activar</button>
+                        @endif
+                        
                     </form>
                 </td>
+
             </tr>
         @endforeach
     </tbody>   

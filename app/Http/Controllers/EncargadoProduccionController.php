@@ -109,7 +109,15 @@ class EncargadoProduccionController extends Controller
     public function destroy($id_encargado_produccion)
     {
         $encargado_produccion = Encargado_Produccion::find($id_encargado_produccion);
-        $encargado_produccion->delete();
+        
+        if ($encargado_produccion->estado=='vigente') {
+            $encargado_produccion->estado='eliminado';
+            $encargado_produccion->save();
+        } else {
+            $encargado_produccion->estado='vigente';
+            $encargado_produccion->save();
+        }
+    
         return redirect('/encargado_producciones');
     }
 }

@@ -128,7 +128,14 @@ class ArticuloController extends Controller
     public function destroy($id_articulo)
     {
         $articulo = Articulo::find($id_articulo);
-        $articulo->delete();
+        if ($articulo->estado=='vigente') {
+            $articulo->estado = 'eliminado';
+            $articulo->save();
+        } else {
+            $articulo->estado = 'vigente';
+            $articulo->save();
+        }
+        
         return redirect('/articulos');
     }
 }

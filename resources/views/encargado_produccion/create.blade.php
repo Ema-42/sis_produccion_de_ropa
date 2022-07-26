@@ -11,7 +11,7 @@
     @csrf
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Primer Nombre</label>
-        <input id="primer_nombre" name="primer_nombre" type="text" class="form-control " tabindex="1">
+        <input required id="primer_nombre" name="primer_nombre" type="text" class="form-control " tabindex="1">
     </div>
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Segundo Nombre</label>
@@ -19,7 +19,7 @@
     </div>
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Apellido Paterno</label>
-        <input id="apellido_paterno" name="apellido_paterno" type="text" class="form-control " tabindex="3">
+        <input required id="apellido_paterno" name="apellido_paterno" type="text" class="form-control " tabindex="3">
     </div>
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Apellido Materno</label>
@@ -28,7 +28,7 @@
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Numero DIP</label>
-        <input id="nro_dip" name="nro_dip" type="text" class="form-control " tabindex="9">
+        <input required id="nro_dip" name="nro_dip" type="text" class="form-control " tabindex="9">
     </div>
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Fecha de Nacimiento</label>
@@ -41,7 +41,7 @@
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Celular</label>
-        <input id="celular" name="celular" type="number" class="form-control " tabindex="8">
+        <input required id="celular" name="celular" type="number" class="form-control " tabindex="8">
     </div>
     <div class="mb-3 col-md-4" >
         <label for="" class="form-label">Correo</label>

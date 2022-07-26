@@ -3,10 +3,11 @@
 
 <div class="mb-3 col-md-2">
     <label for="" class="form-label">Empresa</label>
-    <select name="id_empresa" id="id_empresa" class=" form-control" aria-label="Default select example" tabindex="1">
+    <select required name="id_empresa" id="id_empresa" class=" form-control" aria-label="Default select example" tabindex="1">
         @foreach ($empresas as $empresa)
-            <option value="{{$empresa->id_empresa}}">{{$empresa->nombre}}</option>
-            
+            @if ($empresa->estado=='vigente')
+                <option value="{{$empresa->id_empresa}}">{{$empresa->nombre}}</option>
+            @endif 
         @endforeach
     </select>
 </div>
@@ -16,9 +17,11 @@
 </div>
 <div class="mb-3 col-md-3">
     <label  for="" class="form-label">Proveedor</label><br>
-    <select name="id_proveedor" id="id_proveedor" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
+    <select required name="id_proveedor" id="id_proveedor" class="form-control select_clientes  select2" aria-label="Default select example" tabindex="2">
         @foreach ($proveedores as $proveedor)
+            @if ($proveedor->estado=='vigente')
                 <option value="{{$proveedor->id_proveedor}}">{{$proveedor->primer_nombre}} {{$proveedor->apellido_paterno}} {{$proveedor->apellido_materno}}ㅤㅤNDIP: {{$proveedor->nro_dip}}</option>
+            @endif
         @endforeach
     </select>
 </div>

@@ -13,7 +13,9 @@
         <label for="" class="form-label">Categoria</label>
         <select name="id_categoria_insumo" id="id_categoria_insumo" class=" form-control col-md-4" aria-label="Default select example" tabindex="1">
             @foreach ($categorias as $categoria)
-                <option value="{{$categoria->id_categoria_insumo}}">{{$categoria->descripcion}}</option>
+                @if ($categoria->estado=='vigente')
+                    <option value="{{$categoria->id_categoria_insumo}}">{{$categoria->nombre}}</option>
+                @endif 
             @endforeach
         </select>
     </div>

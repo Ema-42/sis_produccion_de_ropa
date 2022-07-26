@@ -12,7 +12,7 @@
     @method('PUT')
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Primer Nombre</label>
-        <input id="primer_nombre" name="primer_nombre" type="text" class="form-control " tabindex="1" value="{{$proveedor->primer_nombre}}">
+        <input required id="primer_nombre" name="primer_nombre" type="text" class="form-control " tabindex="1" value="{{$proveedor->primer_nombre}}">
     </div>
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Segundo Nombre</label>
@@ -20,7 +20,7 @@
     </div>
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Apellido Paterno</label>
-        <input id="apellido_paterno" name="apellido_paterno" type="text" class="form-control " tabindex="3" value="{{$proveedor->apellido_paterno}}">
+        <input required id="apellido_paterno" name="apellido_paterno" type="text" class="form-control " tabindex="3" value="{{$proveedor->apellido_paterno}}">
     </div>
     <div class="mb-3 col-md-2">
         <label for="" class="form-label">Apellido Materno</label>
@@ -29,12 +29,12 @@
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Numero DIP</label>
-        <input id="nro_dip" name="nro_dip" type="text" class="form-control " tabindex="9"  value="{{$proveedor->nro_dip}}">
+        <input required id="nro_dip" name="nro_dip" type="text" class="form-control " tabindex="9"  value="{{$proveedor->nro_dip}}">
     </div>
     
     <div class="mb-3 col-md-4">
         <label for="" class="form-label">Nombre de la Empresa</label>
-        <input id="nombre_empresa" name="nombre_empresa" type="text" class="form-control " tabindex="4" value="{{$proveedor->nombre_empresa}}">
+        <input required id="nombre_empresa" name="nombre_empresa" type="text" class="form-control " tabindex="4" value="{{$proveedor->nombre_empresa}}">
     </div>
     
     <div class="mb-3 col-md-2" >
@@ -48,7 +48,7 @@
     </div>
     <div class="mb-3 col-md-2" >
         <label for="" class="form-label">Celular</label>
-        <input id="celular" name="celular" type="text" class="form-control " tabindex="8" value="{{$proveedor->celular}}">
+        <input required id="celular" name="celular" type="text" class="form-control " tabindex="8" value="{{$proveedor->celular}}">
     </div>
     <div class="mb-3 col-md-4" >
         <label for="" class="form-label">Correo</label>
@@ -57,7 +57,7 @@
     <div class="mb-3 col-md-4"></div>
     <div class="mb-3 col-md-4" >
         <label for="" class="form-label">Direccion</label>
-        <input id="direccion" name="direccion" type="text" class="form-control " tabindex="11" value="{{$proveedor->direccion}}">
+        <input required id="direccion" name="direccion" type="text" class="form-control " tabindex="11" value="{{$proveedor->direccion}}">
     </div>
     <div class="mb-3 col-md-12" >
         <a href="/proveedores" class="btn btn-secondary" tabindex="13">Cancelar</a>

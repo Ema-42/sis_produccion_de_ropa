@@ -225,6 +225,7 @@ return [
     */
 
     'menu' => [
+        
         // Navbar items:
         [
             'type'         => 'navbar-search',
@@ -250,6 +251,7 @@ return [
         [
             'text'    => 'Cotizaciones',
             'icon'    => 'fas fa-file-alt',
+            'can'     => 'main_menu',
             'submenu' => [
                 [
                     'text' => 'Nueva Cotizacion',
@@ -294,6 +296,7 @@ return [
         [
             'text'    => 'Pedidos',
             'icon'    => 'fas fa-cart-arrow-down',
+            'can'     => 'main_menu',
             'submenu' => [
 /*                 [
                     'text' => 'Nuevo Pedido',
@@ -331,6 +334,7 @@ return [
         [
             'text'    => 'Articulos',
             'icon'    => 'fas fa-briefcase',
+            'can'     => 'main_menu',
             'submenu' => [
                 [
                     'text' => 'Crear',
@@ -376,10 +380,11 @@ return [
                 ],
             ],
         ],
-        ['header' => 'PERSONAS'],
+        ['header' => 'PERSONAS','can'     => 'main_menu'],
         [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-user',
+            'can'     => 'main_menu',
             'submenu' => [
                 [
                     'text' => 'Listado',
@@ -457,10 +462,11 @@ return [
                 ],
             ],
         ],
-        ['header' => 'DETALLES DE ARTICULOS'],
+        ['header' => 'DETALLES DE ARTICULOS','can'     => 'main_menu'],
         [
             'text'    => 'Detalles',
             'icon'    => 'fas fa-tools',
+            'can'     => 'main_menu',
             'submenu' => [
                 [
                     'text' => 'Tallas',
@@ -474,7 +480,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'DATOS DE EMPRESA'],
+        ['header' => 'DATOS DE EMPRESA','can'     => 'insumos.crud'],
         [
             'text'    => 'Empresa',
             'icon'    => 'fas fa-building',
